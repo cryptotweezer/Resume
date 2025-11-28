@@ -10,6 +10,7 @@ import { formatDate } from "@/lib/utils"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CountUp } from "@/components/count-up"
 import { TypewriterEffect } from "@/components/typewriter-effect"
+import { RobotModel } from "@/components/robot-model"
 import { IconRenderer } from "@/components/icon-renderer"
 
 
@@ -35,9 +36,9 @@ export default async function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background relative overflow-hidden">
+      <section className="w-full py-6 md:py-12 lg:py-24 xl:py-32 bg-background relative overflow-hidden">
         <div className="container px-4 md:px-6 relative z-10">
-          <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_600px]">
             <div className="flex flex-col justify-center space-y-6">
               <div className="space-y-6">
                 {/* Name Title */}
@@ -89,20 +90,9 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Right Side Placeholder */}
-            <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-[500px] aspect-square">
-                {/* Placeholder for future interactive image */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-800/20 rounded-2xl blur-3xl"></div>
-                <div className="relative h-full bg-muted/40 backdrop-blur-sm border border-border rounded-2xl shadow-2xl flex items-center justify-center">
-                  <div className="text-center space-y-4 p-8">
-                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500/20 to-blue-700/20 flex items-center justify-center">
-                      <Shield className="h-16 w-16 text-blue-400" />
-                    </div>
-                    <p className="text-muted-foreground text-sm">Interactive Image Placeholder</p>
-                  </div>
-                </div>
-              </div>
+            {/* Right Side - 3D Robot Model */}
+            <div className="flex items-center justify-center w-full h-[300px] md:h-[400px] lg:h-[500px]">
+              <RobotModel />
             </div>
           </div>
         </div>
