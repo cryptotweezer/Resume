@@ -10,8 +10,8 @@ import { formatDate } from "@/lib/utils"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CountUp } from "@/components/count-up"
 import { TypewriterEffect } from "@/components/typewriter-effect"
-import { RobotModel } from "@/components/robot-model"
 import { IconRenderer } from "@/components/icon-renderer"
+import { HeroSection } from "@/components/hero-section"
 
 
 export default async function Home() {
@@ -36,72 +36,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="w-full py-6 md:py-12 lg:py-24 xl:py-32 bg-background relative overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_600px]">
-            <div className="flex flex-col justify-center space-y-6">
-              <div className="space-y-6">
-                {/* Name Title */}
-                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none min-h-[1.2em]">
-                  <TypewriterEffect
-                    words={["Andres Henao", "Cyber security", "Web Developer", "AI Automations"]}
-                    cursorClassName="text-blue-500"
-                  />
-                </h1>
-
-                {/* Professional Badges */}
-                <div className="flex flex-wrap gap-3">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                    <Shield className="h-4 w-4 text-blue-400" />
-                    <span className="text-sm text-muted-foreground">Cybersecurity Specialist</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                    <Cloud className="h-4 w-4 text-blue-400" />
-                    <span className="text-sm text-muted-foreground">Cloud Security Engineer</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                    <Code2 className="h-4 w-4 text-blue-400" />
-                    <span className="text-sm text-muted-foreground">Full-Stack Developer</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                    <Bot className="h-4 w-4 text-blue-400" />
-                    <span className="text-sm text-muted-foreground">AI & Automation</span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="max-w-[600px] text-muted-foreground md:text-lg leading-relaxed">
-                  Building secure, intelligent, and efficient systems through cybersecurity expertise, AI automation, and full-stack development.
-                </p>
-              </div>
-
-              {/* Buttons */}
-              <div className="flex flex-col gap-3 min-[400px]:flex-row">
-                <Link href="/about">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                    View Full Resume
-                  </Button>
-                </Link>
-                <Link href="/contact">
-                  <Button size="lg" variant="outline">
-                    Get in Touch
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Side - 3D Robot Model */}
-            <div className="flex items-center justify-center w-full h-[300px] md:h-[400px] lg:h-[500px]">
-              <RobotModel />
-            </div>
-          </div>
-        </div>
-        {/* Animated background */}
-        <div className="absolute inset-0 bg-grid-white/5 dark:bg-grid-white/5 bg-[size:50px_50px] opacity-10"></div>
-        <div className="absolute inset-0 bg-background/80"></div>
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent"></div>
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent"></div>
-      </section>
+      <HeroSection />
 
       {/* Database Error Alert */}
       {dbError && (
