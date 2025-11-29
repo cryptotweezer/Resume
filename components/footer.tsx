@@ -28,11 +28,7 @@ export function Footer() {
                   Tools & Technologies
                 </Link>
               </li>
-              <li>
-                <Link href="/resources/checklists" className="text-muted-foreground hover:text-foreground">
-                  Best Practices
-                </Link>
-              </li>
+
             </ul>
           </div>
           <div>

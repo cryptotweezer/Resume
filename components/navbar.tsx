@@ -1,32 +1,35 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Shield, X } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
-import { usePathname } from "next/navigation";
-import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { cn } from "@/lib/utils";
-import { useAdmin } from "@/hooks/use-admin";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Shield, Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton, SignOutButton } from "@clerk/nextjs"
+import { useUI } from "@/context/ui-context"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { cn } from "@/lib/utils"
+import { useAdmin } from "@/hooks/use-admin"
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isAdmin } = useAdmin();
+  const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { setIsHoveringAuth } = useUI()
+  const { isAdmin } = useAdmin()
 
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "Resume" },
     { href: "/blog", label: "Blog" },
     { href: "/projects", label: "Projects" },
-  ];
+    { href: "/resources/tools", label: "Toolkit" },
+  ]
 
   const adminLink = {
     href: "/admin",
     label: "Admin Dashboard"
-  };
+  }
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -36,17 +39,18 @@ export default function Navbar() {
             <Shield className="h-6 w-6 text-primary" />
             <span className="">Andres Henao</span>
           </Link>
-        </div>        {/* Desktop Navigation */}
+        </div>
+
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-5 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "transition-colors hover:text-foreground/80",
-                pathname === link.href ? "text-foreground" : "text-foreground/60"
+                "transition-colors hover:text-blue-500",
+                pathname === link.href ? "text-blue-500 font-bold" : "text-foreground"
               )}
-              onClick={() => setIsMenuOpen(false)}
             >
               {link.label}
             </Link>
@@ -64,12 +68,39 @@ export default function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full max-w-xs">
-              <nav className="flex flex-col gap-4 mt-8">
+              <SheetTitle className="text-left">Menu</SheetTitle>
+
+              <SignedIn>
+                <div className="mt-6 mb-4 flex flex-col gap-3">
+                  <div className="flex items-center gap-2">
+                    <UserButton
+                      afterSignOutUrl="/"
+                      appearance={{
+                        elements: {
+                          userButtonPopoverCard: "z-[9999]",
+                          userButtonPopoverFooter: "z-[9999]"
+                        }
+                      }}
+                    />
+                    <span className="text-sm font-medium text-muted-foreground">My Account</span>
+                  </div>
+                  <SignOutButton>
+                    <Button variant="ghost" className="w-full justify-start" size="sm">
+                      Sign Out
+                    </Button>
+                  </SignOutButton>
+                </div>
+              </SignedIn>
+
+              <nav className="flex flex-col gap-4 mt-2">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+                    className={cn(
+                      "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                      pathname === link.href ? "text-blue-500 bg-blue-500/10" : "text-foreground"
+                    )}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}
@@ -89,7 +120,11 @@ export default function Navbar() {
               </nav>
               <div className="mt-auto pt-6">
                 <SignedOut>
-                  <div className="flex flex-col gap-2">
+                  <div
+                    className="flex flex-col gap-2"
+                    onMouseEnter={() => setIsHoveringAuth(true)}
+                    onMouseLeave={() => setIsHoveringAuth(false)}
+                  >
                     <SignInButton mode="modal">
                       <Button variant="outline" className="w-full">Sign In</Button>
                     </SignInButton>
@@ -98,14 +133,6 @@ export default function Navbar() {
                     </SignUpButton>
                   </div>
                 </SignedOut>
-                <SignedIn>
-                  <div className="flex items-center justify-between">
-                    <UserButton afterSignOutUrl="/" />
-                    <Button variant="ghost" size="sm" asChild>
-                      <Link href="/settings">Settings</Link>
-                    </Button>
-                  </div>
-                </SignedIn>
               </div>
             </SheetContent>
           </Sheet>
@@ -114,15 +141,26 @@ export default function Navbar() {
         {/* Desktop Auth Buttons and Theme Toggle */}
         <div className="hidden md:flex items-center gap-3">
           <SignedOut>
-            <SignInButton mode="modal">
-              <Button variant="outline" size="sm">Sign In</Button>
-            </SignInButton>
-            <SignUpButton mode="modal">
-              <Button size="sm">Sign Up</Button>
-            </SignUpButton>
+            <div
+              className="flex items-center gap-3"
+              onMouseEnter={() => setIsHoveringAuth(true)}
+              onMouseLeave={() => setIsHoveringAuth(false)}
+            >
+              <SignInButton mode="modal">
+                <Button variant="outline" size="sm">Sign In</Button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <Button size="sm">Sign Up</Button>
+              </SignUpButton>
+            </div>
           </SignedOut>
           <SignedIn>
-            <UserButton afterSignOutUrl="/" />
+            <div
+              onMouseEnter={() => setIsHoveringAuth(true)}
+              onMouseLeave={() => setIsHoveringAuth(false)}
+            >
+              <UserButton afterSignOutUrl="/" />
+            </div>
           </SignedIn>
           <ThemeToggle />
 
@@ -139,5 +177,5 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-  );
+  )
 }

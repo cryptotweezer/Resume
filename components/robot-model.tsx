@@ -5,6 +5,8 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { useGLTF, OrbitControls, PerspectiveCamera, Environment, Float } from "@react-three/drei"
 import * as THREE from "three"
 
+import { useUI } from "@/context/ui-context"
+
 function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering: boolean, isHoveringContact: boolean }) {
     const { scene } = useGLTF(url)
     const modelRef = useRef<THREE.Group>(null)
@@ -12,6 +14,16 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
     const [position, setPosition] = useState<[number, number, number]>([0, -0.5, 0])
     const [baseY, setBaseY] = useState(-0.5)
     const [isShaking, setIsShaking] = useState(false)
+    const { isHoveringAuth, isChatOpen } = useUI()
+    const [isJumping, setIsJumping] = useState(false)
+    const jumpProgress = useRef(0)
+
+    useEffect(() => {
+        if (isChatOpen) {
+            setIsJumping(true)
+            jumpProgress.current = 0
+        }
+    }, [isChatOpen])
 
     useEffect(() => {
         const handleResize = () => {
@@ -54,33 +66,64 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
     }
 
     // Rotate model to face mouse and animate eyes
-    useFrame((state) => {
+    useFrame((state, delta) => {
         if (modelRef.current) {
             // Target rotation based on global mouse position
             const targetRotationY = mouse.current.x * 0.8 // Increased range for better visibility
             const targetRotationX = -mouse.current.y * 0.5 // Increased range
 
-            if (isShaking) {
+            if (isJumping) {
+                // Jump animation
+                jumpProgress.current += delta * 10 // Speed of jump
+                // Sine wave for jumping (0 to PI is one hump)
+                const jumpHeight = 0.5
+                const jumpY = Math.sin(jumpProgress.current) * jumpHeight
+
+                if (jumpY >= 0) {
+                    modelRef.current.position.y = baseY + jumpY
+                } else {
+                    // Jump finished
+                    setIsJumping(false)
+                    modelRef.current.position.y = baseY
+                }
+
+                // Maintain mouse tracking during jump
+                modelRef.current.rotation.y = THREE.MathUtils.lerp(modelRef.current.rotation.y, targetRotationY, 0.1)
+                modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, targetRotationX, 0.1)
+
+            } else if (isShaking) {
                 // "No" head shake animation
                 const time = state.clock.getElapsedTime()
                 // Fast sine wave for shaking
                 modelRef.current.rotation.y = Math.sin(time * 20) * 0.5
                 modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, 0, 0.1) // Reset X tilt
+            } else if (isHoveringAuth) {
+                // "Yes" nod animation
+                const time = state.clock.getElapsedTime()
+                // Sine wave for nodding (up and down) added to the mouse target
+                const nodOffset = Math.sin(time * 8) * 0.1
+
+                // Follow mouse horizontally
+                modelRef.current.rotation.y = THREE.MathUtils.lerp(modelRef.current.rotation.y, targetRotationY, 0.1)
+                // Follow mouse vertically BUT add the nod offset
+                modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, targetRotationX + nodOffset, 0.1)
             } else {
                 // Smoothly interpolate to target (normal mouse tracking)
                 modelRef.current.rotation.y = THREE.MathUtils.lerp(modelRef.current.rotation.y, targetRotationY, 0.1)
                 modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, targetRotationX, 0.1)
             }
 
-            // Bounce animation logic
-            if (isHoveringContact) {
-                // Create a bounce effect using sine wave
-                const time = state.clock.getElapsedTime()
-                const bounce = Math.abs(Math.sin(time * 5)) * 0.2 // Small bounce height
-                modelRef.current.position.y = THREE.MathUtils.lerp(modelRef.current.position.y, baseY + bounce, 0.2)
-            } else {
-                // Reset position smoothly
-                modelRef.current.position.y = THREE.MathUtils.lerp(modelRef.current.position.y, baseY, 0.1)
+            // Bounce animation logic (only if NOT jumping)
+            if (!isJumping) {
+                if (isHoveringContact) {
+                    // Create a bounce effect using sine wave
+                    const time = state.clock.getElapsedTime()
+                    const bounce = Math.abs(Math.sin(time * 5)) * 0.2 // Small bounce height
+                    modelRef.current.position.y = THREE.MathUtils.lerp(modelRef.current.position.y, baseY + bounce, 0.2)
+                } else {
+                    // Reset position smoothly
+                    modelRef.current.position.y = THREE.MathUtils.lerp(modelRef.current.position.y, baseY, 0.1)
+                }
             }
 
             // Animate eyes

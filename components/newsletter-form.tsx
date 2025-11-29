@@ -45,11 +45,11 @@ export function NewsletterForm() {
       </div>
       <p className="text-xs text-muted-foreground">
         By subscribing, you agree to our{" "}
-        <a href="/terms" className="underline underline-offset-2">
+        <a href="/legal/terms" className="underline underline-offset-2">
           Terms of Service
         </a>{" "}
         and{" "}
-        <a href="/privacy" className="underline underline-offset-2">
+        <a href="/legal/privacy" className="underline underline-offset-2">
           Privacy Policy
         </a>
         .

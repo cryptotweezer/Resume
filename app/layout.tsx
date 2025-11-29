@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import { AuthSync } from "@/components/auth-sync";
+import ChatWidget from "@/components/ChatWidget";
+import { UIProvider } from "@/context/ui-context";
 // import {
 //   SignInButton,
 //   SignUpButton,
@@ -31,20 +33,23 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        {/* Include AuthSync component for auto user role assignment */}
-        <AuthSync />
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <Toaster />
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+      <html lang="en" suppressHydrationWarning>
+        <body className={inter.className}>
+          {/* Include AuthSync component for auto user role assignment */}
+          <AuthSync />
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+            <UIProvider>
+              <div className="flex min-h-screen flex-col">
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <Toaster />
+                <ChatWidget />
+              </div>
+            </UIProvider>
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
   )
 }
