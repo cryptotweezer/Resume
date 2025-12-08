@@ -1,8 +1,11 @@
 "use client"
+import * as React from "react"
+import Image from "next/image"
+import { useTheme } from "next-themes"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Shield, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -17,6 +20,13 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { setIsHoveringAuth } = useUI()
   const { isAdmin } = useAdmin()
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Wait for mount to avoid hydration mismatch
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -36,7 +46,18 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            <Shield className="h-6 w-6 text-primary" />
+            {mounted ? (
+              <Image
+                src={resolvedTheme === 'light' ? "/logo_black.png" : "/logo_white.png"}
+                alt="Andres Henao Logo"
+                width={32}
+                height={32}
+                className="h-8 w-8 object-contain"
+                priority
+              />
+            ) : (
+              <div className="h-8 w-8" /> // Placeholder to prevent layout shift
+            )}
             <span className="">Andres Henao</span>
           </Link>
         </div>

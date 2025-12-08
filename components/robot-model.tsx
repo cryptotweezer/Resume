@@ -13,7 +13,11 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
     const [scale, setScale] = useState(3.8)
     const [position, setPosition] = useState<[number, number, number]>([0, -0.5, 0])
     const [baseY, setBaseY] = useState(-0.5)
-    const [isShaking, setIsShaking] = useState(false)
+
+    // const [isShaking, setIsShaking] = useState(false) // Removed shake
+    const [isSpinning, setIsSpinning] = useState(false)
+    const spinProgress = useRef(0)
+    const initialSpinRotation = useRef(0)
     const { isHoveringAuth, isChatOpen } = useUI()
     const [isJumping, setIsJumping] = useState(false)
     const jumpProgress = useRef(0)
@@ -61,8 +65,11 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
     }, [])
 
     const handleDoubleClick = () => {
-        setIsShaking(true)
-        setTimeout(() => setIsShaking(false), 500) // Shake for 500ms
+        if (!isSpinning && modelRef.current) {
+            initialSpinRotation.current = modelRef.current.rotation.y
+            spinProgress.current = 0
+            setIsSpinning(true)
+        }
     }
 
     // Rotate model to face mouse and animate eyes
@@ -91,12 +98,24 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
                 modelRef.current.rotation.y = THREE.MathUtils.lerp(modelRef.current.rotation.y, targetRotationY, 0.1)
                 modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, targetRotationX, 0.1)
 
-            } else if (isShaking) {
-                // "No" head shake animation
-                const time = state.clock.getElapsedTime()
-                // Fast sine wave for shaking
-                modelRef.current.rotation.y = Math.sin(time * 20) * 0.5
-                modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, 0, 0.1) // Reset X tilt
+                modelRef.current.rotation.y = THREE.MathUtils.lerp(modelRef.current.rotation.y, targetRotationY, 0.1)
+                modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, targetRotationX, 0.1)
+
+            } else if (isSpinning) {
+                // 360-degree spin animation
+                spinProgress.current += delta * 15 // Adjust speed here
+
+                if (spinProgress.current >= Math.PI * 2) {
+                    // Spin complete
+                    setIsSpinning(false)
+                    // Reset rotation to avoid unwinding (subtract 360 deg)
+                    modelRef.current.rotation.y = (initialSpinRotation.current + spinProgress.current) - (Math.PI * 2)
+                } else {
+                    modelRef.current.rotation.y = initialSpinRotation.current + spinProgress.current
+                }
+
+                // Return pitch to neutral during spin
+                modelRef.current.rotation.x = THREE.MathUtils.lerp(modelRef.current.rotation.x, 0, 0.1)
             } else if (isHoveringAuth) {
                 // "Yes" nod animation
                 const time = state.clock.getElapsedTime()

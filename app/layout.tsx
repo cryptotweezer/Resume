@@ -23,7 +23,10 @@ export const metadata: Metadata = {
   title: "Andres Henao Resume | Cybersecurity & AI Engineer",
   description: "Cybersecurity & AI-Driven Full-Stack Engineer specializing in automation, cloud solutions, and secure software architecture. Expert in Python, Flask, Django, Docker, LLM integration, and workflow automation.",
   generator: 'v0.dev',
-  keywords: ['cybersecurity', 'AI engineer', 'full-stack developer', 'automation', 'cloud security', 'Python', 'Flask', 'Django', 'Docker', 'LLM', 'workflow automation', 'security architecture']
+  keywords: ['cybersecurity', 'AI engineer', 'full-stack developer', 'automation', 'cloud security', 'Python', 'Flask', 'Django', 'Docker', 'LLM', 'workflow automation', 'security architecture'],
+  icons: {
+    icon: '/logo.png',
+  }
 }
 
 export default function RootLayout({

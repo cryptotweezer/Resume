@@ -1,5 +1,5 @@
-import { neon } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-http";
+import { Pool } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-serverless";
 import { boolean, pgTable, serial, text, timestamp, varchar, json } from "drizzle-orm/pg-core";
 
 
@@ -29,10 +29,10 @@ else {
 }
 
 // Create a SQL query executor using the Neon serverless driver
-const sql = neon(connectionString);
+const pool = new Pool({ connectionString });
 
 // Create a Drizzle instance
-export const db = drizzle(sql);
+export const db = drizzle(pool);
 
 // Define the subscribers table schema - for newsletter subscribers only
 export const subscribers = pgTable("subscribers", {

@@ -1,14 +1,36 @@
+"use client"
+
 import Link from "next/link"
-import { Shield } from "lucide-react"
+import Image from "next/image"
+import { useTheme } from "next-themes"
+import { useState, useEffect } from "react"
 
 export function Footer() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Wait for mount to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <footer className="border-t bg-background">
       <div className="container py-8 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <Shield className="h-6 w-6 text-primary" />
+              {mounted ? (
+                <Image
+                  src={resolvedTheme === 'light' ? "/logo_black.png" : "/logo_white.png"}
+                  alt="Andres Henao Logo"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 object-contain"
+                />
+              ) : (
+                <div className="h-6 w-6" /> // Placeholder
+              )}
               <span className="text-lg font-bold">Andres Henao</span>
             </Link>
             <p className="text-sm text-muted-foreground">
