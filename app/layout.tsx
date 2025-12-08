@@ -9,6 +9,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { AuthSync } from "@/components/auth-sync";
 import ChatWidget from "@/components/ChatWidget";
 import { UIProvider } from "@/context/ui-context";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 // import {
 //   SignInButton,
 //   SignUpButton,
@@ -51,6 +52,7 @@ export default function RootLayout({
               </div>
             </UIProvider>
           </ThemeProvider>
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
