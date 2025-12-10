@@ -46,6 +46,7 @@ function CardContent({ theme }: { theme: string | undefined }) {
             {/* Just the Logo in 3D Space */}
             <Html
                 transform
+                zIndexRange={[20, 0]}
                 occlude="blending"
                 position={[0, 0, 0]}
                 style={{
