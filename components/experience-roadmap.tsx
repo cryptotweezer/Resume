@@ -123,7 +123,7 @@ export function ExperienceRoadmap() {
     }, [])
 
     return (
-        <div className="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-blue-500/30 before:to-transparent">
+        <div className="relative space-y-12 before:hidden md:before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-blue-500/30 before:to-transparent">
             {experiences.map((exp, index) => {
                 const isActive = activeIndices.includes(index)
                 const isEven = index % 2 === 0
@@ -134,14 +134,14 @@ export function ExperienceRoadmap() {
                         ref={(el) => { itemRefs.current[index] = el }}
                         data-index={index}
                         className={cn(
-                            "relative flex items-center justify-between md:justify-normal group transition-all duration-700 ease-out",
+                            "relative flex items-center justify-center md:justify-normal group transition-all duration-700 ease-out",
                             isEven ? "md:flex-row" : "md:flex-row-reverse",
                             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                         )}
                     >
                         {/* Icon - Absolutely positioned in center for desktop */}
                         <div className={cn(
-                            "flex items-center justify-center w-10 h-10 rounded-full border bg-background shadow-sm z-10 transition-all duration-500 delay-100",
+                            "hidden md:flex items-center justify-center w-10 h-10 rounded-full border bg-background shadow-sm z-10 transition-all duration-500 delay-100",
                             "md:absolute md:-translate-x-1/2",
                             isEven ? "md:left-[calc(50%-3rem)]" : "md:left-[calc(50%+3rem)]",
                             isActive ? "border-blue-500 bg-blue-500/10 scale-110 shadow-[0_0_15px_rgba(59,130,246,0.5)]" : "border-muted-foreground/20"
@@ -157,7 +157,7 @@ export function ExperienceRoadmap() {
 
                         {/* Content Card */}
                         <div className={cn(
-                            "w-full md:w-[calc(50%-3rem)] bg-card/50 backdrop-blur-sm p-6 rounded-xl border shadow-sm transition-all duration-500 ml-16 md:ml-0",
+                            "w-full md:w-[calc(50%-3rem)] bg-card/50 backdrop-blur-sm p-6 rounded-xl border shadow-sm transition-all duration-500 ml-0 md:ml-0",
                             isEven ? "md:mr-12" : "md:ml-12",
                             isActive ? "border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.15)]" : "border-border"
                         )}>

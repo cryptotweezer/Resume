@@ -12,8 +12,8 @@ export function HeroSection() {
     const [isHoveringContact, setIsHoveringContact] = useState(false)
 
     return (
-        <section className="w-full py-6 md:py-12 lg:py-24 xl:py-32 bg-background relative overflow-hidden">
-            <div className="container px-4 md:px-6 relative z-10">
+        <section className="w-full min-h-[calc(100vh-4rem)] py-12 flex items-center bg-background relative overflow-hidden">
+            <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
                 <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_600px]">
                     <div className="flex flex-col justify-center space-y-6">
                         <div className="space-y-6">
@@ -26,22 +26,31 @@ export function HeroSection() {
                             </h1>
 
                             {/* Professional Badges */}
-                            <div className="flex flex-wrap gap-3">
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                                    <Shield className="h-4 w-4 text-blue-400" />
-                                    <span className="text-sm text-muted-foreground">Cybersecurity Specialist</span>
+                            {/* Professional Badges */}
+                            <div className="grid grid-cols-2 gap-3 w-full max-w-[600px]">
+                                <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
+                                    <Shield className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
+                                    <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
+                                        Cybersecurity Specialist
+                                    </span>
                                 </div>
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                                    <Cloud className="h-4 w-4 text-blue-400" />
-                                    <span className="text-sm text-muted-foreground">Cloud Security Engineer</span>
+                                <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
+                                    <Cloud className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
+                                    <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
+                                        Cloud Security Engineer
+                                    </span>
                                 </div>
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                                    <Code2 className="h-4 w-4 text-blue-400" />
-                                    <span className="text-sm text-muted-foreground">Full-Stack Developer</span>
+                                <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
+                                    <Code2 className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
+                                    <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
+                                        Full-Stack Developer
+                                    </span>
                                 </div>
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                                    <Bot className="h-4 w-4 text-blue-400" />
-                                    <span className="text-sm text-muted-foreground">AI & Automation</span>
+                                <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
+                                    <Bot className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
+                                    <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
+                                        AI & Automation
+                                    </span>
                                 </div>
                             </div>
 

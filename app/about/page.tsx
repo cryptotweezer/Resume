@@ -11,6 +11,7 @@ import Image from "next/image"
 
 import { ExperienceRoadmap } from "@/components/experience-roadmap"
 import { CountUp } from "@/components/count-up"
+import { BusinessCard3D } from "@/components/business-card-3d"
 
 export default function AboutPage() {
   const [selectedCertificate, setSelectedCertificate] = useState<{ name: string; image: string } | null>(null)
@@ -18,8 +19,8 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col">
       {/* Profile Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6">
+      <section className="w-full pt-6 md:pt-12 lg:pt-16 pb-12 md:pb-24 lg:pb-32 bg-background">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
           <div className="grid gap-10 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_500px]">
             <div className="flex flex-col justify-center space-y-6">
               <div className="space-y-2">
@@ -32,28 +33,7 @@ export default function AboutPage() {
                 <p className="text-base text-foreground pt-2">
                   Cyber security specialist with a strong foundation in secure software architecture, cloud automation, and intelligent systems integration
                 </p>
-                <div className="flex flex-col gap-2 pt-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-primary" />
-                    <span>Sydney, Australia</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <a href="mailto:andres.henaocastro@live.vu.edu.au" className="hover:text-primary transition-colors">
-                      andres.henaocastro@live.vu.edu.au
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <a href="mailto:andreshenao.tech@gmail.com" className="hover:text-primary transition-colors">
-                      andreshenao.tech@gmail.com
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-primary" />
-                    <span>+61 404 682 541</span>
-                  </div>
-                </div>
+                {/* Contact info moved to bottom */}
               </div>
               <div className="space-y-4">
                 <p className="text-muted-foreground">
@@ -74,18 +54,10 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-[400px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur-3xl opacity-20"></div>
-                <div className="relative overflow-hidden rounded-xl border border-primary/20 bg-background">
-                  <Image
-                    src="/video_1.gif"
-                    alt="Andres Henao"
-                    width={400}
-                    height={400}
-                    className="w-full h-auto object-cover"
-                    unoptimized
-                  />
+            <div className="flex items-center justify-center w-full">
+              <div className="relative w-full">
+                <div className="relative w-full">
+                  <BusinessCard3D />
                 </div>
               </div>
             </div>
@@ -97,7 +69,7 @@ export default function AboutPage() {
 
       {/* Skills Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
             <div className="space-y-2">
 
@@ -339,7 +311,7 @@ export default function AboutPage() {
 
       {/* Experience Timeline */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Professional Experience</h2>
@@ -355,7 +327,7 @@ export default function AboutPage() {
 
       {/* Professional Achievements */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Key Achievements</h2>
@@ -460,7 +432,7 @@ export default function AboutPage() {
 
       {/* Education & Certifications Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background relative overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
           {/* Title */}
           <div className="flex flex-col items-center justify-center mb-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2 text-foreground">Education & Certifications</h2>
@@ -712,7 +684,29 @@ export default function AboutPage() {
 
       {/* Call to Action */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6 text-center">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 text-center">
+          <div className="flex flex-col items-center justify-center mb-8 space-y-4">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Let's Connect</h2>
+            <div className="flex flex-col items-center gap-3 text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-primary" />
+                <span>Sydney, Australia</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-primary" />
+                <a href="mailto:andres.henaocastro@live.vu.edu.au" className="hover:text-primary transition-colors">
+                  andres.henaocastro@live.vu.edu.au
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-primary" />
+                <a href="mailto:andreshenao.tech@gmail.com" className="hover:text-primary transition-colors">
+                  andreshenao.tech@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="/Andres_Henao_Resume.pdf" download="Andres_Henao_Resume.pdf" className="inline-flex">
               <Button size="lg" className="gap-2 bg-blue-600 hover:bg-blue-700 text-white">

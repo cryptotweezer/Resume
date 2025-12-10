@@ -40,7 +40,7 @@ export default async function Home() {
 
       {/* Database Error Alert */}
       {dbError && (
-        <div className="container px-4 md:px-6 py-6">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 py-6">
           <Alert variant="destructive">
             <AlertTitle>Database Error</AlertTitle>
             <AlertDescription>
@@ -53,7 +53,7 @@ export default async function Home() {
 
       {/* Expertise Areas Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background relative overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">Core Technical Areas</h2>
@@ -148,7 +148,7 @@ export default async function Home() {
 
       {/* About Me Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background relative overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
           {/* Title */}
           <div className="flex flex-col items-center justify-center mb-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2 text-foreground">About Me</h2>
@@ -296,7 +296,7 @@ export default async function Home() {
 
       {/* Education & Certifications Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background relative overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
           {/* Title */}
           <div className="flex flex-col items-center justify-center mb-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2 text-foreground">Education & Certifications</h2>
@@ -377,7 +377,7 @@ export default async function Home() {
 
       {/* Newsletter Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background relative overflow-hidden">
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground">
@@ -399,7 +399,7 @@ export default async function Home() {
 
       {/* Recent Blog Posts */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Latest Insights</h2>

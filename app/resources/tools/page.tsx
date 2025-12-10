@@ -7,7 +7,7 @@ export default function SecurityToolsPage() {
     return (
         <div className="flex flex-col">
             <section className="w-full pt-6 md:pt-12 lg:pt-16 pb-6 md:pb-10 bg-background relative overflow-hidden">
-                <div className="container px-4 md:px-6 relative z-10">
+                <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
                     <div className="flex flex-col items-center justify-center space-y-4 text-center">
                         <div className="space-y-2">
                             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 pb-2">Toolkit</h1>
@@ -23,7 +23,7 @@ export default function SecurityToolsPage() {
             </section>
 
             <section className="w-full pt-0 pb-12 md:pb-24 lg:pb-32 bg-background">
-                <div className="container px-4 md:px-6">
+                <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
                     <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
                         {/* Network Security Tools */}
                         <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col">
