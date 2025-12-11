@@ -31,6 +31,18 @@ The "Boto" chatbot isn't just a wrapper around ChatGPT. It functions as a **Retr
 *   **System Prompting**: This data is injected into a strict "System Prompt." The prompt enforces the persona of "Boto," restricts the scope to professional inquiries only, and provides the AI with the specific "Ground Truth" about Andres's skills.
 *   **Safety**: The system prompt explicitly instructs the AI to refuse off-topic queries (e.g., "Write a poem about cats"), ensuring the bot remains a professional representative.
 
+### 4. Performance Monitoring (Real User Monitoring)
+We utilize **Vercel Speed Insights** (`@vercel/speed-insights`) to monitor real-world performance metrics.
+
+*   **Implementation**: The `<SpeedInsights />` component is injected into the root layout, automatically collecting Web Vitals (LCP, FID, CLS) from actual user sessions.
+*   **Goal**: This ensures we maintain a high-performance experience by identifying regression in load times or responsiveness immediately after deployments.
+
+### 5. Web Analytics (Traffic & Engagement)
+We utilize **Vercel Analytics** (`@vercel/analytics`) to track visitor engagement and page views while respecting user privacy.
+
+*   **Implementation**: The `<Analytics />` component is integrated into the root layout to provide real-time traffic insights.
+*   **Privacy**: Designed to be privacy-friendly, tracking metrics without using cookies to store personal data.
+
 ---
 
 ## 📚 LMS Curriculum Alignment
