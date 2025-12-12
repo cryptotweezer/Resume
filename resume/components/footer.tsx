@@ -1,0 +1,83 @@
+"use client"
+
+import Link from "next/link"
+import Image from "next/image"
+import { useTheme } from "next-themes"
+import { useState, useEffect } from "react"
+
+export function Footer() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Wait for mount to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  return (
+    <footer className="border-t bg-background">
+      <div className="container py-8 md:py-12 px-4 md:px-6 lg:px-12 xl:px-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center gap-2">
+              {mounted ? (
+                <Image
+                  src={resolvedTheme === 'light' ? "/logo_black.png" : "/logo_white.png"}
+                  alt="Andres Henao Logo"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 object-contain"
+                />
+              ) : (
+                <div className="h-6 w-6" /> // Placeholder
+              )}
+              <span className="text-lg font-bold">Andres Henao</span>
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              Cyber Security Specialist | Cloud Security Engineer | Mobile and Web Applications Developer | Automation & Cloud Solutions
+            </p>
+          </div>
+          <div>
+            <h3 className="text-sm font-medium mb-4">Resources</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/blog" className="text-muted-foreground hover:text-foreground">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources/tools" className="text-muted-foreground hover:text-foreground">
+                  Tools & Technologies
+                </Link>
+              </li>
+
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-medium mb-4">Legal</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/legal/privacy" className="text-muted-foreground hover:text-foreground">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/legal/terms" className="text-muted-foreground hover:text-foreground">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/legal/cookies" className="text-muted-foreground hover:text-foreground">
+                  Cookie Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} Andres Henao. All rights reserved.</p>
+        </div>
+      </div>
+    </footer >
+  )
+}
