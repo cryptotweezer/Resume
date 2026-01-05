@@ -78,16 +78,14 @@ Security is a primary feature of this application, not an afterthought. Below is
     *   All API inputs using Drizzle ORM are parameterized, preventing SQL Injection.
     *   Strict TypeScript types enforce data integrity across the full stack.
 
+4.  **Advanced Threat Protection (Arcjet)**:
+    *   **WAF & Shield**: Active protection against common web attacks (SQL Injection, XSS, etc.) via `@arcjet/next` middleware.
+    *   **Bot Protection**: Automated analysis to block malicious bots while strictly allowing search engine crawlers.
+    *   **Rate Limiting**: A Global Token Bucket algorithm (`fixedWindow`) limits requests to prevent DOS attacks and abuse of expensive AI routes.
+    *   **Email Validation**: Server-side verification (`actions/contact.ts`) to block disposable and invalid email addresses before processing contact forms.
+
 ### Upcoming Security Enhancements (Roadmap)
 
-#### 1. Web Application Firewall (WAF)
-We are planning to implement a WAF layered approach:
-*   **Vercel Firewall**: To handle DDoS mitigation and IP blocking at the edge.
-*   **Arcjet Integration**: We will integrate **Arcjet** directly into the Next.js middleware.
-    *   **Bot Protection**: To distinguish between organic users and scrapers/bots.
-    *   **Rate Limiting**: To prevent abuse of the expensive OpenAI API routes.
-    *   **SQL Injection Detection**: An additional layer of analysis on incoming requests.
-
-#### 2. Logging & Auditing
+#### 1. Logging & Auditing
 *   **Centralized Logging**: Future updates will stream application logs to a specialized observer (like Datadog or Axiom) to track anomaly detection in real-time.
 *   **Audit Trails**: We will implement specific database tables to log sensitive admin actions (e.g., deleting a blog post or modifying user roles).

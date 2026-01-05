@@ -2,6 +2,17 @@
 
 import { z } from "zod"
 import nodemailer from "nodemailer"
+import arcjet, { validateEmail } from "@arcjet/next";
+
+const aj = arcjet({
+    key: process.env.ARCJET_KEY!,
+    rules: [
+        validateEmail({
+            mode: "LIVE",
+            block: ["DISPOSABLE", "INVALID", "NO_MX_RECORDS"],
+        }),
+    ],
+});
 
 const contactFormSchema = z.object({
     name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -40,6 +51,19 @@ export async function sendContactEmail(prevState: ContactFormState, formData: Fo
     const { name, email, subject, message } = validatedFields.data
 
     try {
+        // Construct a dummy request for Arcjet in Server Action context
+        // Since we only use validateEmail rule here, the request details are less critical
+        // but required by the SDK signature.
+        const req = { headers: new Headers(), method: "POST", url: "http://localhost" } as any;
+        const decision = await aj.protect(req, { email });
+
+        if (decision.isDenied()) {
+            return {
+                success: false,
+                message: "Invalid email address. Please use a valid, non-disposable email.",
+            }
+        }
+
         // Check if environment variables are set
         if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
             console.error("Missing email credentials in .env file")
