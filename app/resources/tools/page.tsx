@@ -135,6 +135,41 @@ export default function SecurityToolsPage() {
                             </CardContent>
                         </Card>
 
+                        {/* Kali Linux */}
+                        <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col">
+                            <CardHeader>
+                                <div className="flex justify-between items-start">
+                                    <div className="bg-primary/10 p-3 w-fit rounded-lg mb-4">
+                                        <Shield className="h-8 w-8 text-primary" />
+                                    </div>
+                                    <Badge>Penetration Testing</Badge>
+                                </div>
+                                <CardTitle>Kali Linux</CardTitle>
+                                <CardDescription>
+                                    The most advanced Penetration Testing Distribution.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-1 flex flex-col">
+                                <p className="mb-4 text-sm text-muted-foreground">
+                                    Kali Linux is an open-source, Debian-based Linux distribution geared towards various information security tasks, such as Penetration Testing, Security Research, Computer Forensics and Reverse Engineering.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-2 mt-auto">
+                                    <Button variant="outline" className="flex items-center gap-2" asChild>
+                                        <a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink className="h-4 w-4" />
+                                            Visit Website
+                                        </a>
+                                    </Button>
+                                    <Button className="flex items-center gap-2" asChild>
+                                        <a href="https://www.kali.org/get-kali/" target="_blank" rel="noopener noreferrer">
+                                            <Download className="h-4 w-4" />
+                                            Download
+                                        </a>
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+
                         {/* Password Security */}
                         <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col">
                             <CardHeader>

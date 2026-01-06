@@ -45,24 +45,6 @@ We utilize **Vercel Analytics** (`@vercel/analytics`) to track visitor engagemen
 
 ---
 
-## 📚 LMS Curriculum Alignment
-
-This project adheres to the advanced Cyber Security Bootcamp curriculum. The following modules were instrumental in its deployment and configuration:
-
-### Chapter 25: Mini Project - Setup Vercel Storage
-*   **Objective**: Configuring persistent storage for dynamic application data.
-*   **Reference**: [View Curriculum Entry](https://www.ausbizconsulting.com.au/courses/cybersec-bootcamp/curriculum/680f440741288710ec10e4de)
-
-### Chapter 30: Mini Project - Deploy on Vercel
-*   **Objective**: CI/CD pipeline setup and production deployment.
-*   **Reference**: [View Curriculum Entry](https://www.ausbizconsulting.com.au/courses/cybersec-bootcamp/curriculum/680f457f41288710ec10e4e3)
-
-### Chapter 35: Mini Project - Configure Custom Domain
-*   **Objective**: DNS management and SSL/TLS configuration for production identity.
-*   **Reference**: [View Curriculum Entry](https://www.ausbizconsulting.com.au/courses/cybersec-bootcamp/curriculum/680f488241288710ec10e4e8)
-
----
-
 ## 🛡️ Security Plan & Measures
 
 Security is a primary feature of this application, not an afterthought. Below is the breakdown of implemented and planned security controls.
@@ -83,9 +65,5 @@ Security is a primary feature of this application, not an afterthought. Below is
     *   **Bot Protection**: Automated analysis to block malicious bots while strictly allowing search engine crawlers.
     *   **Rate Limiting**: A Global Token Bucket algorithm (`fixedWindow`) limits requests to prevent DOS attacks and abuse of expensive AI routes.
     *   **Email Validation**: Server-side verification (`actions/contact.ts`) to block disposable and invalid email addresses before processing contact forms.
+    *   **Kali Linux Verification**: This portfolio has been rigorously tested using recognized penetration testing tools within the **Kali Linux** ecosystem to ensure robust defense mechanisms against common vulnerabilities.
 
-### Upcoming Security Enhancements (Roadmap)
-
-#### 1. Logging & Auditing
-*   **Centralized Logging**: Future updates will stream application logs to a specialized observer (like Datadog or Axiom) to track anomaly detection in real-time.
-*   **Audit Trails**: We will implement specific database tables to log sensitive admin actions (e.g., deleting a blog post or modifying user roles).
