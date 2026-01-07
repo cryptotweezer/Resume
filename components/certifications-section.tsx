@@ -19,6 +19,31 @@ export function CertificationsSection() {
                 </div>
 
                 <Accordion type="single" collapsible className="w-full">
+                    {/* Google Certifications */}
+                    <AccordionItem value="google-certs">
+                        <AccordionTrigger className="text-lg font-bold text-foreground hover:text-blue-400">
+                            Google
+                        </AccordionTrigger>
+                        <AccordionContent>
+                            <div className="space-y-3 pt-2">
+                                {/* Google Cybersecurity */}
+                                <Link
+                                    href="https://www.coursera.org/account/accomplishments/professional-cert/BINIP8X1QBM3"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block rounded-xl border border-blue-500/20 bg-card/50 backdrop-blur-sm p-4 hover:border-blue-500 transition-all duration-500 group"
+                                >
+                                    <div className="flex items-start justify-between gap-3">
+                                        <div className="flex-1">
+                                            <h4 className="text-foreground font-semibold mb-1 group-hover:text-blue-400 transition-colors">Google Cybersecurity Professional Certificate</h4>
+                                            <p className="text-sm text-muted-foreground">Google</p>
+                                        </div>
+                                        <ExternalLink className="h-4 w-4 text-blue-400 flex-shrink-0 mt-1" />
+                                    </div>
+                                </Link>
+                            </div>
+                        </AccordionContent>
+                    </AccordionItem>
                     {/* IBM Certifications */}
                     <AccordionItem value="ibm-certs">
                         <AccordionTrigger className="text-lg font-bold text-foreground hover:text-blue-400">

@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, Shield, Download, Terminal, Sparkles, Code } from "lucide-react";
+import { ExternalLink, Shield, Download, Terminal, Sparkles, Code, Workflow, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -365,9 +365,73 @@ export default function SecurityToolsPage() {
                                 </div>
                             </CardContent>
                         </Card>
+                        {/* n8n */}
+                        <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col">
+                            <CardHeader>
+                                <div className="flex justify-between items-start">
+                                    <div className="bg-primary/10 p-3 w-fit rounded-lg mb-4">
+                                        <Workflow className="h-8 w-8 text-primary" />
+                                    </div>
+                                    <Badge>Workflow Automation</Badge>
+                                </div>
+                                <CardTitle>n8n</CardTitle>
+                                <CardDescription>
+                                    Fair-code workflow automation tool that helps you connect any app with an API to any other.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-1 flex flex-col">
+                                <p className="mb-4 text-sm text-muted-foreground">
+                                    n8n lets you build complex automation workflows with AI capabilities, integrating with thousands of services
+                                    and using custom code when needed.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-2 mt-auto">
+                                    <Button variant="outline" className="flex items-center gap-2" asChild>
+                                        <a href="https://n8n.io/" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink className="h-4 w-4" />
+                                            Visit Website
+                                        </a>
+                                    </Button>
+                                    <Button className="flex items-center gap-2" asChild>
+                                        <a href="https://docs.n8n.io/" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink className="h-4 w-4" />
+                                            Visit Docs
+                                        </a>
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* Model Context Protocol */}
+                        <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col">
+                            <CardHeader>
+                                <div className="flex justify-between items-start">
+                                    <div className="bg-primary/10 p-3 w-fit rounded-lg mb-4">
+                                        <Database className="h-8 w-8 text-primary" />
+                                    </div>
+                                    <Badge>AI Protocol</Badge>
+                                </div>
+                                <CardTitle>Model Context Protocol (MCP)</CardTitle>
+                                <CardDescription>
+                                    The open standard for connecting AI assistants to systems.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-1 flex flex-col">
+                                <p className="mb-4 text-sm text-muted-foreground">
+                                    MCP provides a universal way to connect AI models to data sources and tools, replacing fragmented integrations with a standardized protocol.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-2 mt-auto">
+                                    <Button variant="outline" className="flex items-center gap-2" asChild>
+                                        <a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink className="h-4 w-4" />
+                                            Visit Docs
+                                        </a>
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     )
 }
