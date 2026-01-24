@@ -401,6 +401,7 @@ export default function SecurityToolsPage() {
                             </CardContent>
                         </Card>
 
+
                         {/* Model Context Protocol */}
                         <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col">
                             <CardHeader>
@@ -422,6 +423,41 @@ export default function SecurityToolsPage() {
                                 <div className="flex flex-col sm:flex-row gap-2 mt-auto">
                                     <Button variant="outline" className="flex items-center gap-2" asChild>
                                         <a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink className="h-4 w-4" />
+                                            Visit Docs
+                                        </a>
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* Arcjet */}
+                        <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col">
+                            <CardHeader>
+                                <div className="flex justify-between items-start">
+                                    <div className="bg-primary/10 p-3 w-fit rounded-lg mb-4">
+                                        <Shield className="h-8 w-8 text-primary" />
+                                    </div>
+                                    <Badge>Application Security</Badge>
+                                </div>
+                                <CardTitle>Arcjet</CardTitle>
+                                <CardDescription>
+                                    Ship security features faster. Bot detection. Rate limiting. Email validation. Attack protection.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-1 flex flex-col">
+                                <p className="mb-4 text-sm text-muted-foreground">
+                                    A developer-first approach to security. Data redaction, bot detection, and attack protection all in one.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-2 mt-auto">
+                                    <Button variant="outline" className="flex items-center gap-2" asChild>
+                                        <a href="https://arcjet.com/" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink className="h-4 w-4" />
+                                            Visit Website
+                                        </a>
+                                    </Button>
+                                    <Button className="flex items-center gap-2" asChild>
+                                        <a href="https://docs.arcjet.com/" target="_blank" rel="noopener noreferrer">
                                             <ExternalLink className="h-4 w-4" />
                                             Visit Docs
                                         </a>
