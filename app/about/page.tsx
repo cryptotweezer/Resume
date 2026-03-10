@@ -341,6 +341,34 @@ export default function AboutPage() {
             <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-4xl font-bold text-primary">
+                  <CountUp end={100} suffix="%" />
+                </CardTitle>
+                <CardDescription>Serverless & Edge-Native Security Architecture</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Built "The Watchtower" honeypot platform on Next.js 15 + Arcjet WAF, achieving real-time bot detection, session fingerprinting, and risk scoring with near-zero latency at the network edge.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-4xl font-bold text-primary">
+                  <CountUp end={24} suffix="/7" />
+                </CardTitle>
+                <CardDescription>AI-Powered Secure Digital Portfolio</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Engineered this platform seamlessly integrating an autonomous conversational AI ("Boto") via the OpenAI API, alongside a Neon Serverless DB. Fortified with Arcjet security middleware to effectively mitigate bots.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-4xl font-bold text-primary">
                   <CountUp end={40} suffix="%" />
                 </CardTitle>
                 <CardDescription>Improvement in Shipping Data Accuracy</CardDescription>

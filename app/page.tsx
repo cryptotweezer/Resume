@@ -203,7 +203,7 @@ export default async function Home() {
                   <div className="flex items-center gap-3 text-sm">
                     <Linkedin className="h-4 w-4 text-blue-400" />
                     <Link
-                      href="https://www.linkedin.com/in/andres-henao-2b185318a/"
+                      href="https://www.linkedin.com/in/andreshenao/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-400 hover:text-blue-300 transition-colors"
