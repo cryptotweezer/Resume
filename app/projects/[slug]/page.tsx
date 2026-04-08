@@ -116,28 +116,14 @@ export default async function ProjectDetailPage({
           </Button>
         </Link>
 
-        {/* Mobile: single column stack. Desktop: 3-col grid */}
+        {/* Mobile: single column stack. Desktop: 2/3 main + 1/3 sidebar */}
         <div className="flex flex-col gap-8 lg:grid lg:grid-cols-3 lg:items-start">
 
-          {/* About — mobile order 1 */}
-          {project.longDescription && (
-            <div className="w-full min-w-0 lg:col-span-2 lg:row-start-1">
-              <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20">
-                <CardHeader>
-                  <CardTitle className="text-lg text-foreground">About This Project</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-muted-foreground leading-relaxed whitespace-pre-line break-words">
-                    {project.longDescription}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+          {/* ── Right sidebar (first in DOM → top on mobile, col-3 on desktop) ── */}
+          <div className="flex flex-col gap-6 lg:col-start-3 lg:row-start-1">
 
-          {/* Goal — mobile order 2 */}
-          {project.goal && (
-            <div className="w-full min-w-0 lg:col-start-3 lg:row-start-1">
+            {/* Goal */}
+            {project.goal && (
               <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20">
                 <CardHeader className="pb-3">
                   <div className="flex items-center gap-2">
@@ -149,12 +135,10 @@ export default async function ProjectDetailPage({
                   <p className="text-sm text-muted-foreground leading-relaxed break-words">{project.goal}</p>
                 </CardContent>
               </Card>
-            </div>
-          )}
+            )}
 
-          {/* Tech Stack — mobile order 3 */}
-          {project.techStack && project.techStack.length > 0 && (
-            <div className="w-full min-w-0 lg:col-start-3 lg:row-start-2">
+            {/* Tech Stack */}
+            {project.techStack && project.techStack.length > 0 && (
               <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base text-foreground">Tech Stack</CardTitle>
@@ -173,65 +157,9 @@ export default async function ProjectDetailPage({
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          )}
+            )}
 
-          {/* Key Features — mobile order 4 */}
-          {project.features && project.features.length > 0 && (
-            <div className="w-full min-w-0 space-y-4 lg:col-span-2 lg:row-start-2">
-              <div className="flex items-center gap-2">
-                <Zap className="h-5 w-5 text-blue-400" />
-                <h2 className="text-xl font-bold text-foreground">Key Features</h2>
-              </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {project.features.map((feature, i) => (
-                  <Card
-                    key={i}
-                    className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-200"
-                  >
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base text-blue-400 break-words">{feature.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground leading-relaxed break-words">
-                        {feature.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Challenges — mobile order 5 */}
-          {project.challenges && project.challenges.length > 0 && (
-            <div className="w-full min-w-0 space-y-4 lg:col-span-2 lg:row-start-3">
-              <div className="flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-yellow-400" />
-                <h2 className="text-xl font-bold text-foreground">Challenges Solved</h2>
-              </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {project.challenges.map((challenge, i) => (
-                  <Card
-                    key={i}
-                    className="bg-card/50 backdrop-blur-sm border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-200"
-                  >
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base text-yellow-400 break-words">{challenge.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground leading-relaxed break-words">
-                        {challenge.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Quick info — mobile order 6 */}
-          <div className="w-full min-w-0 lg:col-start-3 lg:row-start-3">
+            {/* Quick info */}
             <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20">
               <CardContent className="pt-6 space-y-3">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -266,6 +194,80 @@ export default async function ProjectDetailPage({
                 )}
               </CardContent>
             </Card>
+
+          </div>
+
+          {/* ── Left column (main content) ─────────────────────────────────── */}
+          <div className="flex flex-col gap-8 lg:col-span-2 lg:col-start-1 lg:row-start-1">
+
+            {/* About */}
+            {project.longDescription && (
+              <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20">
+                <CardHeader>
+                  <CardTitle className="text-lg text-foreground">About This Project</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-muted-foreground leading-relaxed whitespace-pre-line break-words">
+                    {project.longDescription}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Key Features */}
+            {project.features && project.features.length > 0 && (
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <Zap className="h-5 w-5 text-blue-400" />
+                  <h2 className="text-xl font-bold text-foreground">Key Features</h2>
+                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {project.features.map((feature, i) => (
+                    <Card
+                      key={i}
+                      className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-200"
+                    >
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-base text-blue-400 break-words">{feature.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground leading-relaxed break-words">
+                          {feature.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Challenges */}
+            {project.challenges && project.challenges.length > 0 && (
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="h-5 w-5 text-yellow-400" />
+                  <h2 className="text-xl font-bold text-foreground">Challenges Solved</h2>
+                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {project.challenges.map((challenge, i) => (
+                    <Card
+                      key={i}
+                      className="bg-card/50 backdrop-blur-sm border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-200"
+                    >
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-base text-yellow-400 break-words">{challenge.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground leading-relaxed break-words">
+                          {challenge.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+
           </div>
 
         </div>
