@@ -1,6 +1,6 @@
 "use client";
 
-import { Shield, Cloud, Code2, Bot, Lock, Server, Database, Globe } from "lucide-react";
+import { Shield, Cloud, Code2, Bot, Lock, Server, Database, Globe, Terminal, Sparkles, Code, Workflow, Wrench, Brain, Network, Key, Search, FileSearch, HardDrive } from "lucide-react";
 
 const iconMap: Record<string, any> = {
     Shield,
@@ -11,6 +11,17 @@ const iconMap: Record<string, any> = {
     Server,
     Database,
     Globe,
+    Terminal,
+    Sparkles,
+    Code,
+    Workflow,
+    Wrench,
+    Brain,
+    Network,
+    Key,
+    Search,
+    FileSearch,
+    HardDrive,
 };
 
 export function IconRenderer({ name, className }: { name: string; className?: string }) {

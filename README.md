@@ -1,69 +1,118 @@
-# Andres Henao - Digital Portfolio & AI Assistant
+# Personal Portfolio — Andres Henao
 
-A next-generation digital portfolio showcasing the convergence of **Full-Stack Development**, **Cybersecurity**, and **AI Automation**. This application allows users to interact with a custom AI assistant ("Boto") that answers questions based on real-time data from the portfolio.
+Production full-stack portfolio and personal CMS for a Cybersecurity and AI Engineer. Live at [cv.andreshenao.com.au](https://cv.andreshenao.com.au).
 
----
+## Overview
 
-## 🏗️ Technical Architecture & Implementation Details
+This is a Next.js 16 App Router application that serves as both a professional showcase and a live demonstration of full-stack engineering capabilities. All content — projects, blog posts, and toolkit entries — is database-driven and manageable through a custom admin dashboard without touching the codebase. An AI assistant named Boto answers visitor questions in real time via a floating chat widget on every page.
 
-This project moves beyond a static portfolio by integrating complex backend systems, AI agents, and secure data handling.
+## Tech Stack
 
-### 1. Authentication & Identity Management
-We leverage **Clerk** (`@clerk/nextjs`) for a robust, secure authentication system that handles the heavy lifting of identity management.
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router), React 19, TypeScript |
+| Styling | Tailwind CSS v3, shadcn/ui (Radix UI primitives) |
+| Database | Supabase (PostgreSQL) via `postgres` driver |
+| ORM | Drizzle ORM, Drizzle Kit |
+| Auth | Clerk |
+| AI | OpenAI GPT-3.5-Turbo (function calling) |
+| Security | Arcjet (bot detection, rate limiting, WAF) |
+| 3D | Three.js, React Three Fiber, @react-three/drei |
+| Forms | React Hook Form, Zod |
+| Email | Nodemailer |
+| Deployment | Vercel (with Analytics and Speed Insights) |
+| Package manager | pnpm |
 
-*   **Implementation**: Authenticated routes are protected via middleware (`proxy.ts`).
-*   **Database Sync**: Authentication is decoupled but synchronized. When a user registers via Clerk, a custom sync mechanism (`syncUserWithDatabase` in `lib/auth.ts`) mirrors their identity into our local **Neon Postgres** database.
-*   **Benefits**: This allows us to maintain strict **Referential Integrity** between users and their data (like blog posts or messages) while offloading security-critical auth flows (MFA, Session Management) to a dedicated provider.
+## Project Structure
 
-### 2. Database Layer (Serverless Postgres)
-The application state is managed using **Neon Database**, a serverless Postgres provider, interacted with via **Drizzle ORM**.
+```
+app/
+  about/                  Resume and key achievements page
+  admin/                  Admin dashboard (projects, toolkits, blog, leads)
+  admin/toolkits/         Toolkit edit forms
+  api/chat/               Boto AI assistant endpoint (OpenAI function calling)
+  blog/                   Blog listing and [slug] detail pages
+  contact/                Contact form (Nodemailer)
+  projects/               Project listing and [slug] detail pages
+  projects/[slug]/edit    Admin-only project edit form
+  resources/tools/        Toolkit page
+  page.tsx                Home page with Three.js globe
 
-*   **Why Drizzle?**: It provides TypeScript-first type safety, ensuring that database queries are validated at compile time, reducing runtime errors and SQL injection risks.
-*   **Schema Design** (`lib/db.ts`):
-    *   **Users**: Linked to Clerk identities with role-based access control (Admin vs User).
-    *   **Blog/Projects**: Dynamic content tables that feed both the frontend UI and the AI context.
-    *   **Optimization**: Connection pooling is configured (`@neondatabase/serverless`) to handle rapid scaling in a serverless environment without exhausting connection limits.
+actions/                  Server actions — canonical location, do not use app/actions/
+  contact-leads.ts        saveContactLead (public), getContactLeads, deleteContactLead
+  projects.ts             Full CRUD for projects
+  toolkits.ts             Full CRUD for toolkits
 
-### 3. AI Chat Integration (RAG-Lite)
-The "Boto" chatbot isn't just a wrapper around ChatGPT. It functions as a **Retrieval-Augmented Generation (RAG)** system, albeit simplified.
+components/               Business and UI components
+  ui/                     shadcn/ui primitives
 
-*   **Dynamic Context Injection**: When a user asks a question, the API route (`app/api/chat/route.ts`) first queries the database for the latest *Projects* and *Blog Posts*.
-*   **System Prompting**: This data is injected into a strict "System Prompt." The prompt enforces the persona of "Boto," restricts the scope to professional inquiries only, and provides the AI with the specific "Ground Truth" about Andres's skills.
-*   **Safety**: The system prompt explicitly instructs the AI to refuse off-topic queries (e.g., "Write a poem about cats"), ensuring the bot remains a professional representative.
+context/
+  ui-context.tsx          Global UI state (chat widget open/close)
 
-### 4. Performance Monitoring (Real User Monitoring)
-We utilize **Vercel Speed Insights** (`@vercel/speed-insights`) to monitor real-world performance metrics.
+lib/
+  auth.ts                 isAdmin(), syncUserWithDatabase()
+  db.ts                   Drizzle schema — single source of truth for all tables
+  types.ts                Zod schemas and inferred TypeScript types
+  utils.ts                Shared utilities
+```
 
-*   **Implementation**: The `<SpeedInsights />` component is injected into the root layout, automatically collecting Web Vitals (LCP, FID, CLS) from actual user sessions.
-*   **Goal**: This ensures we maintain a high-performance experience by identifying regression in load times or responsiveness immediately after deployments.
+## Database Schema
 
-### 5. Web Analytics (Traffic & Engagement)
-We utilize **Vercel Analytics** (`@vercel/analytics`) to track visitor engagement and page views while respecting user privacy.
+Schema is defined in `lib/db.ts`. Tables:
 
-*   **Implementation**: The `<Analytics />` component is integrated into the root layout to provide real-time traffic insights.
-*   **Privacy**: Designed to be privacy-friendly, tracking metrics without using cookies to store personal data.
+| Table | Purpose |
+|---|---|
+| `subscribers` | Newsletter subscribers |
+| `users` | Auth users synced from Clerk, with role-based access |
+| `blog_posts` | Blog content |
+| `projects` | Portfolio projects with JSON columns for tech stack, features, and challenges |
+| `toolkits` | Tools displayed on the resources page |
+| `contact_leads` | Messages collected by Boto via the chat widget |
 
----
+The `projects` table has a PostgreSQL trigger (`trg_projects_auto_slug`) that auto-generates URL slugs from the title on INSERT when no slug is provided. This allows external tools (such as Claude with Supabase MCP) to insert projects without knowledge of internal slug conventions.
 
-## 🛡️ Security Plan & Measures
+## Authentication and Authorization
 
-Security is a primary feature of this application, not an afterthought. Below is the breakdown of implemented and planned security controls.
+Clerk handles authentication. The first user who signs up is automatically assigned the `admin` role via `syncUserWithDatabase()` in `lib/auth.ts` — no manual configuration required. Admin status is determined by querying the `users` table, not Clerk metadata. All destructive server actions call `isAdmin()` before executing.
 
-### Current Implementation
-1.  **Authentication Readiness**:
-    *   Proprietary auth flows are avoided in favor of **Clerk**, which is SOC2 compliant.
-    *   Support for **MFA (Multi-Factor Authentication)** is enabled at the provider level.
-2.  **Secrets Management**:
-    *   Zero hardcoded secrets. All sensitive keys (`OPENAI_API_KEY`, `DATABASE_URL`) are loaded via strict Environment Variables.
-    *   Production secrets are injected securely via Vercel's encrypted environment storage.
-3.  **Data Validation**:
-    *   All API inputs using Drizzle ORM are parameterized, preventing SQL Injection.
-    *   Strict TypeScript types enforce data integrity across the full stack.
+## Boto AI Assistant
 
-4.  **Advanced Threat Protection (Arcjet)**:
-    *   **WAF & Shield**: Active protection against common web attacks (SQL Injection, XSS, etc.) via `@arcjet/next` middleware.
-    *   **Bot Protection**: Automated analysis to block malicious bots while strictly allowing search engine crawlers.
-    *   **Rate Limiting**: A Global Token Bucket algorithm (`fixedWindow`) limits requests to prevent DOS attacks and abuse of expensive AI routes.
-    *   **Email Validation**: Server-side verification (`actions/contact.ts`) to block disposable and invalid email addresses before processing contact forms.
-    *   **Kali Linux Verification**: This portfolio has been rigorously tested using recognized penetration testing tools within the **Kali Linux** ecosystem to ensure robust defense mechanisms against common vulnerabilities.
+Boto is powered by OpenAI GPT-3.5-Turbo and has access to a single function tool: `save_contact_lead`. It can only write to the `contact_leads` table — no other database access is permitted. On every request, the chat API fetches the latest projects and blog posts from the database and injects them into the system prompt, giving Boto up-to-date context about the portfolio.
 
+When a visitor asks about contacting Andres, Boto collects name, email, phone (optional), subject (optional), and message conversationally — one field at a time — confirms the details with the user before saving, then calls the function tool to persist the lead. All collected leads are visible and deletable from `/admin`.
+
+The chat widget requires Clerk sign-in to use.
+
+## Development
+
+```bash
+pnpm install
+pnpm dev                        # Start dev server with Turbopack
+pnpm build                      # Production build
+pnpm lint                       # Lint app/, components/, lib/, hooks/
+pnpm dev --hostname 0.0.0.0     # Expose to local network (mobile testing)
+```
+
+## Database Migrations
+
+```bash
+pnpm drizzle-kit generate       # Generate migration files from schema changes in lib/db.ts
+pnpm drizzle-kit migrate        # Apply pending migrations to the database
+pnpm drizzle-kit studio         # Open Drizzle Studio (visual database browser)
+```
+
+If `drizzle-kit migrate` fails due to missing migration history on an existing database, apply schema changes directly using a Node.js script with the `postgres` package and the `DATABASE_URL` environment variable.
+
+## Environment Variables
+
+```
+DATABASE_URL                        Supabase PostgreSQL connection string (transaction pooler)
+DATABASE_URL_DIRECT                 Direct connection URL for migrations (optional)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+CLERK_SECRET_KEY
+OPENAI_API_KEY
+```
+
+## Deployment Notes
+
+Deployed on Vercel. `typescript.ignoreBuildErrors: true` is set in `next.config.mjs` so TypeScript errors do not block production builds. Images are unoptimized. The path alias `@/` maps to the project root.

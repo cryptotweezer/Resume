@@ -5,7 +5,7 @@
  */
 
 import { z } from 'zod';
-import { users, subscribers, blogPosts, projects } from './db';
+import { users, subscribers, blogPosts, projects, toolkits } from './db';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 
@@ -74,35 +74,74 @@ export const blogPostSchema = createSelectSchema(blogPosts).extend({
 export const blogPostInsertSchema = createInsertSchema(blogPosts);
 
 /**
- * Project schema needs special handling for items field (JSON in database)
+ * Structured feature/challenge item for projects
+ */
+export const projectFeatureSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+});
+export type ProjectFeature = z.infer<typeof projectFeatureSchema>;
+
+/**
+ * Project schema — JSON columns are typed explicitly
  */
 export const projectSchema = createSelectSchema(projects).extend({
-  // Handle JSON data for items array
-  items: z.array(z.string()),
-  // Ensure proper type handling for dates from DB - Use camelCase to match Drizzle schema
+  techStack: z.array(z.string()).nullable(),
+  features: z.array(projectFeatureSchema).nullable(),
+  challenges: z.array(projectFeatureSchema).nullable(),
+  items: z.array(z.string()).nullable(),
   createdAt: z.date().nullable(),
   updatedAt: z.date().nullable(),
 });
 
 export const projectInsertSchema = createInsertSchema(projects).extend({
-  // Ensure items is always an array of strings
-  items: z.array(z.string()),
+  techStack: z.array(z.string()).nullable().optional(),
+  features: z.array(projectFeatureSchema).nullable().optional(),
+  challenges: z.array(projectFeatureSchema).nullable().optional(),
+  items: z.array(z.string()).nullable().optional(),
 });
 
 /**
- * Input schema for creating a new project
+ * Input schema for creating or updating a project
  */
 export const projectCreateInputSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  icon: z.string(),
-  items: z.array(z.string()),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  longDescription: z.string().optional(),
+  icon: z.string().min(1),
+  goal: z.string().optional(),
+  techStack: z.array(z.string()).optional(),
+  features: z.array(projectFeatureSchema).optional(),
+  challenges: z.array(projectFeatureSchema).optional(),
+  projectUrl: z.string().url().optional().or(z.literal("")),
+  repoUrl: z.string().url().optional().or(z.literal("")),
+  linkedinUrl: z.string().url().optional().or(z.literal("")),
+  status: z.enum(["Live", "In Development", "Completed", "Archived"]).optional(),
+  createdAt: z.string().optional(),
 });
 
-/**
- * Input type for creating a new project derived from schema
- */
 export type ProjectCreateInput = z.infer<typeof projectCreateInputSchema>;
+
+/**
+ * Toolkit types
+ */
+export type Toolkit = InferSelectModel<typeof toolkits>;
+export type ToolkitInsert = InferInsertModel<typeof toolkits>;
+
+export const toolkitCreateInputSchema = z.object({
+  name: z.string().min(1),
+  category: z.string().min(1),
+  description: z.string().min(1),
+  body: z.string().min(1),
+  icon: z.string().min(1),
+  url: z.string().url(),
+  urlLabel: z.string().min(1).default("Visit Website"),
+  secondaryUrl: z.string().url().optional().or(z.literal("")),
+  secondaryLabel: z.string().optional(),
+  sortOrder: z.number().int().optional(),
+});
+
+export type ToolkitCreateInput = z.infer<typeof toolkitCreateInputSchema>;
 
 /**
  * Newsletter subscription schema

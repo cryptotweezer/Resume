@@ -1,4 +1,5 @@
 import { db, blogPosts } from "@/lib/db";
+import { desc } from "drizzle-orm";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BlogPost } from "@/lib/types";
@@ -7,7 +8,7 @@ import { IconRenderer } from "@/components/icon-renderer";
 
 export default async function BlogPage() {
   // Use the imported BlogPost type
-  const posts: BlogPost[] = await db.select().from(blogPosts).orderBy(blogPosts.createdAt);
+  const posts: BlogPost[] = await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
 
   return (
     <div className="flex flex-col">

@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { NewsletterForm } from "@/components/newsletter-form"
 import { CertificationsSection } from "@/components/certifications-section"
 import { db, blogPosts } from "@/lib/db"
+import { desc } from "drizzle-orm"
 import { formatDate } from "@/lib/utils"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CountUp } from "@/components/count-up"
@@ -20,7 +21,7 @@ export default async function Home() {
   let dbError = false
 
   try {
-    latestPosts = (await db.select().from(blogPosts).orderBy(blogPosts.createdAt).limit(3)).map(post => ({
+    latestPosts = (await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt)).limit(3)).map(post => ({
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt,

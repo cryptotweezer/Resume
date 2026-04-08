@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -22,11 +23,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { createProject } from "@/actions/projects"
+import { updateProject } from "@/actions/projects"
 import { toast } from "sonner"
 import { Plus, Trash2, Shield, Cloud, Code2, Bot, Lock, Server, Database, Globe } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import type { ProjectRow } from "@/actions/projects"
 
+// ---------------------------------------------------------------------------
+// Form schema
+// ---------------------------------------------------------------------------
 const featureSchema = z.object({
   title: z.string().min(1, "Title is required"),
   description: z.string().min(1, "Description is required"),
@@ -38,13 +43,14 @@ const formSchema = z.object({
   longDescription: z.string().optional(),
   icon: z.string().min(1, "Icon is required"),
   goal: z.string().optional(),
-  techStackRaw: z.string().optional(),
+  techStackRaw: z.string().optional(), // one per line
   features: z.array(featureSchema),
   challenges: z.array(featureSchema),
   projectUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   repoUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   linkedinUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   status: z.enum(["Live", "In Development", "Completed", "Archived"]).optional(),
+  createdAt: z.string().optional(),
 })
 
 type FormValues = z.infer<typeof formSchema>
@@ -60,24 +66,35 @@ const icons = [
   { name: "Globe", icon: Globe },
 ]
 
-export function AddProjectForm() {
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
+interface EditProjectFormProps {
+  project: ProjectRow
+}
+
+export function EditProjectForm({ project }: EditProjectFormProps) {
+  const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      longDescription: "",
-      icon: "",
-      goal: "",
-      techStackRaw: "",
-      features: [],
-      challenges: [],
-      projectUrl: "",
-      repoUrl: "",
-      linkedinUrl: "",
-      status: undefined,
+      title: project.title,
+      description: project.description,
+      longDescription: project.longDescription ?? "",
+      icon: project.icon,
+      goal: project.goal ?? "",
+      techStackRaw: project.techStack?.join("\n") ?? "",
+      features: project.features ?? [],
+      challenges: project.challenges ?? [],
+      projectUrl: project.projectUrl ?? "",
+      repoUrl: project.repoUrl ?? "",
+      linkedinUrl: project.linkedinUrl ?? "",
+      status: (project.status as FormValues["status"]) ?? undefined,
+      createdAt: project.createdAt
+        ? new Date(new Date(project.createdAt).getTime() - new Date(project.createdAt).getTimezoneOffset() * 60000).toISOString().slice(0, 16)
+        : "",
     },
   })
 
@@ -94,7 +111,7 @@ export function AddProjectForm() {
           .filter(Boolean)
       : []
 
-    const result = await createProject({
+    const result = await updateProject(project.id, {
       title: values.title,
       description: values.description,
       longDescription: values.longDescription,
@@ -107,23 +124,24 @@ export function AddProjectForm() {
       repoUrl: values.repoUrl,
       linkedinUrl: values.linkedinUrl,
       status: values.status,
+      createdAt: values.createdAt ? new Date(values.createdAt).toISOString() : undefined,
     })
 
     if (result.success) {
       toast.success(result.message)
-      form.reset()
-      featuresField.replace([])
-      challengesField.replace([])
+      const newSlug = result.data?.slug ?? project.slug ?? project.id
+      router.push(`/projects/${newSlug}`)
+      router.refresh()
     } else {
       toast.error(result.message)
+      setIsSubmitting(false)
     }
-    setIsSubmitting(false)
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* Basic Info */}
+        {/* ── Basic Info ── */}
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Basic Info</h3>
 
@@ -134,7 +152,7 @@ export function AddProjectForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Title</FormLabel>
-                  <FormControl><Input placeholder="My Project" {...field} /></FormControl>
+                  <FormControl><Input {...field} /></FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -172,7 +190,7 @@ export function AddProjectForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Short Description <span className="text-muted-foreground font-normal">(shown on cards)</span></FormLabel>
-                <FormControl><Textarea rows={2} placeholder="Brief summary..." {...field} /></FormControl>
+                <FormControl><Textarea rows={2} {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -184,7 +202,7 @@ export function AddProjectForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Description <span className="text-muted-foreground font-normal">(detail page)</span></FormLabel>
-                <FormControl><Textarea rows={6} placeholder="Detailed description..." {...field} /></FormControl>
+                <FormControl><Textarea rows={6} placeholder="Detailed description of the project..." {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -196,7 +214,7 @@ export function AddProjectForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Goal / Objective</FormLabel>
-                <FormControl><Textarea rows={3} placeholder="What was the goal?" {...field} /></FormControl>
+                <FormControl><Textarea rows={3} placeholder="What was the goal of this project?" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -205,7 +223,7 @@ export function AddProjectForm() {
 
         <Separator />
 
-        {/* Links & Status */}
+        {/* ── Links & Status ── */}
         <div className="space-y-4">
           <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Links & Status</h3>
 
@@ -264,21 +282,15 @@ export function AddProjectForm() {
               )}
             />
           </div>
-        </div>
 
-        <Separator />
-
-        {/* Tech Stack */}
-        <div className="space-y-4">
-          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Tech Stack</h3>
           <FormField
             control={form.control}
-            name="techStackRaw"
+            name="createdAt"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Technologies <span className="text-muted-foreground font-normal">(one per line)</span></FormLabel>
+                <FormLabel>Publication Date</FormLabel>
                 <FormControl>
-                  <Textarea rows={5} placeholder={"Next.js 15\nReact 19\nTypeScript"} {...field} />
+                  <Input type="datetime-local" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -288,91 +300,163 @@ export function AddProjectForm() {
 
         <Separator />
 
-        {/* Key Features */}
+        {/* ── Tech Stack ── */}
+        <div className="space-y-4">
+          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Tech Stack</h3>
+          <FormField
+            control={form.control}
+            name="techStackRaw"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Technologies <span className="text-muted-foreground font-normal">(one per line)</span></FormLabel>
+                <FormControl>
+                  <Textarea
+                    rows={5}
+                    placeholder={"Next.js 16\nReact 19\nTypeScript\nSupabase PostgreSQL"}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <Separator />
+
+        {/* ── Key Features ── */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Key Features</h3>
-            <Button type="button" variant="outline" size="sm" onClick={() => featuresField.append({ title: "", description: "" })}>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => featuresField.append({ title: "", description: "" })}
+            >
               <Plus className="h-4 w-4 mr-1" /> Add Feature
             </Button>
           </div>
 
           {featuresField.fields.length === 0 && (
-            <p className="text-sm text-muted-foreground">No features yet.</p>
+            <p className="text-sm text-muted-foreground">No features yet. Click "Add Feature" to start.</p>
           )}
 
           {featuresField.fields.map((field, index) => (
             <div key={field.id} className="rounded-lg border border-border p-4 space-y-3 bg-card/30">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground font-medium">Feature {index + 1}</span>
-                <Button type="button" variant="ghost" size="sm" className="text-destructive hover:text-destructive h-7 w-7 p-0" onClick={() => featuresField.remove(index)}>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="text-destructive hover:text-destructive h-7 w-7 p-0"
+                  onClick={() => featuresField.remove(index)}
+                >
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-              <FormField control={form.control} name={`features.${index}.title`} render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-xs">Title</FormLabel>
-                  <FormControl><Input placeholder="Feature name" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
-              <FormField control={form.control} name={`features.${index}.description`} render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-xs">Description</FormLabel>
-                  <FormControl><Textarea rows={2} placeholder="Describe this feature..." {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
+              <FormField
+                control={form.control}
+                name={`features.${index}.title`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs">Title</FormLabel>
+                    <FormControl><Input placeholder="Feature name" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name={`features.${index}.description`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs">Description</FormLabel>
+                    <FormControl><Textarea rows={2} placeholder="Describe this feature..." {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
           ))}
         </div>
 
         <Separator />
 
-        {/* Challenges */}
+        {/* ── Challenges ── */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Challenges Solved</h3>
-            <Button type="button" variant="outline" size="sm" onClick={() => challengesField.append({ title: "", description: "" })}>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => challengesField.append({ title: "", description: "" })}
+            >
               <Plus className="h-4 w-4 mr-1" /> Add Challenge
             </Button>
           </div>
 
           {challengesField.fields.length === 0 && (
-            <p className="text-sm text-muted-foreground">No challenges yet.</p>
+            <p className="text-sm text-muted-foreground">No challenges yet. Click "Add Challenge" to start.</p>
           )}
 
           {challengesField.fields.map((field, index) => (
             <div key={field.id} className="rounded-lg border border-yellow-500/20 p-4 space-y-3 bg-card/30">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground font-medium">Challenge {index + 1}</span>
-                <Button type="button" variant="ghost" size="sm" className="text-destructive hover:text-destructive h-7 w-7 p-0" onClick={() => challengesField.remove(index)}>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="text-destructive hover:text-destructive h-7 w-7 p-0"
+                  onClick={() => challengesField.remove(index)}
+                >
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-              <FormField control={form.control} name={`challenges.${index}.title`} render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-xs">Title</FormLabel>
-                  <FormControl><Input placeholder="Challenge name" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
-              <FormField control={form.control} name={`challenges.${index}.description`} render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-xs">Description</FormLabel>
-                  <FormControl><Textarea rows={2} placeholder="How did you solve it?" {...field} /></FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
+              <FormField
+                control={form.control}
+                name={`challenges.${index}.title`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs">Title</FormLabel>
+                    <FormControl><Input placeholder="Challenge name" {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name={`challenges.${index}.description`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xs">Description</FormLabel>
+                    <FormControl><Textarea rows={2} placeholder="Describe how you solved this..." {...field} /></FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
           ))}
         </div>
 
         <Separator />
 
-        <Button type="submit" disabled={isSubmitting} className="bg-blue-600 hover:bg-blue-700">
-          {isSubmitting ? "Creating..." : "Create Project"}
-        </Button>
+        {/* ── Actions ── */}
+        <div className="flex gap-3">
+          <Button type="submit" disabled={isSubmitting} className="bg-blue-600 hover:bg-blue-700">
+            {isSubmitting ? "Saving..." : "Save Changes"}
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.push(`/projects/${project.slug ?? project.id}`)}
+          >
+            Cancel
+          </Button>
+        </div>
       </form>
     </Form>
   )

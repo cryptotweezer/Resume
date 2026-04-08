@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col">
       {/* Profile Section */}
-      <section className="w-full pt-6 md:pt-12 lg:pt-16 pb-12 md:pb-24 lg:pb-32 bg-background">
+      <section className="w-full pt-12 md:pt-20 lg:pt-28 pb-12 md:pb-24 lg:pb-32 bg-background">
         <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
           <div className="grid gap-10 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_500px]">
             <div className="flex flex-col justify-center space-y-6">
@@ -361,7 +361,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Engineered this platform seamlessly integrating an autonomous conversational AI ("Boto") via the OpenAI API, alongside a Neon Serverless DB. Fortified with Arcjet security middleware to effectively mitigate bots.
+                  Engineered this platform seamlessly integrating an autonomous conversational AI ("Boto") via the OpenAI API, alongside a Supabase PostgreSQL DB. Fortified with Arcjet security middleware to effectively mitigate bots.
                 </p>
               </CardContent>
             </Card>

@@ -1,38 +1,13 @@
-import { Pool } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-serverless";
-import { boolean, pgTable, serial, text, timestamp, varchar, json } from "drizzle-orm/pg-core";
+import postgres from "postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
+import { boolean, integer, pgTable, serial, text, timestamp, varchar, json } from "drizzle-orm/pg-core";
 
+const connectionString = process.env.DATABASE_URL!;
 
-console.log("Initializing database connection...");
-// Determine the database connection string
-let connectionString: string;
+// prepare: false required for Supabase transaction pooler (port 6543)
+const client = postgres(connectionString, { prepare: false });
 
-// If DATABASE_URL is provided, use it directly
-if (process.env.DATABASE_URL) {
-  connectionString = process.env.DATABASE_URL;
-}
-// Otherwise, construct from individual PG* variables
-else if (
-  process.env.PGHOST &&
-  process.env.PGUSER &&
-  process.env.PGDATABASE &&
-  process.env.PGPASSWORD
-) {
-  connectionString = `postgres://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}/${process.env.PGDATABASE}?sslmode=require`;
-}
-// Fallback (should not happen if environment variables are properly set)
-else {
-  console.warn(
-    "No database credentials found in environment variables. Using fallback connection string."
-  );
-  connectionString = process.env.DATABASE_URL || "";
-}
-
-// Create a SQL query executor using the Neon serverless driver
-const pool = new Pool({ connectionString });
-
-// Create a Drizzle instance
-export const db = drizzle(pool);
+export const db = drizzle(client);
 
 // Define the subscribers table schema - for newsletter subscribers only
 export const subscribers = pgTable("subscribers", {
@@ -74,12 +49,50 @@ export const blogPosts = pgTable("blog_posts", {
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
+  slug: text("slug").unique(),
   description: text("description").notNull(),
+  longDescription: text("long_description"),
   icon: text("icon").notNull(),
-  items: json("items"),
+  goal: text("goal"),
+  techStack: json("tech_stack"),       // string[]
+  features: json("features"),          // { title: string, description: string }[]
+  challenges: json("challenges"),      // { title: string, description: string }[]
+  projectUrl: text("project_url"),
+  repoUrl: text("repo_url"),
+  linkedinUrl: text("linkedin_url"),
+  coverImage: text("cover_image"),
+  status: varchar("status", { length: 50 }),
+  // kept for backward compat with external writers
   externalLink: text("external_link"),
+  items: json("items"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// Contact submissions table removed as requested
+// Define the toolkits table schema
+export const toolkits = pgTable("toolkits", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  category: text("category").notNull(),
+  description: text("description").notNull(),       // short — shown in CardDescription
+  body: text("body").notNull(),                      // longer — shown in CardContent
+  icon: varchar("icon", { length: 50 }).notNull().default("Shield"),
+  url: text("url").notNull(),
+  urlLabel: varchar("url_label", { length: 50 }).notNull().default("Visit Website"),
+  secondaryUrl: text("secondary_url"),
+  secondaryLabel: varchar("secondary_label", { length: 50 }),
+  sortOrder: integer("sort_order").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Contact leads captured by Boto chat assistant
+export const contactLeads = pgTable("contact_leads", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  subject: text("subject"),
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+})
