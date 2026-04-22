@@ -66,7 +66,10 @@ export default function ChatWidget() {
     };
 
     return (
-        <div className="fixed bottom-4 right-4 z-50">
+        <div className={cn(
+            "fixed bottom-4 right-4 z-50",
+            isChatOpen && "left-4 sm:left-auto"
+        )}>
             {!isChatOpen && (
                 <Button
                     onClick={() => setIsChatOpen(true)}
@@ -77,15 +80,15 @@ export default function ChatWidget() {
             )}
 
             {isChatOpen && (
-                <Card className="w-[350px] h-[500px] flex flex-col shadow-xl border-primary/20">
-                    <CardHeader className="flex flex-row items-center justify-between p-4 border-b">
+                <Card className="w-full sm:w-[350px] h-[500px] max-h-[calc(100dvh-8rem)] flex flex-col shadow-xl border-primary/20">
+                    <CardHeader className="flex flex-row items-center justify-between p-4 border-b flex-shrink-0">
                         <CardTitle className="text-sm font-bold flex flex-col items-start">
                             <div className="flex items-center gap-1">
                                 Hi, I'm <span className="text-blue-500 font-extrabold">Boto</span>
                             </div>
                             <span className="text-xs font-normal text-muted-foreground">Andres Henao's Assistant</span>
                         </CardTitle>
-                        <Button variant="ghost" size="icon" onClick={() => setIsChatOpen(false)} className="h-8 w-8">
+                        <Button variant="ghost" size="icon" onClick={() => setIsChatOpen(false)} className="h-9 w-9 flex-shrink-0">
                             <X className="h-4 w-4" />
                         </Button>
                     </CardHeader>
@@ -160,16 +163,16 @@ export default function ChatWidget() {
                             </ScrollArea>
                         )}
                     </CardContent>
-                    <CardFooter className="p-4 border-t">
+                    <CardFooter className="p-3 border-t flex-shrink-0">
                         <form onSubmit={handleSubmit} className="flex w-full gap-2">
                             <Input
                                 placeholder="Type a message..."
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 disabled={isLoading || !isSignedIn}
-                                className="flex-1"
+                                className="flex-1 h-11"
                             />
-                            <Button type="submit" size="icon" disabled={isLoading || !input.trim() || !isSignedIn}>
+                            <Button type="submit" size="icon" className="h-11 w-11 flex-shrink-0" disabled={isLoading || !input.trim() || !isSignedIn}>
                                 <Send className="h-4 w-4" />
                             </Button>
                         </form>

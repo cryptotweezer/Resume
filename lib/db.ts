@@ -86,6 +86,18 @@ export const toolkits = pgTable("toolkits", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// Key achievements displayed on the About page
+export const keyAchievements = pgTable("key_achievements", {
+  id: serial("id").primaryKey(),
+  value: integer("value").notNull(),
+  suffix: text("suffix").notNull().default("%"),
+  label: text("label").notNull(),
+  description: text("description").notNull(),
+  sortOrder: integer("sort_order").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Contact leads captured by Boto chat assistant
 export const contactLeads = pgTable("contact_leads", {
   id: serial("id").primaryKey(),

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link"
 import Image from "next/image"
 import { Shield, Lock, Server, Database, Bot, Code2, Cloud, Workflow, TrendingUp, Users, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, Award, ExternalLink, Calendar, MapPinIcon } from "lucide-react"
@@ -63,7 +65,7 @@ export default async function Home() {
               </p>
             </div>
           </div>
-          <div className="mx-auto grid max-w-6xl items-stretch gap-6 py-12 lg:grid-cols-2 xl:grid-cols-4 lg:gap-8">
+          <div className="mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 max-w-6xl items-stretch gap-6 py-12 lg:gap-8">
             <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
               <CardHeader>
                 <Shield className="h-10 w-10 text-blue-400 mb-2" />
@@ -78,8 +80,10 @@ export default async function Home() {
                   <li>Vulnerability Management</li>
                   <li>Incident Response</li>
                   <li>SIEM Tools</li>
+                  <li>Risk Management</li>
                   <li>Network Security</li>
-                  <li>Cloudflare Security</li>
+                  <li>Firewall Configuration</li>
+                  <li>Cloudflare & Arcjet Security</li>
                 </ul>
               </CardContent>
             </Card>
@@ -95,9 +99,10 @@ export default async function Home() {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>LLM Integration</li>
                   <li>AI Agent Implementation</li>
-                  <li>Workflow Automation</li>
-                  <li>Process Optimization</li>
+                  <li>OpenAI API</li>
+                  <li>Workflow Automation & Orchestration</li>
                   <li>MCP Servers for AI</li>
+                  <li>Process Optimization</li>
                   <li>n8n Automation</li>
                 </ul>
               </CardContent>
@@ -112,8 +117,9 @@ export default async function Home() {
               </CardHeader>
               <CardContent className="flex-1">
                 <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>Next.js & TypeScript</li>
                   <li>Python, Flask, Django</li>
-                  <li>API Development</li>
+                  <li>API Development & Integration</li>
                   <li>Front-End & Back-End</li>
                   <li>Docker & Containerization</li>
                   <li>GitHub & Version Control</li>
@@ -131,12 +137,12 @@ export default async function Home() {
               </CardHeader>
               <CardContent className="flex-1">
                 <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>Vercel & Supabase</li>
                   <li>AWS & IBM Cloud</li>
-                  <li>Linux System Admin</li>
+                  <li>Linux System Administration</li>
                   <li>Cloud Security Principles</li>
-                  <li>Infrastructure as Code</li>
                   <li>Containerization</li>
-                  <li>Data Analytics</li>
+                  <li>Data Mining & Analytics</li>
                 </ul>
               </CardContent>
             </Card>
@@ -157,29 +163,31 @@ export default async function Home() {
           </div>
 
           {/* Content Grid */}
-          <div className="grid gap-8 lg:grid-cols-[1fr_400px] lg:gap-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_400px] lg:gap-12">
             {/* Left Column - Text Content */}
             <div className="space-y-6">
-              <div className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-8">
+              <div className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-4 sm:p-8">
                 <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                   <p>
-                    Cyber security specialist with a strong foundation in secure software architecture, cloud automation, and intelligent
-                    systems integration. Experienced in designing and deploying end-to-end solutions using{" "}
-                    <span className="text-blue-400 font-semibold">Python, Flask, Django, Docker, and SQL</span>, with a focus on security,
-                    scalability, and resilience.
+                    Cybersecurity specialist and full-stack engineer with a strong foundation in{" "}
+                    <span className="text-blue-400 font-semibold">secure software architecture, cloud infrastructure, and intelligent systems integration</span>.
+                    Experienced in designing and deploying production-grade applications using Next.js, TypeScript, Python, Flask, Django, Docker, and Supabase,
+                    with a consistent focus on security, scalability, and operational resilience.
                   </p>
 
                   <p>
-                    Skilled in implementing{" "}
-                    <span className="text-blue-400 font-semibold">AI agents, LLM orchestration, and automation pipelines</span>{" "}
-                    that enhance performance and streamline operations. As Founder of Awesome Services, I led the adoption of AI and workflow
-                    automation to improve operational accuracy by 90% and client retention by 96%.
+                    Skilled in{" "}
+                    <span className="text-blue-400 font-semibold">AI agent development, LLM orchestration, and workflow automation</span>{" "}
+                    using OpenAI API, MCP servers, and n8n. Applies these capabilities to solve real operational challenges,
+                    having achieved a 90% improvement in operational accuracy and a 96% client retention rate through
+                    targeted automation and process optimization.
                   </p>
 
                   <p>
-                    Backed by IBM certifications in AI, backend, and full-stack development, I bring a practical, multidisciplinary
-                    perspective combining cybersecurity principles with automation and real-world execution to build secure, intelligent,
-                    and efficient systems.
+                    Holds IBM and Google professional certifications across{" "}
+                    <span className="text-blue-400 font-semibold">AI, cybersecurity, and full-stack development</span>.
+                    Brings a multidisciplinary perspective across international logistics, business operations, and technology,
+                    combining security-first engineering with practical, results-driven execution.
                   </p>
                 </div>
 
@@ -249,12 +257,12 @@ export default async function Home() {
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="rounded-lg bg-blue-500/10 p-3">
-                      <TrendingUp className="h-6 w-6 text-blue-400" />
+                      <Bot className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <CountUp end={90} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Operational Accuracy</div>
-                      <div className="text-sm text-muted-foreground">Improvement</div>
+                      <CountUp end={5} suffix="x" className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">Faster AI Context Handoff</div>
+                      <div className="text-xs text-muted-foreground/70">Project Intelligence System</div>
                     </div>
                   </div>
                 </CardContent>
@@ -264,11 +272,12 @@ export default async function Home() {
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="rounded-lg bg-blue-500/10 p-3">
-                      <Users className="h-6 w-6 text-blue-400" />
+                      <Shield className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <CountUp end={96} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Client Retention Rate</div>
+                      <CountUp end={100} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">Serverless & Edge-Native</div>
+                      <div className="text-xs text-muted-foreground/70">The Watchtower</div>
                     </div>
                   </div>
                 </CardContent>
@@ -278,7 +287,22 @@ export default async function Home() {
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="rounded-lg bg-blue-500/10 p-3">
-                      <Workflow className="h-6 w-6 text-blue-400" />
+                      <Server className="h-6 w-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <CountUp end={24} suffix="/7" className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">AI-Powered Portfolio</div>
+                      <div className="text-xs text-muted-foreground/70">cv.andreshenao.com.au</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-lg bg-blue-500/10 p-3">
+                      <Briefcase className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
                       <CountUp end={15} suffix="+" className="text-4xl font-bold text-blue-400 mb-1" />
@@ -308,7 +332,7 @@ export default async function Home() {
           </div>
 
           {/* Two Column Layout */}
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Left Column - Education */}
             <div className="space-y-6">
               <div className="flex items-center gap-3 mb-6">
@@ -415,7 +439,7 @@ export default async function Home() {
               <p className="text-muted-foreground">Unable to load blog posts at this time. Please try again later.</p>
             </div>
           ) : (
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+            <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-5xl items-center gap-6 py-12 lg:gap-12">
               {latestPosts.map((post) => (
                 <Link key={post.id} href={post.externalLink || "#"} target="_blank" rel="noopener noreferrer" className="block h-full">
                   <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db, blogPosts } from "@/lib/db";
 import { desc } from "drizzle-orm";
 import Link from "next/link";

@@ -1,9 +1,7 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink, Download } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { IconRenderer } from "@/components/icon-renderer"
+export const dynamic = "force-dynamic";
+
 import { getToolkits } from "@/actions/toolkits"
+import { ToolkitGrid } from "@/components/toolkit-grid"
 
 export default async function SecurityToolsPage() {
     const tools = await getToolkits()
@@ -18,7 +16,7 @@ export default async function SecurityToolsPage() {
                                 Toolkit
                             </h1>
                             <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                                A curated collection of essential cybersecurity tools to enhance your security posture.
+                                A curated collection of tools across cybersecurity, AI development, and cloud infrastructure.
                             </p>
                         </div>
                     </div>
@@ -32,47 +30,7 @@ export default async function SecurityToolsPage() {
                     {tools.length === 0 ? (
                         <div className="text-center py-24 text-muted-foreground">No tools yet.</div>
                     ) : (
-                        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-                            {tools.map((tool) => (
-                                <Card
-                                    key={tool.id}
-                                    className="bg-background border-primary/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300 h-full flex flex-col"
-                                >
-                                    <CardHeader>
-                                        <div className="flex justify-between items-start">
-                                            <div className="bg-primary/10 p-3 w-fit rounded-lg mb-4">
-                                                <IconRenderer name={tool.icon} className="h-8 w-8 text-primary" />
-                                            </div>
-                                            <Badge>{tool.category}</Badge>
-                                        </div>
-                                        <CardTitle>{tool.name}</CardTitle>
-                                        <CardDescription>{tool.description}</CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="flex-1 flex flex-col">
-                                        <p className="mb-4 text-sm text-muted-foreground">{tool.body}</p>
-                                        <div className="flex flex-col sm:flex-row gap-2 mt-auto">
-                                            <Button variant="outline" className="flex items-center gap-2" asChild>
-                                                <a href={tool.url} target="_blank" rel="noopener noreferrer">
-                                                    <ExternalLink className="h-4 w-4" />
-                                                    {tool.urlLabel}
-                                                </a>
-                                            </Button>
-                                            {tool.secondaryUrl && (
-                                                <Button className="flex items-center gap-2" asChild>
-                                                    <a href={tool.secondaryUrl} target="_blank" rel="noopener noreferrer">
-                                                        {tool.secondaryLabel === "Download"
-                                                            ? <Download className="h-4 w-4" />
-                                                            : <ExternalLink className="h-4 w-4" />
-                                                        }
-                                                        {tool.secondaryLabel}
-                                                    </a>
-                                                </Button>
-                                            )}
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
+                        <ToolkitGrid tools={tools} />
                     )}
                 </div>
             </section>

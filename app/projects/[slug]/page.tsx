@@ -19,6 +19,8 @@ import { getProjectBySlug } from "@/actions/projects"
 import { isAdmin } from "@/lib/auth"
 import { formatDate } from "@/lib/utils"
 
+export const dynamic = "force-dynamic";
+
 // ---------------------------------------------------------------------------
 // Status badge colours
 // ---------------------------------------------------------------------------

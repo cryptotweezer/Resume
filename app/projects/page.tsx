@@ -6,6 +6,8 @@ import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 import { Calendar } from "lucide-react"
 
+export const dynamic = "force-dynamic";
+
 const statusColor: Record<string, string> = {
   Live: "bg-green-500/10 text-green-400 border-green-500/20",
   "In Development": "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
