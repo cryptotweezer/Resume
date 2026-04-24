@@ -62,6 +62,8 @@ export const projects = pgTable("projects", {
   linkedinUrl: text("linkedin_url"),
   coverImage: text("cover_image"),
   status: varchar("status", { length: 50 }),
+  showInLab: boolean("show_in_lab").default(false).notNull(),
+  labRole: text("lab_role"),
   // kept for backward compat with external writers
   externalLink: text("external_link"),
   items: json("items"),
@@ -74,8 +76,8 @@ export const toolkits = pgTable("toolkits", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   category: text("category").notNull(),
-  description: text("description").notNull(),       // short — shown in CardDescription
-  body: text("body").notNull(),                      // longer — shown in CardContent
+  description: text("description").notNull(),       // short - shown in CardDescription
+  body: text("body").notNull(),                      // longer - shown in CardContent
   icon: varchar("icon", { length: 50 }).notNull().default("Shield"),
   url: text("url").notNull(),
   urlLabel: varchar("url_label", { length: 50 }).notNull().default("Visit Website"),

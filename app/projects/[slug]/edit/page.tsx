@@ -29,7 +29,7 @@ export default async function EditProjectPage({
             </Button>
           </Link>
           <h1 className="text-2xl font-bold text-foreground">
-            Edit — <span className="text-blue-400">{project.title}</span>
+            Edit: <span className="text-blue-400">{project.title}</span>
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
             Changes are saved to the database and reflected immediately.

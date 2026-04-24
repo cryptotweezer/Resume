@@ -15,7 +15,7 @@ export function generateSlug(title: string): string {
 }
 
 export function formatDate(date: Date | string | null): string {
-  if (!date) return "—"
+  if (!date) return "-"
 
   const d = typeof date === "string" ? new Date(date) : date
 

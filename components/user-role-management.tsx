@@ -175,7 +175,7 @@ export function UserRoleManagement() {
                 {users.map((user) => (
                   <TableRow key={user.id}>
                     <TableCell>{user.email}</TableCell>
-                    <TableCell>{user.name || "—"}</TableCell>
+                    <TableCell>{user.name || "-"}</TableCell>
                     <TableCell>
                       {user.role === "admin" ? (
                         <Badge className="bg-primary">
@@ -186,7 +186,7 @@ export function UserRoleManagement() {
                         <Badge variant="outline">User</Badge>
                       )}
                     </TableCell>
-                    <TableCell>{user.createdAt ? formatDate(user.createdAt) : "—"}</TableCell>
+                    <TableCell>{user.createdAt ? formatDate(user.createdAt) : "-"}</TableCell>
                     <TableCell>
                       {user.isFirstUser && (
                         <div className="flex items-center text-amber-500 font-medium">

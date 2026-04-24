@@ -83,7 +83,7 @@ export const projectFeatureSchema = z.object({
 export type ProjectFeature = z.infer<typeof projectFeatureSchema>;
 
 /**
- * Project schema — JSON columns are typed explicitly
+ * Project schema - JSON columns are typed explicitly
  */
 export const projectSchema = createSelectSchema(projects).extend({
   techStack: z.array(z.string()).nullable(),
@@ -117,6 +117,8 @@ export const projectCreateInputSchema = z.object({
   repoUrl: z.string().url().optional().or(z.literal("")),
   linkedinUrl: z.string().url().optional().or(z.literal("")),
   status: z.enum(["Live", "In Development", "Completed", "Archived"]).optional(),
+  showInLab: z.boolean().optional(),
+  labRole: z.string().optional(),
   createdAt: z.string().optional(),
 });
 

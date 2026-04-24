@@ -93,7 +93,7 @@ export default async function AdminPage() {
                             {project.status}
                           </Badge>
                         ) : (
-                          <span className="text-muted-foreground text-xs">—</span>
+                          <span className="text-muted-foreground text-xs">-</span>
                         )}
                       </td>
                       <td className="px-4 py-3 text-muted-foreground text-xs font-mono">
@@ -242,7 +242,7 @@ export default async function AdminPage() {
                         <p className="truncate">{lead.message}</p>
                       </td>
                       <td className="px-4 py-3 text-muted-foreground text-xs hidden md:table-cell">
-                        {lead.createdAt ? new Date(lead.createdAt).toLocaleDateString("en-AU", { day: "2-digit", month: "short", year: "numeric" }) : "—"}
+                        {lead.createdAt ? new Date(lead.createdAt).toLocaleDateString("en-AU", { day: "2-digit", month: "short", year: "numeric" }) : "-"}
                       </td>
                       <td className="px-4 py-3 text-right">
                         <ContactLeadActions leadId={lead.id} />

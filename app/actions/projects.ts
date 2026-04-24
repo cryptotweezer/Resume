@@ -229,7 +229,7 @@ export async function deleteProject(id: number): Promise<ActionResult> {
 }
 
 // ---------------------------------------------------------------------------
-// Seed — The Watchtower sample project
+// Seed - The Watchtower sample project
 // ---------------------------------------------------------------------------
 
 export async function seedWatchtowerProject(): Promise<ActionResult> {
@@ -254,13 +254,13 @@ export async function seedWatchtowerProject(): Promise<ActionResult> {
     slug,
     description:
       "Active Defense node and web honeynet for real-time threat hunting. Detects, classifies, and isolates malicious activity using AI and deception technology.",
-    longDescription: `The Watchtower is a production-grade cybersecurity project built as an active defense node and web honeynet. It was designed to do more than passively log attacks — it actively engages, tracks, and responds to adversaries in real time.
+    longDescription: `The Watchtower is a production-grade cybersecurity project built as an active defense node and web honeynet. It was designed to do more than passively log attacks - it actively engages, tracks, and responds to adversaries in real time.
 
 The system combines deception technology, edge computing, and an AI agent (Sentinel-02) that adapts its behavior based on the accumulated threat score of each visitor. Attackers who cross the 90% risk threshold are permanently logged in a gamified "Wall of Infamy" that survives forensic wipes.
 
-Built entirely as a full-stack application, The Watchtower demonstrates the intersection of cybersecurity architecture, AI integration, and modern web development — all deployed on a serverless edge infrastructure.`,
+Built entirely as a full-stack application, The Watchtower demonstrates the intersection of cybersecurity architecture, AI integration, and modern web development - all deployed on a serverless edge infrastructure.`,
     icon: "Shield",
-    goal: "Build a production-grade honeypot and active threat intelligence platform that not only detects attackers but dynamically engages them, fingerprints their behavior, and creates persistent adversary profiles — demonstrating real-world offensive and defensive security techniques in a live environment.",
+    goal: "Build a production-grade honeypot and active threat intelligence platform that not only detects attackers but dynamically engages them, fingerprints their behavior, and creates persistent adversary profiles - demonstrating real-world offensive and defensive security techniques in a live environment.",
     techStack: [
       "Next.js 15.1",
       "React 19",
@@ -282,7 +282,7 @@ Built entirely as a full-stack application, The Watchtower demonstrates the inte
       {
         title: "Sentinel-02 (Risk-Adaptive AI)",
         description:
-          "An AI agent powered by GPT-4o that dynamically changes its personality and responses — from helpful and boring, to hostile and deceptive — based on the attacker's accumulated risk score and which endpoints they have breached. The higher the score, the more aggressive Sentinel-02 becomes.",
+          "An AI agent powered by GPT-4o that dynamically changes its personality and responses - from helpful and boring, to hostile and deceptive - based on the attacker's accumulated risk score and which endpoints they have breached. The higher the score, the more aggressive Sentinel-02 becomes.",
       },
       {
         title: "Infamy Engine & Fingerprinting",
@@ -297,14 +297,14 @@ Built entirely as a full-stack application, The Watchtower demonstrates the inte
       {
         title: "Edge Infrastructure & Streaming AI",
         description:
-          "Orchestrates edge computing across Vercel's global network, server-to-client text streaming for AI responses, and GDPR-compliant data retention pipelines — ensuring the system performs at scale without compromising legal obligations.",
+          "Orchestrates edge computing across Vercel's global network, server-to-client text streaming for AI responses, and GDPR-compliant data retention pipelines - ensuring the system performs at scale without compromising legal obligations.",
       },
     ],
     challenges: [
       {
         title: "Real-Time Threat Classification at the Edge",
         description:
-          "Designing an AI that could accurately assess threat severity required multi-signal analysis: combining Arcjet scores, request header fingerprints, endpoint access sequences, and behavioral patterns — all evaluated in milliseconds at the edge without impacting legitimate user experience.",
+          "Designing an AI that could accurately assess threat severity required multi-signal analysis: combining Arcjet scores, request header fingerprints, endpoint access sequences, and behavioral patterns - all evaluated in milliseconds at the edge without impacting legitimate user experience.",
       },
       {
         title: "Persistent Attacker Tracking Across Sessions",
@@ -325,7 +325,7 @@ Built entirely as a full-stack application, The Watchtower demonstrates the inte
 }
 
 // ---------------------------------------------------------------------------
-// Clear all projects (admin only — destructive)
+// Clear all projects (admin only - destructive)
 // ---------------------------------------------------------------------------
 
 export async function clearAllProjects(): Promise<ActionResult> {

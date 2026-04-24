@@ -25,7 +25,7 @@ export type ContactLeadRow = {
   createdAt: Date | null;
 };
 
-// Public — called from the chat API route only
+// Public - called from the chat API route only
 export async function saveContactLead(
   input: ContactLeadInput
 ): Promise<{ success: boolean; message: string }> {
@@ -47,7 +47,7 @@ export async function saveContactLead(
   return { success: true, message: "Contact lead saved." };
 }
 
-// Admin only — delete a lead
+// Admin only - delete a lead
 export async function deleteContactLead(id: number): Promise<{ success: boolean; message: string }> {
   const adminCheck = await isAdmin();
   if (!adminCheck) return { success: false, message: "Unauthorized." };
@@ -56,7 +56,7 @@ export async function deleteContactLead(id: number): Promise<{ success: boolean;
   return { success: true, message: "Lead deleted." };
 }
 
-// Admin only — read all leads
+// Admin only - read all leads
 export async function getContactLeads(): Promise<ContactLeadRow[]> {
   const adminCheck = await isAdmin();
   if (!adminCheck) return [];

@@ -13,6 +13,7 @@ import { ExperienceRoadmap } from "@/components/experience-roadmap"
 import { CountUp } from "@/components/count-up"
 import { BusinessCard3D } from "@/components/business-card-3d"
 import { KeyAchievementsSection } from "@/components/key-achievements-section"
+import { LabProjectsSection } from "@/components/lab-projects-section"
 
 export default function AboutPage() {
   const [selectedCertificate, setSelectedCertificate] = useState<{ name: string; image: string } | null>(null)
@@ -426,150 +427,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl items-stretch gap-6 lg:gap-8">
-
-            {/* THE WATCHTOWER */}
-            <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
-              <CardHeader>
-                <Shield className="h-10 w-10 text-blue-400 mb-2" />
-                <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-foreground">The Watchtower</CardTitle>
-                  <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs text-green-400 font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />Live
-                  </span>
-                </div>
-                <CardDescription className="text-blue-400 text-xs font-medium">Security Engineer & AI Developer</CardDescription>
-                <p className="text-sm text-muted-foreground pt-1">
-                  Live threat-hunting honeypot and active defense platform. Hardware-fingerprints every visitor, assigns a dynamic risk score, and deploys Sentinel-02, a GPT-4o AI persona that turns adversaries into the dataset.
-                </p>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col gap-4">
-                <ul className="space-y-2">
-                  {[
-                    "Triple Lock honeypot system targeting script kiddies, scanners, and skilled manual adversaries",
-                    "Sentinel-02 GPT-4o security persona with gamified operations and Wall of Infamy",
-                    "Real-time global threat heatmap via D3-Geo classifying 13 attack technique types",
-                    "Vercel Edge runtime with Arcjet WAF, bot detection, and hardware fingerprinting",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-400 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Next.js 16", "GPT-4o", "Arcjet", "Neon DB", "D3-Geo", "TypeScript", "Vercel Edge"].map((t) => (
-                    <span key={t} className="px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">{t}</span>
-                  ))}
-                </div>
-                <div className="flex gap-4 mt-auto pt-2">
-                  <Link href="https://sentinel.andreshenao.com.au/" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors">
-                    <ExternalLink className="h-3.5 w-3.5" /> Live Platform
-                  </Link>
-                  <Link href="https://github.com/cryptotweezer/cryptotweezer-THE-WATCHTOWER" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
-                    <Github className="h-3.5 w-3.5" /> GitHub
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* PROJECT INTELLIGENCE SYSTEM */}
-            <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
-              <CardHeader>
-                <Brain className="h-10 w-10 text-blue-400 mb-2" />
-                <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-foreground">Project Intelligence System</CardTitle>
-                  <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs text-green-400 font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />Live
-                  </span>
-                </div>
-                <CardDescription className="text-blue-400 text-xs font-medium">Full-Stack Engineer & AI Architect</CardDescription>
-                <p className="text-sm text-muted-foreground pt-1">
-                  Shared AI context layer built on Supabase MCP. Claude, Cursor, and Windsurf all read the same structured project database, eliminating repeated context-setting across tool switches.
-                </p>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col gap-4">
-                <ul className="space-y-2">
-                  {[
-                    "Supabase MCP integration as shared intelligence layer across all connected AI tools",
-                    "Dash GPT-4o agent with 20-iteration tool-calling loop for full project lifecycle management",
-                    "Multi-user Google OAuth with Row Level Security and pg_cron automated data cleanup",
-                    "Drag-and-drop step planning with DnD Kit and automatic completion percentage tracking",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-400 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Next.js 14", "GPT-4o", "Supabase MCP", "TypeScript", "Arcjet", "DnD Kit", "Vercel"].map((t) => (
-                    <span key={t} className="px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">{t}</span>
-                  ))}
-                </div>
-                <div className="flex gap-4 mt-auto pt-2">
-                  <Link href="https://intel.andreshenao.com.au" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors">
-                    <ExternalLink className="h-3.5 w-3.5" /> Live Platform
-                  </Link>
-                  <Link href="https://github.com/cryptotweezer/Project-Intelligence-System" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
-                    <Github className="h-3.5 w-3.5" /> GitHub
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* PORTFOLIO WEBSITE */}
-            <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
-              <CardHeader>
-                <Globe className="h-10 w-10 text-blue-400 mb-2" />
-                <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-foreground">Portfolio Website</CardTitle>
-                  <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs text-green-400 font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />Live
-                  </span>
-                </div>
-                <CardDescription className="text-blue-400 text-xs font-medium">Full-Stack Engineer & Designer</CardDescription>
-                <p className="text-sm text-muted-foreground pt-1">
-                  Production full-stack portfolio and personal CMS. Every section is database-driven and manageable through a custom admin dashboard without touching the codebase after deployment.
-                </p>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col gap-4">
-                <ul className="space-y-2">
-                  {[
-                    "Database-driven CMS with custom admin dashboard and RBAC authentication via Clerk",
-                    "Boto AI assistant powered by OpenAI with function calling for conversational lead collection",
-                    "Bot protection and WAF via Arcjet across all public routes and API endpoints",
-                    "Three.js interactive 3D globe with React Three Fiber and auto-slug PostgreSQL trigger",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-blue-400 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Next.js 16", "TypeScript", "Supabase", "Clerk", "OpenAI", "Arcjet", "Three.js", "Vercel"].map((t) => (
-                    <span key={t} className="px-2 py-0.5 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">{t}</span>
-                  ))}
-                </div>
-                <div className="flex gap-4 mt-auto pt-2">
-                  <Link href="https://cv.andreshenao.com.au/" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors">
-                    <ExternalLink className="h-3.5 w-3.5" /> cv.andreshenao.com.au
-                  </Link>
-                  <Link href="https://github.com/cryptotweezer/Resume" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
-                    <Github className="h-3.5 w-3.5" /> GitHub
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
-
-          </div>
+          <LabProjectsSection />
         </div>
       </section>
 

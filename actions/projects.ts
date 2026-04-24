@@ -27,6 +27,8 @@ export type ProjectRow = {
   linkedinUrl: string | null;
   coverImage: string | null;
   status: string | null;
+  showInLab: boolean;
+  labRole: string | null;
   externalLink: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
@@ -59,6 +61,8 @@ function mapRow(row: typeof projects.$inferSelect): ProjectRow {
     linkedinUrl: row.linkedinUrl ?? null,
     coverImage: row.coverImage ?? null,
     status: row.status ?? null,
+    showInLab: row.showInLab,
+    labRole: row.labRole ?? null,
     externalLink: row.externalLink ?? null,
     createdAt: row.createdAt ?? null,
     updatedAt: row.updatedAt ?? null,
@@ -90,6 +94,15 @@ async function buildUniqueSlug(title: string, excludeId?: number): Promise<strin
 
 export async function getProjects(): Promise<ProjectRow[]> {
   const rows = await db.select().from(projects).orderBy(desc(projects.createdAt));
+  return rows.map(mapRow);
+}
+
+export async function getLabProjects(): Promise<ProjectRow[]> {
+  const rows = await db
+    .select()
+    .from(projects)
+    .where(eq(projects.showInLab, true))
+    .orderBy(projects.createdAt);
   return rows.map(mapRow);
 }
 
@@ -141,10 +154,13 @@ export async function createProject(
       repoUrl: d.repoUrl || null,
       linkedinUrl: d.linkedinUrl || null,
       status: d.status ?? null,
+      showInLab: d.showInLab ?? false,
+      labRole: d.labRole || null,
     })
     .returning();
 
   revalidatePath("/projects");
+  revalidatePath("/about");
   revalidatePath("/admin");
 
   return { success: true, message: "Project created successfully!", data: mapRow(inserted) };
@@ -189,6 +205,8 @@ export async function updateProject(
       repoUrl: d.repoUrl || null,
       linkedinUrl: d.linkedinUrl || null,
       status: d.status ?? null,
+      showInLab: d.showInLab ?? false,
+      labRole: d.labRole || null,
       createdAt: d.createdAt ? new Date(d.createdAt) : undefined,
       updatedAt: new Date(),
     })
@@ -197,6 +215,7 @@ export async function updateProject(
 
   revalidatePath("/projects");
   if (updated.slug) revalidatePath(`/projects/${updated.slug}`);
+  revalidatePath("/about");
   revalidatePath("/admin");
 
   return { success: true, message: "Project updated!", data: mapRow(updated) };
@@ -212,6 +231,7 @@ export async function deleteProject(id: number): Promise<ActionResult> {
 
   await db.delete(projects).where(eq(projects.id, id));
   revalidatePath("/projects");
+  revalidatePath("/about");
   revalidatePath("/admin");
 
   return { success: true, message: "Project deleted." };

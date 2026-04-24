@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/select"
 import { updateProject } from "@/actions/projects"
 import { toast } from "sonner"
-import { Plus, Trash2, Shield, Cloud, Code2, Bot, Lock, Server, Database, Globe } from "lucide-react"
+import { Plus, Trash2, Shield, Cloud, Code2, Bot, Lock, Server, Database, Globe, FlaskConical } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import type { ProjectRow } from "@/actions/projects"
 
@@ -50,6 +50,8 @@ const formSchema = z.object({
   repoUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   linkedinUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   status: z.enum(["Live", "In Development", "Completed", "Archived"]).optional(),
+  showInLab: z.boolean().default(false),
+  labRole: z.string().optional(),
   createdAt: z.string().optional(),
 })
 
@@ -92,6 +94,8 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
       repoUrl: project.repoUrl ?? "",
       linkedinUrl: project.linkedinUrl ?? "",
       status: (project.status as FormValues["status"]) ?? undefined,
+      showInLab: project.showInLab ?? false,
+      labRole: project.labRole ?? "",
       createdAt: project.createdAt
         ? new Date(new Date(project.createdAt).getTime() - new Date(project.createdAt).getTimezoneOffset() * 60000).toISOString().slice(0, 16)
         : "",
@@ -124,6 +128,8 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
       repoUrl: values.repoUrl,
       linkedinUrl: values.linkedinUrl,
       status: values.status,
+      showInLab: values.showInLab,
+      labRole: values.labRole,
       createdAt: values.createdAt ? new Date(values.createdAt).toISOString() : undefined,
     })
 
@@ -291,6 +297,51 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
                 <FormLabel>Publication Date</FormLabel>
                 <FormControl>
                   <Input type="datetime-local" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <Separator />
+
+        {/* ── Engineering Lab ── */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <FlaskConical className="h-4 w-4 text-blue-400" />
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Engineering Lab</h3>
+          </div>
+          <p className="text-xs text-muted-foreground">Show this project as a card in the Engineering Lab section on the About page.</p>
+
+          <FormField
+            control={form.control}
+            name="showInLab"
+            render={({ field }) => (
+              <FormItem className="flex items-center gap-3 rounded-lg border border-border p-4 bg-card/30">
+                <FormControl>
+                  <input
+                    type="checkbox"
+                    checked={field.value}
+                    onChange={field.onChange}
+                    className="h-4 w-4 accent-blue-500 cursor-pointer"
+                  />
+                </FormControl>
+                <FormLabel className="!mt-0 cursor-pointer font-normal">
+                  Show in Engineering Lab section
+                </FormLabel>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="labRole"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Role / Subtitle <span className="text-muted-foreground font-normal">(shown below the title)</span></FormLabel>
+                <FormControl>
+                  <Input placeholder="e.g. Security Engineer & AI Developer" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

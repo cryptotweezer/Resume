@@ -35,7 +35,7 @@ export default async function EditToolkitPage({
             </Button>
           </Link>
           <h1 className="text-2xl font-bold text-foreground">
-            Edit Tool — <span className="text-blue-400">{tool.name}</span>
+            Edit Tool: <span className="text-blue-400">{tool.name}</span>
           </h1>
         </div>
       </section>
