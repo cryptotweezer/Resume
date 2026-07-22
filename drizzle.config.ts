@@ -11,5 +11,8 @@ export default {
   dbCredentials: {
     url: connectionString,
   },
+  // The database is shared with the unrelated `pis` project; without this filter
+  // drizzle-kit would treat its tables as drift and generate DROP statements.
+  schemaFilter: ["resume"],
   verbose: true,
 } satisfies Config

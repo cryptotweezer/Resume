@@ -1,6 +1,6 @@
 import postgres from "postgres";
 import { drizzle } from "drizzle-orm/postgres-js";
-import { boolean, integer, pgTable, serial, text, timestamp, varchar, json } from "drizzle-orm/pg-core";
+import { boolean, integer, pgSchema, serial, text, timestamp, varchar, json } from "drizzle-orm/pg-core";
 
 const connectionString = process.env.DATABASE_URL!;
 
@@ -9,8 +9,12 @@ const client = postgres(connectionString, { prepare: false });
 
 export const db = drizzle(client);
 
+// This project's tables live in the `resume` schema. The same database also
+// hosts the unrelated `pis` project in its own schema — never write to it.
+const resume = pgSchema("resume");
+
 // Define the subscribers table schema - for newsletter subscribers only
-export const subscribers = pgTable("subscribers", {
+export const subscribers = resume.table("subscribers", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
   name: text("name"),
@@ -18,7 +22,7 @@ export const subscribers = pgTable("subscribers", {
 });
 
 // Define the users table schema - for authentication and role-based access
-export const users = pgTable("users", {
+export const users = resume.table("users", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
   name: text("name"),
@@ -30,7 +34,7 @@ export const users = pgTable("users", {
 });
 
 // Define the blog posts table schema
-export const blogPosts = pgTable("blog_posts", {
+export const blogPosts = resume.table("blog_posts", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   slug: text("slug").unique(),
@@ -46,7 +50,7 @@ export const blogPosts = pgTable("blog_posts", {
 });
 
 // Define the projects table schema
-export const projects = pgTable("projects", {
+export const projects = resume.table("projects", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   slug: text("slug").unique(),
@@ -72,7 +76,7 @@ export const projects = pgTable("projects", {
 });
 
 // Define the toolkits table schema
-export const toolkits = pgTable("toolkits", {
+export const toolkits = resume.table("toolkits", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   category: text("category").notNull(),
@@ -89,7 +93,7 @@ export const toolkits = pgTable("toolkits", {
 });
 
 // Key achievements displayed on the About page
-export const keyAchievements = pgTable("key_achievements", {
+export const keyAchievements = resume.table("key_achievements", {
   id: serial("id").primaryKey(),
   value: integer("value").notNull(),
   suffix: text("suffix").notNull().default("%"),
@@ -101,7 +105,7 @@ export const keyAchievements = pgTable("key_achievements", {
 });
 
 // Contact leads captured by Boto chat assistant
-export const contactLeads = pgTable("contact_leads", {
+export const contactLeads = resume.table("contact_leads", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
