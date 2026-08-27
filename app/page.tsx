@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link"
+import { EducationPdfCard } from "@/components/education-pdf-card"
 import Image from "next/image"
 import { Shield, Lock, Server, Database, Bot, Code2, Cloud, Workflow, TrendingUp, Users, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, Award, ExternalLink, Calendar, MapPinIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -342,36 +343,39 @@ export default async function Home() {
 
               <div className="space-y-4">
                 {/* Bachelor of Cyber Security */}
-                <div className="rounded-2xl border border-blue-500/20 bg-card/50 backdrop-blur-sm p-6 hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-500 group">
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Bachelor of Cyber Security</h4>
-                  <p className="text-blue-400 text-sm mb-3">Victoria University</p>
-                  <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-3 w-3" />
-                      <span>2022 - Present</span>
+                <Link
+                  href="https://www.myequals.net/sharelink/dfec10ea-edd1-4de8-bc95-e6396b566714/a98af054-f99b-4ca7-b8e0-e0d309557328"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-2xl border border-blue-500/20 bg-card/50 backdrop-blur-sm p-6 hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-500 group"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <h4 className="text-lg font-semibold text-foreground mb-2 group-hover:text-blue-400 transition-colors">Bachelor of Cyber Security</h4>
+                      <p className="text-blue-400 text-sm mb-3">Victoria University</p>
+                      <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-3 w-3" />
+                          <span>2022 - August 2026</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-3 w-3" />
+                          <span>Sydney, Australia</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-3 w-3" />
-                      <span>Sydney, Australia</span>
-                    </div>
+                    <ExternalLink className="h-4 w-4 text-blue-400 flex-shrink-0 mt-1" />
                   </div>
-                </div>
+                </Link>
 
                 {/* Advanced Diploma */}
-                <div className="rounded-2xl border border-blue-500/20 bg-card/50 backdrop-blur-sm p-6 hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-500 group">
-                  <h4 className="text-lg font-semibold text-foreground mb-2">Advanced Diploma of Leadership and Management</h4>
-                  <p className="text-blue-400 text-sm mb-3">Australian Pacific College</p>
-                  <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-3 w-3" />
-                      <span>Aug 2016 - May 2018</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-3 w-3" />
-                      <span>Sydney, Australia</span>
-                    </div>
-                  </div>
-                </div>
+                <EducationPdfCard
+                  title="Advanced Diploma of Leadership and Management"
+                  institution="Australian Pacific College"
+                  period="Aug 2016 - May 2018"
+                  location="Sydney, Australia"
+                  pdfUrl="/Andres_Henao_Leadership_Management_Transcript.pdf"
+                />
 
                 {/* Bachelor International Trade */}
                 <div className="rounded-2xl border border-blue-500/20 bg-card/50 backdrop-blur-sm p-6 hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-500 group">

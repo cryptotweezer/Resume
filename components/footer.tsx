@@ -50,6 +50,16 @@ export function Footer() {
                   Tools & Technologies
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="https://www.myequals.net/sharelink/c686c840-838e-443a-b719-548dcd2d0fc1/fc0f39a7-46b7-4902-87ac-24e7f42c7a01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  Bachelor of Cyber Security Academic Transcript
+                </Link>
+              </li>
 
             </ul>
           </div>
