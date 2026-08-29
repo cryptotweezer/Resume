@@ -20,12 +20,16 @@ export function HeroSection() {
                             {/* Name Title */}
                             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none min-h-[1.2em]">
                                 <TypewriterEffect
-                                    words={["Andres Henao", "Cyber security", "Web Developer", "AI Automations"]}
+                                    words={["Andres Henao", "Cyber Security", "Full-Stack Developer", "AI Automation"]}
                                     cursorClassName="text-blue-500"
                                 />
                             </h1>
 
-                            {/* Professional Badges */}
+                            {/* Description */}
+                            <p className="max-w-[600px] text-muted-foreground md:text-lg leading-relaxed">
+                                Building secure, intelligent, and efficient systems through cybersecurity expertise, AI automation, and full-stack development.
+                            </p>
+
                             {/* Professional Badges */}
                             <div className="grid grid-cols-2 gap-3 w-full max-w-[600px]">
                                 <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
@@ -49,15 +53,10 @@ export function HeroSection() {
                                 <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
                                     <Bot className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
                                     <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
-                                        AI & Automation
+                                        AI Systems Engineer
                                     </span>
                                 </div>
                             </div>
-
-                            {/* Description */}
-                            <p className="max-w-[600px] text-muted-foreground md:text-lg leading-relaxed">
-                                Building secure, intelligent, and efficient systems through cybersecurity expertise, AI automation, and full-stack development.
-                            </p>
                         </div>
 
                         {/* Buttons */}

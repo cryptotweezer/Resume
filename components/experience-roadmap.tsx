@@ -16,22 +16,23 @@ const experiences: ExperienceItem[] = [
     {
         title: "Managing Director",
         company: "Awesome Services",
-        period: "Oct 2013 – Present",
+        period: "Oct 2013 - Present",
         location: "Sydney, Australia",
         description: [
-            "Led full business operations including client acquisition, workforce management, quality control, and financial oversight across multi-site operations.",
-            "Designed and implemented automation workflows with n8n and Python, improving operational accuracy by 90 % and reducing administrative workload.",
-            "Developed and deployed a customer service QA workflow, boosting client retention by 96% and improving overall satisfaction ratings.",
-            "Built and trained cross-functional cleaning teams, enforcing service standards and safety compliance across all job sites.",
-            "Handled all financial operations including budgeting, expense tracking, invoicing, payroll, and vendor payments.",
-            "Resolved customer concerns with a proactive, solutions-focused approach",
-            "Analyzed service trends, client feedback, and operational KPIs to continuously refine offerings and exceed customer expectations."
+            "Run the business end to end: client acquisition, workforce management, quality control and financial oversight across multiple sites.",
+            "Rebuilt billing and financial year reporting around AI agents. Around 95% of invoicing and tax reporting now runs through Claude Code and Codex for day to day work, with more autonomous runners like Hermes and OpenClaw handling the scheduled jobs.",
+            "Built the platform those agents operate, with an MCP gateway where each agent connects using its own credential and permissions, and the accounting rules enforced in PostgreSQL instead of in a prompt.",
+            "Designed automation workflows with n8n and Python that improved operational accuracy by 90% and removed most of the manual admin from the daily routine.",
+            "Deployed a customer service QA workflow that holds client retention at 96% by catching problems before clients have to raise them.",
+            "Hired and trained cross-functional cleaning teams, enforcing service standards and safety compliance across every job site.",
+            "Handle budgeting, expense tracking, invoicing, payroll and vendor payments.",
+            "Track service trends, client feedback and operational KPIs to keep refining what the business offers."
         ]
     },
     {
         title: "Logistics Specialist In-House",
         company: "Kemira Chemicals Brazil Ltda. / Coordinadora Logistica Internacional",
-        period: "July 2008 – Mar 2013",
+        period: "July 2008 - Mar 2013",
         location: "Bogotá, Colombia",
         description: [
             "Served as in-house logistics specialist supporting Kemira Netherlands operations in Colombia, overseeing international transport and warehousing.",
@@ -47,7 +48,7 @@ const experiences: ExperienceItem[] = [
     {
         title: "Account Manager",
         company: "Coordinadora Logistica Internacional",
-        period: "Feb 2006 – June 2008",
+        period: "Feb 2006 - June 2008",
         location: "Bogotá, Colombia",
         description: [
             "Managed national and international client accounts across multiple industries, delivering tailored logistics and supply chain solutions aligned with business needs.",
@@ -62,7 +63,7 @@ const experiences: ExperienceItem[] = [
     {
         title: "Operations Specialist",
         company: "Kuehne & Nagel",
-        period: "Feb 2005 – Jan 2006",
+        period: "Feb 2005 - Jan 2006",
         location: "Bogotá, Colombia",
         description: [
             "Oversaw international logistics operations and process optimization initiatives for major corporate clients, improving efficiency and accuracy in shipment coordination.",
@@ -76,7 +77,7 @@ const experiences: ExperienceItem[] = [
     {
         title: "Customer Service Specialist",
         company: "Kuehne & Nagel",
-        period: "Jan 2003 – Dec 2004",
+        period: "Jan 2003 - Dec 2004",
         location: "Bogotá, Colombia",
         description: [
             "Coordinated import and export operations for domestic and international clients, ensuring shipment accuracy, compliance, and timely delivery.",

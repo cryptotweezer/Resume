@@ -62,7 +62,7 @@ export default async function Home() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">Core Technical Areas</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Multidisciplinary skills combining cybersecurity principles with automation and real-world execution to build secure, intelligent, and efficient systems.
+                Four areas I work in every week: defending networks and applications, putting AI agents to work on real operations, shipping full-stack products, and running the cloud infrastructure underneath them.
               </p>
             </div>
           </div>
@@ -100,7 +100,7 @@ export default async function Home() {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>LLM Integration</li>
                   <li>AI Agent Implementation</li>
-                  <li>OpenAI API</li>
+                  <li>Multi-Provider LLM APIs</li>
                   <li>Workflow Automation & Orchestration</li>
                   <li>MCP Servers for AI</li>
                   <li>Process Optimization</li>
@@ -170,25 +170,31 @@ export default async function Home() {
               <div className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-4 sm:p-8">
                 <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                   <p>
-                    Cybersecurity specialist and full-stack engineer with a strong foundation in{" "}
-                    <span className="text-blue-400 font-semibold">secure software architecture, cloud infrastructure, and intelligent systems integration</span>.
-                    Experienced in designing and deploying production-grade applications using Next.js, TypeScript, Python, Flask, Django, Docker, and Supabase,
-                    with a consistent focus on security, scalability, and operational resilience.
+                    Cyber security specialist and full-stack engineer based in Sydney. My expertise covers{" "}
+                    <span className="text-blue-400 font-semibold">ethical hacking and digital forensics, security operations and
+                    vulnerability analysis, data analytics for cyber security, enterprise networking and virtualisation</span>,
+                    along with data privacy, compliance and the professional ethics that go with the field.
                   </p>
 
                   <p>
-                    Skilled in{" "}
-                    <span className="text-blue-400 font-semibold">AI agent development, LLM orchestration, and workflow automation</span>{" "}
-                    using OpenAI API, MCP servers, and n8n. Applies these capabilities to solve real operational challenges,
-                    having achieved a 90% improvement in operational accuracy and a 96% client retention rate through
-                    targeted automation and process optimization.
+                    What I have been building is production platforms end to end, across a{" "}
+                    <span className="text-blue-400 font-semibold">broad range of frameworks, languages, databases and cloud
+                    services</span> rather than a single stack, and then securing them the way they should be: a WAF and bot
+                    mitigation at the edge, real authentication, least privilege at the database.
                   </p>
 
                   <p>
-                    Holds IBM and Google professional certifications across{" "}
-                    <span className="text-blue-400 font-semibold">AI, cybersecurity, and full-stack development</span>.
-                    Brings a multidisciplinary perspective across international logistics, business operations, and technology,
-                    combining security-first engineering with practical, results-driven execution.
+                    I design systems that{" "}
+                    <span className="text-blue-400 font-semibold">AI agents can operate safely</span>, with the business rules
+                    living in the database instead of in a prompt and every agent holding its own credential and permissions.
+                    One example running in production today is a services company that puts around 95% of its invoicing and
+                    financial year reporting through agents, and closes its books without anyone opening a spreadsheet.
+                  </p>
+
+                  <p>
+                    I also hold Google and IBM professional certificates in cybersecurity, AI and full-stack development, plus an
+                    Advanced Diploma of Leadership and Management. Fifteen years running international logistics and business
+                    operations before tech taught me to ask what a system costs to run, not just whether it works.
                   </p>
                 </div>
 
@@ -237,16 +243,16 @@ export default async function Home() {
                 {/* Tags */}
                 <div className="mt-6 pt-6 border-t border-border flex flex-wrap gap-3">
                   <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
-                    Security-First Mindset
+                    Security-First Engineering
                   </span>
                   <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
-                    AI Integration
+                    AI Agent Systems
                   </span>
                   <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
-                    Process Optimizer
+                    Automation by Design
                   </span>
                   <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
-                    Cloud Architect
+                    Cloud & Edge Infrastructure
                   </span>
                 </div>
               </div>
@@ -261,9 +267,9 @@ export default async function Home() {
                       <Bot className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <CountUp end={5} suffix="x" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Faster AI Context Handoff</div>
-                      <div className="text-xs text-muted-foreground/70">Project Intelligence System</div>
+                      <CountUp end={95} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">Billing Run by AI Agents</div>
+                      <div className="text-xs text-muted-foreground/70">Awesome Services</div>
                     </div>
                   </div>
                 </CardContent>
@@ -277,8 +283,8 @@ export default async function Home() {
                     </div>
                     <div>
                       <CountUp end={100} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Serverless & Edge-Native</div>
-                      <div className="text-xs text-muted-foreground/70">The Watchtower</div>
+                      <div className="text-sm text-muted-foreground">Serverless and Edge-Native</div>
+                      <div className="text-xs text-muted-foreground/70">The Watchtower honeypot</div>
                     </div>
                   </div>
                 </CardContent>
@@ -291,9 +297,9 @@ export default async function Home() {
                       <Server className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <CountUp end={24} suffix="/7" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">AI-Powered Portfolio</div>
-                      <div className="text-xs text-muted-foreground/70">cv.andreshenao.com.au</div>
+                      <CountUp end={5} suffix="x" className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">Faster AI Context Handoff</div>
+                      <div className="text-xs text-muted-foreground/70">Project Intelligence System</div>
                     </div>
                   </div>
                 </CardContent>
@@ -307,7 +313,8 @@ export default async function Home() {
                     </div>
                     <div>
                       <CountUp end={15} suffix="+" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Years Experience</div>
+                      <div className="text-sm text-muted-foreground">Years Running Operations</div>
+                      <div className="text-xs text-muted-foreground/70">Logistics, business, now engineering</div>
                     </div>
                   </div>
                 </CardContent>
@@ -328,7 +335,7 @@ export default async function Home() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2 text-foreground">Education & Certifications</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4"></div>
             <p className="text-muted-foreground text-center max-w-2xl">
-              Continuous learning in cybersecurity, AI, and full-stack development
+              My degrees, an earlier management diploma, and the certificates I picked up along the way. Click any card to open the credential.
             </p>
           </div>
 
@@ -410,10 +417,10 @@ export default async function Home() {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground">
-                Stay Updated on Tech Trends
+                Notes From the Lab
               </h2>
               <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
-                Subscribe to receive insights on cybersecurity, AI, automation, and cloud solutions.
+                Occasional write-ups on cyber security, AI agents and cloud infrastructure. Only when there is something worth sending.
               </p>
             </div>
             <div className="w-full max-w-md">
@@ -433,7 +440,7 @@ export default async function Home() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Latest Insights</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Exploring cybersecurity, AI, automation, and cloud technologies through practical insights and real-world applications.
+                What I am building, breaking and reading about in cyber security, AI and cloud. Written from practice, not theory.
               </p>
             </div>
           </div>

@@ -31,29 +31,38 @@ export default function AboutPage() {
                   Andres <span className="text-blue-500">Henao</span>
                 </h2>
                 <p className="text-xl">
-                  <span className="text-foreground font-semibold">Cyber security specialist | cloud security engineer | mobile and web applications developer | Automation & Cloud Solutions</span>
+                  <span className="text-foreground font-semibold">Cyber Security Specialist | Cloud Security Engineer | Full-Stack Developer | AI Automation</span>
                 </p>
                 <p className="text-base text-foreground pt-2">
-                  Cyber security specialist with a strong foundation in secure software architecture, cloud automation, and intelligent systems integration
+                  Cyber security specialist and full-stack engineer based in Sydney, building and securing production systems.
                 </p>
                 {/* Contact info moved to bottom */}
               </div>
               <div className="space-y-4">
                 <p className="text-muted-foreground">
-                  Cybersecurity & AI-Driven Full-Stack Engineer with a strong foundation in secure software architecture,
-                  cloud automation, and intelligent systems integration. Experienced in designing and deploying end-to-end
-                  solutions using Python, Flask, Django, Docker, and SQL, with a focus on security, scalability, and
-                  resilience.
+                  My core expertise is cyber security: digital forensics and ethical hacking, security operations and
+                  vulnerability analysis, data analytics for cyber security, data privacy and cyber physical systems,
+                  enterprise network management, virtualisation and server administration, and the legal and ethical side
+                  of the field.
                 </p>
                 <p className="text-muted-foreground">
-                  Skilled in implementing AI agents, LLM orchestration, and automation pipelines that enhance performance
-                  and streamline operations. As Founder of Awesome Services, I led the adoption of AI and workflow
-                  automation to improve operational accuracy by 90% and client retention by 96%.
+                  What I have been building is production platforms end to end, working across a broad set of frameworks,
+                  languages, databases and cloud services rather than tying myself to one stack, and then securing them
+                  properly: a WAF and bot mitigation at the edge, real authentication, least privilege at the database
+                  layer. Everything in the Engineering Lab below is live and used by someone.
                 </p>
                 <p className="text-muted-foreground">
-                  Backed by IBM certifications in AI, backend, and full-stack development, I bring a practical,
-                  multidisciplinary perspective combining cybersecurity principles with automation and real-world execution
-                  to build secure, intelligent, and efficient systems.
+                  I design systems AI agents can operate
+                  safely: the rules that protect the numbers live inside the database rather than inside a prompt, and every
+                  agent connects with its own credential and its own permissions. One example running in production today is a
+                  services company that puts around 95% of its invoicing and financial year reporting through agents, and closes
+                  its books without anyone opening a spreadsheet.
+                </p>
+                <p className="text-muted-foreground">
+                  I also hold Google and IBM professional certificates in cybersecurity, AI and full-stack development, and an
+                  Advanced Diploma of Leadership and Management. Fifteen years running international logistics and business
+                  operations before moving into tech taught me to judge a system by what it costs to run, not only by whether
+                  it works.
                 </p>
               </div>
             </div>
@@ -78,7 +87,7 @@ export default function AboutPage() {
 
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Skills & Specializations</h2>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Comprehensive technical skills across cybersecurity, AI, development, and cloud infrastructure.
+                What I know and what I actually use in production, grouped by area. Open a section to see the detail.
               </p>
             </div>
           </div>
@@ -260,8 +269,8 @@ export default function AboutPage() {
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">OpenAI API</p>
-                      <p className="text-sm text-muted-foreground">GPT-4o integration, function calling, and AI assistants</p>
+                      <p className="font-semibold text-foreground">Multi-Provider LLM APIs</p>
+                      <p className="text-sm text-muted-foreground">Model-agnostic integration, tool calling, and AI assistants</p>
                     </div>
                   </div>
                 </div>
@@ -405,7 +414,7 @@ export default function AboutPage() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Professional Experience</h2>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                My journey from international logistics to tech entrepreneurship and cybersecurity.
+                Fifteen years running operations, first in international logistics, then in my own business, and now with the engineering to automate it.
               </p>
             </div>
           </div>
@@ -423,7 +432,7 @@ export default function AboutPage() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Engineering Lab</h2>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Production platforms designed, built, and deployed independently. Each one solves a real problem with real infrastructure.
+                Platforms I designed, built and deployed on my own. Every one of them is live, and every one of them solves a problem I actually had.
               </p>
             </div>
           </div>
@@ -439,7 +448,7 @@ export default function AboutPage() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Key Achievements</h2>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Measurable results demonstrating business impact and technical excellence.
+                Numbers that came out of systems people depend on, not out of a demo.
               </p>
             </div>
           </div>
@@ -456,7 +465,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2 text-foreground">Education & Certifications</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4"></div>
             <p className="text-muted-foreground text-center max-w-2xl">
-              Continuous learning in cybersecurity, AI, and full-stack development
+              My degrees, an earlier management diploma, and the certificates I picked up along the way. Click any card to open the credential.
             </p>
           </div>
 
@@ -749,6 +758,9 @@ export default function AboutPage() {
         <div className="container px-4 md:px-6 lg:px-12 xl:px-24 text-center">
           <div className="flex flex-col items-center justify-center mb-8 space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Let's Connect</h2>
+            <p className="max-w-[600px] text-muted-foreground">
+              Open to cyber security, cloud security and AI automation roles in Sydney, and happy to talk through any of the projects above.
+            </p>
             <div className="flex flex-col items-center gap-3 text-muted-foreground">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
