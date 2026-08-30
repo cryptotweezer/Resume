@@ -41,6 +41,7 @@ export async function addBlogPost(formData: FormData) {
         });
 
         revalidatePath("/blog");
+        revalidatePath("/"); // la home lista los ultimos 3 posts
         revalidatePath("/admin");
 
         return { success: true, message: "Blog post added successfully" };

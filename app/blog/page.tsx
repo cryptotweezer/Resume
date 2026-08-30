@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
 
 import { db, blogPosts } from "@/lib/db";
 import { desc } from "drizzle-orm";

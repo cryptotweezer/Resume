@@ -11,7 +11,7 @@ interface TypewriterEffectProps {
 
 export function TypewriterEffect({ words, className, cursorClassName }: TypewriterEffectProps) {
     const [currentWordIndex, setCurrentWordIndex] = useState(0)
-    const [currentText, setCurrentText] = useState("")
+    const [currentText, setCurrentText] = useState(words[0] ?? "")
     const [isDeleting, setIsDeleting] = useState(false)
     const [typingSpeed, setTypingSpeed] = useState(200)
 

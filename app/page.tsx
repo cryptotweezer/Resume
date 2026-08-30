@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
 
 import Link from "next/link"
 import { EducationPdfCard } from "@/components/education-pdf-card"
@@ -381,7 +381,7 @@ export default async function Home() {
                   institution="Australian Pacific College"
                   period="Aug 2016 - May 2018"
                   location="Sydney, Australia"
-                  pdfUrl="/Andres_Henao_Leadership_Management_Transcript.pdf"
+                  pdfUrl="/Diploma_Management.webp"
                 />
 
                 {/* Bachelor International Trade */}

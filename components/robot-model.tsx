@@ -1,11 +1,15 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
+import { Suspense, useRef, useEffect, useState } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { useGLTF, OrbitControls, PerspectiveCamera, Environment, Float } from "@react-three/drei"
 import * as THREE from "three"
 
 import { useUI } from "@/context/ui-context"
+
+const EYE_BASE_COLOR = new THREE.Color("#0088ff")
+const EYE_HOVER_COLOR = new THREE.Color("#ac00fc")
+const UNIT_SCALE = new THREE.Vector3(1, 1, 1)
 
 function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering: boolean, isHoveringContact: boolean }) {
     const { scene } = useGLTF(url)
@@ -155,13 +159,8 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
                     const isEye = mesh.name.toLowerCase().includes("eye") || material.name.toLowerCase().includes("eye")
 
                     if (isEye && material.emissive) {
-                        // Base emissive color (blue-ish default)
-                        const baseColor = new THREE.Color("#0088ff")
-                        // Hover color (purple/violet as requested)
-                        const hoverColor = new THREE.Color("#ac00fc")
-
                         // Interpolate color
-                        material.emissive.lerp(isHovering ? hoverColor : baseColor, 0.1)
+                        material.emissive.lerp(isHovering ? EYE_HOVER_COLOR : EYE_BASE_COLOR, 0.1)
 
                         // Interpolate intensity
                         // Reduced from 20 to 5 to prevent color from blowing out to white
@@ -170,7 +169,7 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
                         material.emissiveIntensity = THREE.MathUtils.lerp(material.emissiveIntensity, targetIntensity, 0.1)
 
                         // Ensure scale is reset if it was modified previously
-                        mesh.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1)
+                        mesh.scale.lerp(UNIT_SCALE, 0.1)
                     }
                 }
             })
@@ -241,12 +240,13 @@ function SceneContent({ isHovering, isHoveringContact }: { isHovering: boolean, 
 export function RobotModel({ isHovering = false, isHoveringContact = false }: { isHovering?: boolean, isHoveringContact?: boolean }) {
     return (
         <div className="w-full h-full min-h-[400px] relative">
-            <Canvas>
-                <SceneContent isHovering={isHovering} isHoveringContact={isHoveringContact} />
+            <Canvas dpr={[1, 1.5]} gl={{ antialias: false, powerPreference: "high-performance" }}>
+                <Suspense fallback={null}>
+                    <SceneContent isHovering={isHovering} isHoveringContact={isHoveringContact} />
+                </Suspense>
             </Canvas>
         </div>
     )
 }
 
-// Preload the model
 useGLTF.preload("/robot.glb")

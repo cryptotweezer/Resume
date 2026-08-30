@@ -511,7 +511,7 @@ export default function AboutPage() {
                   institution="Australian Pacific College"
                   period="Aug 2016 - May 2018"
                   location="Sydney, Australia"
-                  pdfUrl="/Andres_Henao_Leadership_Management_Transcript.pdf"
+                  pdfUrl="/Diploma_Management.webp"
                 />
 
                 {/* Bachelor International Trade */}

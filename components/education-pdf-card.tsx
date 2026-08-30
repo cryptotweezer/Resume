@@ -15,6 +15,7 @@ interface EducationPdfCardProps {
 export function EducationPdfCard({ title, institution, period, location, pdfUrl }: EducationPdfCardProps) {
     const [open, setOpen] = useState(false)
     const [canEmbed, setCanEmbed] = useState(true)
+    const isImage = /\.(png|jpe?g|webp|gif|avif)$/i.test(pdfUrl)
 
     // Mobile browsers (Chrome on Android in particular) do not render PDFs inside
     // an iframe, so on small screens we offer a full screen viewer instead.
@@ -58,7 +59,11 @@ export function EducationPdfCard({ title, institution, period, location, pdfUrl 
                         <DialogTitle className="text-base sm:text-lg pr-8 text-left">{title}</DialogTitle>
                     </DialogHeader>
 
-                    {canEmbed ? (
+                    {isImage ? (
+                        <div className="w-full max-h-[70vh] overflow-auto rounded-lg border border-blue-500/20 bg-muted">
+                            <img src={pdfUrl} alt={title} className="w-full h-auto" />
+                        </div>
+                    ) : canEmbed ? (
                         <div className="w-full h-[70vh] rounded-lg overflow-hidden border border-blue-500/20 bg-muted">
                             <iframe src={pdfUrl} title={title} className="w-full h-full" />
                         </div>

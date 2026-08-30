@@ -1,15 +1,32 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import dynamic from "next/dynamic"
 import { Shield, Cloud, Code2, Bot } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TypewriterEffect } from "@/components/typewriter-effect"
-import { RobotModel } from "@/components/robot-model"
+// three.js + el modelo de 1MB salen del bundle inicial y solo cargan
+// cuando el navegador esta libre, para no competir con el LCP del hero.
+const RobotModel = dynamic(() => import("@/components/robot-model").then((m) => m.RobotModel), {
+    ssr: false,
+    loading: () => <div className="w-full h-full" />,
+})
 
 export function HeroSection() {
     const [isHoveringResume, setIsHoveringResume] = useState(false)
     const [isHoveringContact, setIsHoveringContact] = useState(false)
+    const [show3d, setShow3d] = useState(false)
+
+    useEffect(() => {
+        const idle = (window as any).requestIdleCallback as undefined | ((cb: () => void, o?: any) => number)
+        if (idle) {
+            const id = idle(() => setShow3d(true), { timeout: 2500 })
+            return () => (window as any).cancelIdleCallback?.(id)
+        }
+        const t = setTimeout(() => setShow3d(true), 1200)
+        return () => clearTimeout(t)
+    }, [])
 
     return (
         <section className="w-full min-h-[calc(100vh-4rem)] py-12 flex items-center bg-background relative overflow-hidden">
@@ -86,7 +103,7 @@ export function HeroSection() {
 
                     {/* Right Side - 3D Robot Model */}
                     <div className="flex items-center justify-center w-full h-[300px] md:h-[400px] lg:h-[500px]">
-                        <RobotModel isHovering={isHoveringResume} isHoveringContact={isHoveringContact} />
+                        {show3d && <RobotModel isHovering={isHoveringResume} isHoveringContact={isHoveringContact} />}
                     </div>
                 </div>
             </div>

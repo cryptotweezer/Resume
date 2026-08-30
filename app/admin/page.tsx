@@ -13,7 +13,7 @@ import { ProjectAdminActions } from "@/components/project-admin-actions"
 import { ToolkitAdminActions } from "@/components/toolkit-admin-actions"
 import { ContactLeadActions } from "@/components/contact-lead-actions"
 import Link from "next/link"
-import { Database, Pencil, MessageSquare } from "lucide-react"
+import { Pencil, MessageSquare } from "lucide-react"
 import { redirect } from "next/navigation"
 
 const statusStyle: Record<string, string> = {
@@ -32,22 +32,6 @@ export default async function AdminPage() {
   return (
     <div className="container py-12 space-y-8">
       <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-
-      {/* ── Utilities ── */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Database Tools</CardTitle>
-          <CardDescription>Access database utilities and testing functions</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button asChild variant="outline">
-            <Link href="/db-test" className="flex items-center gap-2">
-              <Database className="h-4 w-4" />
-              DB Test
-            </Link>
-          </Button>
-        </CardContent>
-      </Card>
 
       {/* ── User Management ── */}
       <Card>
