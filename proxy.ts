@@ -5,6 +5,10 @@ import { NextResponse } from "next/server";
 // Define protected routes that require authentication
 const isProtectedRoute = createRouteMatcher(['/admin', '/resources(.*)', '/projects']);
 
+// Se llama desde scripts/CLI, no desde un navegador, asi que detectBot lo
+// rechazaria. Va protegido por el secreto en x-revalidate-secret.
+const isRevalidateRoute = createRouteMatcher(['/api/revalidate']);
+
 const aj = arcjet({
   key: process.env.ARCJET_KEY!,
   rules: [
@@ -24,13 +28,15 @@ const aj = arcjet({
 });
 
 export default clerkMiddleware(async (auth, req) => {
-  const decision = await aj.protect(req);
+  if (!isRevalidateRoute(req)) {
+    const decision = await aj.protect(req);
 
-  if (decision.isDenied()) {
-    if (decision.reason.isRateLimit()) {
-      return NextResponse.json({ error: "Too Many Requests" }, { status: 429 });
-    } else {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (decision.isDenied()) {
+      if (decision.reason.isRateLimit()) {
+        return NextResponse.json({ error: "Too Many Requests" }, { status: 429 });
+      } else {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
     }
   }
 
