@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageCircle, X, Send, Loader2, Lock } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Lock, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -88,9 +88,24 @@ export default function ChatWidget() {
                             </div>
                             <span className="text-xs font-normal text-muted-foreground">Andres Henao's Assistant</span>
                         </CardTitle>
-                        <Button variant="ghost" size="icon" onClick={() => setIsChatOpen(false)} className="h-9 w-9 flex-shrink-0">
-                            <X className="h-4 w-4" />
-                        </Button>
+                        <div className="flex items-center gap-1 flex-shrink-0">
+                            {isSignedIn && messages.length > 0 && (
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => setMessages([])}
+                                    disabled={isLoading}
+                                    title="Clear messages"
+                                    aria-label="Clear messages"
+                                    className="h-9 w-9"
+                                >
+                                    <Trash2 className="h-4 w-4" />
+                                </Button>
+                            )}
+                            <Button variant="ghost" size="icon" onClick={() => setIsChatOpen(false)} className="h-9 w-9" aria-label="Close chat">
+                                <X className="h-4 w-4" />
+                            </Button>
+                        </div>
                     </CardHeader>
                     <CardContent className="flex-1 p-0 overflow-hidden relative">
                         {!isSignedIn ? (

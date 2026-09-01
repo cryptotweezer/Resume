@@ -493,13 +493,16 @@ export default function AboutPage() {
                       <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                         <div className="flex items-center gap-2">
                           <Calendar className="h-3 w-3" />
-                          <span>2022 - August 2026</span>
+                          <span>2023 - 2026</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <MapPin className="h-3 w-3" />
                           <span>Sydney, Australia</span>
                         </div>
                       </div>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                        Graduated with a Distinction average (WAM 73.58, GPA 5.96 / 7.0). High Distinctions in IT Capstone Project 1 and 2, Cyber Security Essentials, Virtualisation in Computing, and Small IT Business.
+                      </p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-blue-400 flex-shrink-0 mt-1" />
                   </div>
@@ -794,6 +797,27 @@ export default function AboutPage() {
                 Get in Touch
               </Button>
             </Link>
+          </div>
+
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <a
+              href="https://www.linkedin.com/in/andreshenao/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-blue-500/20 text-muted-foreground hover:text-foreground hover:border-blue-500 hover:bg-blue-500/10 transition-colors"
+            >
+              <Linkedin className="h-5 w-5 text-blue-500" />
+            </a>
+            <a
+              href="https://au.seek.com/profiles/andres-henao-FdYyBD5Xcp"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Seek profile"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-blue-500/20 text-muted-foreground hover:text-foreground hover:border-blue-500 hover:bg-blue-500/10 transition-colors"
+            >
+              <Briefcase className="h-5 w-5 text-blue-500" />
+            </a>
           </div>
         </div>
       </section>

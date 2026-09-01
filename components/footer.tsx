@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
+import { Linkedin, Briefcase } from "lucide-react"
 
 export function Footer() {
   const { resolvedTheme } = useTheme()
@@ -36,6 +37,26 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               Cyber Security Specialist | Cloud Security Engineer | Mobile and Web Applications Developer | Automation & Cloud Solutions
             </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                href="https://www.linkedin.com/in/andreshenao/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:border-blue-500 hover:bg-blue-500/10 transition-colors"
+              >
+                <Linkedin className="h-4 w-4 text-blue-500" />
+                LinkedIn
+              </Link>
+              <Link
+                href="https://au.seek.com/profiles/andres-henao-FdYyBD5Xcp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:border-blue-500 hover:bg-blue-500/10 transition-colors"
+              >
+                <Briefcase className="h-4 w-4 text-blue-500" />
+                Seek
+              </Link>
+            </div>
           </div>
           <div>
             <h3 className="text-sm font-medium mb-4">Resources</h3>

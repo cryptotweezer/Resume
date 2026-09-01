@@ -363,13 +363,16 @@ export default async function Home() {
                       <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                         <div className="flex items-center gap-2">
                           <Calendar className="h-3 w-3" />
-                          <span>2022 - August 2026</span>
+                          <span>2023 - 2026</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <MapPin className="h-3 w-3" />
                           <span>Sydney, Australia</span>
                         </div>
                       </div>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                        Graduated with a Distinction average (WAM 73.58, GPA 5.96 / 7.0). High Distinctions in IT Capstone Project 1 and 2, Cyber Security Essentials, Virtualisation in Computing, and Small IT Business.
+                      </p>
                     </div>
                     <ExternalLink className="h-4 w-4 text-blue-400 flex-shrink-0 mt-1" />
                   </div>
@@ -476,6 +479,30 @@ export default async function Home() {
             <Link href="/blog">
               <Button variant="outline" className="hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-500 hover:scale-[1.02]">View All Articles</Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Professional Profiles */}
+      <section className="w-full py-12 md:py-20 bg-background">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24 text-center">
+          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-foreground mb-2">Find Me Professionally</h2>
+          <p className="text-muted-foreground max-w-[600px] mx-auto mb-8">
+            My full work history and current availability, kept up to date on both platforms.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://www.linkedin.com/in/andreshenao/" target="_blank" rel="noopener noreferrer" className="inline-flex">
+              <Button size="lg" className="gap-2 bg-blue-600 hover:bg-blue-700 text-white">
+                <Linkedin className="h-4 w-4" />
+                LinkedIn Profile
+              </Button>
+            </a>
+            <a href="https://au.seek.com/profiles/andres-henao-FdYyBD5Xcp" target="_blank" rel="noopener noreferrer" className="inline-flex">
+              <Button size="lg" variant="outline" className="gap-2 border-blue-500/20 hover:border-blue-500 hover:bg-blue-500/10">
+                <Briefcase className="h-4 w-4 text-blue-500" />
+                Seek Profile
+              </Button>
+            </a>
           </div>
         </div>
       </section>

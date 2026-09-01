@@ -1,6 +1,7 @@
 import { OpenAI } from 'openai';
 import { NextResponse } from 'next/server';
-import { db, blogPosts, projects } from '@/lib/db';
+import { db, blogPosts, projects, toolkits, keyAchievements } from '@/lib/db';
+import { experiences, education, certifications, profileLinks } from '@/lib/resume-data';
 import { saveContactLead } from '@/actions/contact-leads';
 
 const openai = new OpenAI({
@@ -39,8 +40,63 @@ export async function POST(req: Request) {
     }
 
     // Fetch dynamic data
-    const allProjects = await db.select().from(projects);
-    const allBlogPosts = await db.select().from(blogPosts);
+    const [allProjects, allBlogPosts, allToolkits, allAchievements] = await Promise.all([
+      db.select().from(projects),
+      db.select().from(blogPosts),
+      db.select().from(toolkits),
+      db.select().from(keyAchievements),
+    ]);
+
+    const asList = (value: unknown): string[] =>
+      Array.isArray(value) ? value.map((v) => (typeof v === 'string' ? v : JSON.stringify(v))) : [];
+
+    const asTitled = (value: unknown): { title?: string; description?: string }[] =>
+      Array.isArray(value) ? (value as { title?: string; description?: string }[]) : [];
+
+    const projectsBlock = allProjects
+      .map((p) => {
+        const lines = [`### ${p.title}${p.status ? ` (${p.status})` : ''}`];
+        lines.push(`- Summary: ${p.description}`);
+        if (p.longDescription) lines.push(`- Details: ${p.longDescription}`);
+        if (p.goal) lines.push(`- Goal: ${p.goal}`);
+        const stack = asList(p.techStack);
+        if (stack.length) lines.push(`- Tech stack: ${stack.join(', ')}`);
+        const features = asTitled(p.features);
+        if (features.length)
+          lines.push(`- Features: ${features.map((f) => `${f.title}: ${f.description}`).join(' | ')}`);
+        const challenges = asTitled(p.challenges);
+        if (challenges.length)
+          lines.push(`- Challenges solved: ${challenges.map((c) => `${c.title}: ${c.description}`).join(' | ')}`);
+        if (p.slug) lines.push(`- Page on this site: [${p.title}](/projects/${p.slug})`);
+        if (p.projectUrl) lines.push(`- Live URL: ${p.projectUrl}`);
+        if (p.repoUrl) lines.push(`- Repository: ${p.repoUrl}`);
+        if (p.linkedinUrl) lines.push(`- LinkedIn post: ${p.linkedinUrl}`);
+        if (p.externalLink) lines.push(`- External link: ${p.externalLink}`);
+        if (p.showInLab) lines.push(`- Featured in the Engineering Lab section of the About page${p.labRole ? ` as ${p.labRole}` : ''}.`);
+        return lines.join('\n');
+      })
+      .join('\n\n');
+
+    const experienceBlock = experiences
+      .map((e) => `### ${e.title} - ${e.company} (${e.period}, ${e.location})
+${e.description.map((d) => `- ${d}`).join('\n')}`)
+      .join('\n\n');
+
+    const educationBlock = education
+      .map((e) => `- **${e.degree}**, ${e.institution} (${e.period}, ${e.location}).${e.notes ? ` ${e.notes}` : ''}${e.credentialUrl ? ` Credential: ${e.credentialUrl}` : ''}`)
+      .join('\n');
+
+    const certificationsBlock = certifications
+      .map((c) => `- ${c.name} (${c.issuer})${c.url ? ` - ${c.url}` : ''}`)
+      .join('\n');
+
+    const toolkitsBlock = allToolkits
+      .map((t) => `- ${t.name} (${t.category}): ${t.description} ${t.body}${t.url ? ` [${t.urlLabel}](${t.url})` : ''}`)
+      .join('\n');
+
+    const achievementsBlock = allAchievements
+      .map((a) => `- ${a.value}${a.suffix} ${a.label}: ${a.description}`)
+      .join('\n');
 
     const systemPrompt = `
 You are "Boto", the virtual assistant for Andres Henao.
@@ -66,37 +122,47 @@ You have access to Andres's resume, projects, and blog posts. Use this informati
     - Personal: andreshenao.tech@gmail.com
     - University: andres.henaocastro@live.vu.edu.au
     - **App Contact Form:** You can also contact him directly through this app on the [Get In Touch](/contact) page.
-- **LinkedIn:** https://www.linkedin.com/in/andreshenao/
-- **Resume Download:** [Download Resume](/Andres_Henao_Resume.pdf)
+
+**Professional Profiles & Documents (these all exist - never say a profile is unavailable):**
+- **LinkedIn:** ${profileLinks.linkedin}
+- **Seek (Australian job platform):** ${profileLinks.seek}
+- **Resume PDF:** [Download Resume](${profileLinks.resumePdf})
+- **Academic transcript:** ${profileLinks.academicTranscript}
+- **Degree credential:** ${profileLinks.degreeCredential}
+- Both the LinkedIn and Seek profiles are linked from the home page, the About page and the site footer.
 
 **About this App/Website:**
 - **Creator:** This digital portfolio and AI assistant were designed and built entirely by **Andres Henao**.
 - **Purpose:** To showcase his skills in Full-Stack Development, AI Integration, and Cybersecurity.
 - **Tech Stack:** Next.js, React, TypeScript, Tailwind CSS, OpenAI API, Drizzle ORM, Supabase.
+- **Site pages:** Home (/), About (/about), Projects (/projects), Blog (/blog), Toolkit (/resources/tools), Contact (/contact).
 
 **Summary:**
 Cybersecurity specialist with a strong foundation in secure software architecture, cloud automation, and intelligent systems integration.
 **Experience Note:** Founder of "Awesome Services". Note: This is a service-based company where Andres *implemented* AI and workflow automation to improve operations; it is NOT an AI company itself.
 
 **Skills:**
-- **Cybersecurity:** Threat Analysis, Vulnerability Management, Incident Response, SIEM, Network Security, Cloudflare.
+- **Cybersecurity:** Threat Analysis, Vulnerability Management, Incident Response, SIEM, Network Security, Cloudflare, Cloud Security (AWS & Azure), Penetration Testing.
 - **Development:** Python (Flask, Django), Full-Stack (React, Next.js), API Development, Docker, SQL.
 - **AI & Automation:** LLM Integration, AI Agents, n8n, Process Optimization, MCP Servers.
-- **Cloud:** AWS, IBM Cloud, Linux Administration.
+- **Cloud:** AWS (IAM, Cognito, Lambda, API Gateway, RDS, CloudWatch, Secrets Manager), Microsoft Azure, IBM Cloud, Linux Administration.
+
+**Professional Experience (full history):**
+${experienceBlock}
 
 **Education:**
-- **Bachelor of Cyber Security:** Victoria University (2022 - Present).
-- **Adv. Diploma of Leadership & Management:** Australian Pacific College (2016 - 2018).
-- **Bachelor of International Trade:** Uninpahu University (2005 - 2007).
+${educationBlock}
 
 **Certifications:**
-- **IBM:** Back-End Dev, Front-End Dev, Full Stack Dev, AI Applications, Python for Data Science.
-- **TAFE NSW:** Responsible AI, Intro to AI, Generative AI.
+${certificationsBlock}
 
-**Projects:**
-${allProjects.map(p => `- ${p.title}: ${p.description} (Link: ${p.projectUrl || p.externalLink || 'N/A'})`).join('\n')}
+**Key Achievements:**
+${achievementsBlock}
 
-**Highlighted Project: The Watchtower (https://sentinel.andreshenao.com.au)**
+**Projects (complete data from the site database):**
+${projectsBlock}
+
+**Highlighted Project: The Watchtower (${profileLinks.watchtower})**
 - **Overview:** Active Defense node and web honeynet for real-time threat hunting. Detects, classifies, and isolates malicious activity.
 - **Tech Stack:** Next.js 16, React 19, Supabase (PostgreSQL), Drizzle ORM, Vercel AI SDK, OpenAI (GPT-4o), Arcjet, Clerk, Tailwind CSS v3.
 - **Key Features:**
@@ -105,8 +171,17 @@ ${allProjects.map(p => `- ${p.title}: ${p.description} (Link: ${p.projectUrl || 
   - **Infamy Engine & Fingerprinting:** Tracks adversary paths via encrypted cookies/sessions to assign dynamic Risk Scores. Hackers reaching 90% are added to the "Wall of Infamy".
   - **War Room Dashboard:** Real-time command center with vectorized heatmaps and performance telemetry.
 
+**Toolkit (tools and technologies Andres uses, from the /resources/tools page):**
+${toolkitsBlock}
+
 **Blog Posts:**
 ${allBlogPosts.map(b => `- ${b.title}: ${b.excerpt} (Link: /blog/${b.slug})`).join('\n')}
+
+**ANSWERING ABOUT ANDRES - IMPORTANT:**
+- Everything above IS the complete, current information about Andres. Treat it as the source of truth.
+- **Never say that something is "not available", "not listed" or "not mentioned" if it appears anywhere above.** In particular, his Seek profile and LinkedIn profile both exist and are listed above.
+- If a detail genuinely is not in this context, say you do not have that specific detail and point the user to the relevant page or offer to pass a message to Andres. Never invent facts, dates, employers, or numbers.
+- Answer with the specifics (dates, tech stack, metrics, features) rather than vague summaries, and include the matching link.
 
 **Instructions:**
 - **Navigation Context**: When answering, mention where the user can find more info in the app.
@@ -126,7 +201,8 @@ When a user asks how to contact Andres, or expresses interest in reaching out, h
 1. Present the contact options naturally:
    - Email: andreshenao.tech@gmail.com
    - Contact form: [Get In Touch](/contact)
-   - LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/andreshenao/)
+   - LinkedIn: [LinkedIn Profile](${profileLinks.linkedin})
+   - Seek: [Seek Profile](${profileLinks.seek})
    - Then ask: "Or if you prefer, I can pass your message directly to Andres right here in this chat. Would you like that?"
 
 2. If the user says yes, collect the following fields **one at a time** (conversationally, never like a form):
@@ -152,7 +228,7 @@ When a user asks how to contact Andres, or expresses interest in reaching out, h
 
     // First call - let the model decide if it needs to call the tool
     const firstResponse = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4o-mini',
       messages: [
         { role: 'system', content: systemPrompt },
         ...messages,
@@ -189,7 +265,7 @@ When a user asks how to contact Andres, or expresses interest in reaching out, h
           : `Failed to save contact lead: ${saveResult.message}`;
 
         const secondResponse = await openai.chat.completions.create({
-          model: 'gpt-3.5-turbo',
+          model: 'gpt-4o-mini',
           messages: [
             { role: 'system', content: systemPrompt },
             ...messages,
