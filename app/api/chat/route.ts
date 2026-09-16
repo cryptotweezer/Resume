@@ -243,7 +243,7 @@ When a user asks how to contact Andres, or expresses interest in reaching out, h
     if (firstMessage.tool_calls && firstMessage.tool_calls.length > 0) {
       const toolCall = firstMessage.tool_calls[0];
 
-      if (toolCall.function.name === "save_contact_lead") {
+      if (toolCall.type === "function" && toolCall.function.name === "save_contact_lead") {
         let leadData: Record<string, string>;
         try {
           leadData = JSON.parse(toolCall.function.arguments);

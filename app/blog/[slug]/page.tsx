@@ -97,7 +97,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           <div
             className="mt-8 prose prose-gray dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: post.content ?? "" }}
           />
         </div>
       </div>
