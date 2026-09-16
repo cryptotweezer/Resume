@@ -40,9 +40,26 @@ There are no tests in this project.
 
 ## Conventions
 
-- Server actions live in `actions/` at the root. `app/actions/` is an unused duplicate:
-  do not write there.
+- Project server actions live in `actions/` at the root. The duplicate
+  `app/actions/projects.ts` was deleted; `app/actions/` still holds `auth.ts`,
+  `admin.ts`, `newsletter.ts` and `database.ts`, which are live.
 - shadcn/ui primitives in `components/ui/`, business components in `components/`.
 - Radix `Select` cannot take `value=""`. Use `value="none"` as the sentinel for optional
   selects and convert to `undefined` on submit.
 - Do not use em dashes in any output: UI copy, docs, commit messages.
+
+## Pending: the lint backlog
+
+`pnpm lint` reports 51 problems (21 errors, 30 warnings). None of them break the build or
+the deploy, and TypeScript is clean, so this is cleanup rather than a fix. Roughly, by
+rule:
+
+- 27 `@typescript-eslint/no-unused-vars`: leftover imports and variables.
+- 10 `react/no-unescaped-entities`: apostrophes and quotes written straight into JSX.
+- 5 `react-hooks/set-state-in-effect` and 2 `react-hooks/exhaustive-deps`.
+- 5 `@typescript-eslint/no-explicit-any`.
+- 1 `react-hooks/purity` and 1 `@next/next/no-img-element`.
+
+Work through it by rule rather than by file, and run `pnpm build` afterwards:
+`next.config.mjs` no longer sets `ignoreBuildErrors`, so a type error introduced while
+tidying will fail the build instead of reaching production.
