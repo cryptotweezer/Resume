@@ -26,14 +26,47 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+const SITE_URL = "https://cv.andreshenao.com.au";
+const SITE_TITLE = "Andres Henao Resume | Cybersecurity & AI Engineer";
+const SITE_DESCRIPTION = "Cybersecurity & AI-Driven Full-Stack Engineer specializing in automation, cloud solutions, and secure software architecture. Expert in Python, Flask, Django, Docker, LLM integration, and workflow automation.";
+
 export const metadata: Metadata = {
-  title: "Andres Henao Resume | Cybersecurity & AI Engineer",
-  description: "Cybersecurity & AI-Driven Full-Stack Engineer specializing in automation, cloud solutions, and secure software architecture. Expert in Python, Flask, Django, Docker, LLM integration, and workflow automation.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   generator: 'v0.dev',
   keywords: ['cybersecurity', 'AI engineer', 'full-stack developer', 'automation', 'cloud security', 'Python', 'Flask', 'Django', 'Docker', 'LLM', 'workflow automation', 'security architecture'],
   icons: {
     icon: '/logo.png',
-  }
+  },
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_AU',
+    url: '/',
+    siteName: 'Andres Henao',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        // 1200x630 shot of the landing. Scrapers cache the card by URL, so a
+        // new one needs a new filename here rather than a replaced file.
+        url: '/og-cover.png',
+        width: 1200,
+        height: 630,
+        alt: 'Andres Henao, Cybersecurity and AI Engineer',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ['/og-cover.png'],
+  },
 }
 
 export default function RootLayout({

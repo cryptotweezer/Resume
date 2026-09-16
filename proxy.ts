@@ -17,6 +17,19 @@ const aj = arcjet({
       mode: "LIVE",
       allow: [
         "CATEGORY:SEARCH_ENGINE",
+        // Link previews. Without these the scrapers get a 403 and every
+        // pasted link shows as a bare URL, no title, no image. They are named
+        // one by one rather than by category so the exception stays this list
+        // and nothing else.
+        "LINKEDIN_CRAWLER",
+        "FACEBOOK_CRAWLER",
+        "FACEBOOK_SHARE_CRAWLER",
+        "TWITTER_CRAWLER",
+        "WHATSAPP_CRAWLER",
+        "SLACK_CRAWLER",
+        "SLACK_IMAGE_PROXY",
+        "DISCORD_CRAWLER",
+        "TELEGRAM_CRAWLER",
       ],
     }),
     fixedWindow({
