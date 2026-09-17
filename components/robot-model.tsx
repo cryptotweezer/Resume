@@ -23,12 +23,13 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
     const spinProgress = useRef(0)
     const initialSpinRotation = useRef(0)
     const { isHoveringAuth, isChatOpen } = useUI()
-    const [isJumping, setIsJumping] = useState(false)
+    // Read and written only inside useFrame, so a ref avoids a re-render per frame.
+    const isJumping = useRef(false)
     const jumpProgress = useRef(0)
 
     useEffect(() => {
         if (isChatOpen) {
-            setIsJumping(true)
+            isJumping.current = true
             jumpProgress.current = 0
         }
     }, [isChatOpen])
@@ -83,7 +84,7 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
             const targetRotationY = mouse.current.x * 0.8 // Increased range for better visibility
             const targetRotationX = -mouse.current.y * 0.5 // Increased range
 
-            if (isJumping) {
+            if (isJumping.current) {
                 // Jump animation
                 jumpProgress.current += delta * 10 // Speed of jump
                 // Sine wave for jumping (0 to PI is one hump)
@@ -94,7 +95,7 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
                     modelRef.current.position.y = baseY + jumpY
                 } else {
                     // Jump finished
-                    setIsJumping(false)
+                    isJumping.current = false
                     modelRef.current.position.y = baseY
                 }
 
@@ -137,7 +138,7 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
             }
 
             // Bounce animation logic (only if NOT jumping)
-            if (!isJumping) {
+            if (!isJumping.current) {
                 if (isHoveringContact) {
                     // Create a bounce effect using sine wave
                     const time = state.clock.getElapsedTime()
@@ -192,7 +193,7 @@ function Robot({ url, isHovering, isHoveringContact }: { url: string, isHovering
 
 function SceneContent({ isHovering, isHoveringContact }: { isHovering: boolean, isHoveringContact: boolean }) {
     const [isDragging, setIsDragging] = useState(false)
-    const controlsRef = useRef<any>(null)
+    const controlsRef = useRef<React.ComponentRef<typeof OrbitControls>>(null)
     const { camera } = useThree()
 
     useFrame((state, delta) => {

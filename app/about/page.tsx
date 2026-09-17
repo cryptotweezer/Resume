@@ -1,9 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Award, GraduationCap, Briefcase, Calendar, CheckCircle, Mail, Phone, MapPin, Linkedin, ExternalLink, X, Download, Terminal, Shield, Bot, Globe, Github, Code2, Cpu, Brain } from "lucide-react"
+import { Award, GraduationCap, Briefcase, Calendar, CheckCircle, Mail, MapPin, Linkedin, ExternalLink, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import Link from "next/link"
@@ -11,7 +10,6 @@ import { EducationPdfCard } from "@/components/education-pdf-card"
 import Image from "next/image"
 
 import { ExperienceRoadmap } from "@/components/experience-roadmap"
-import { CountUp } from "@/components/count-up"
 import { BusinessCard3D } from "@/components/business-card-3d"
 import { KeyAchievementsSection } from "@/components/key-achievements-section"
 import { LabProjectsSection } from "@/components/lab-projects-section"
@@ -760,7 +758,7 @@ export default function AboutPage() {
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6 lg:px-12 xl:px-24 text-center">
           <div className="flex flex-col items-center justify-center mb-8 space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Let's Connect</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Let&apos;s Connect</h2>
             <p className="max-w-[600px] text-muted-foreground">
               Open to cyber security, cloud security and AI automation roles in Sydney, and happy to talk through any of the projects above.
             </p>

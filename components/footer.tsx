@@ -3,17 +3,13 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
 import { Linkedin, Briefcase } from "lucide-react"
+import { useMounted } from "@/hooks/use-mounted"
 
 export function Footer() {
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
   // Wait for mount to avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useMounted()
 
   return (
     <footer className="border-t bg-background">

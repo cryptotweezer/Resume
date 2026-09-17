@@ -390,7 +390,7 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
           </div>
 
           {featuresField.fields.length === 0 && (
-            <p className="text-sm text-muted-foreground">No features yet. Click "Add Feature" to start.</p>
+            <p className="text-sm text-muted-foreground">No features yet. Click &quot;Add Feature&quot; to start.</p>
           )}
 
           {featuresField.fields.map((field, index) => (
@@ -450,7 +450,7 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
           </div>
 
           {challengesField.fields.length === 0 && (
-            <p className="text-sm text-muted-foreground">No challenges yet. Click "Add Challenge" to start.</p>
+            <p className="text-sm text-muted-foreground">No challenges yet. Click &quot;Add Challenge&quot; to start.</p>
           )}
 
           {challengesField.fields.map((field, index) => (

@@ -27,12 +27,13 @@ export function ExperienceRoadmap() {
             { threshold: 0.1, rootMargin: "-50px" }
         )
 
-        itemRefs.current.forEach((ref) => {
+        const nodes = itemRefs.current
+        nodes.forEach((ref) => {
             if (ref) observer.observe(ref)
         })
 
         return () => {
-            itemRefs.current.forEach((ref) => {
+            nodes.forEach((ref) => {
                 if (ref) observer.unobserve(ref)
             })
         }

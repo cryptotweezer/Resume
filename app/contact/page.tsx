@@ -1,7 +1,7 @@
 "use client"
 
 import { useActionState } from "react"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { sendContactEmail, ContactFormState } from "@/actions/contact"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -22,30 +22,20 @@ export default function ContactPage() {
     const [state, formAction, isPending] = useActionState(sendContactEmail, initialState)
     const formRef = useRef<HTMLFormElement>(null)
     const { user, isSignedIn } = useUser()
-    const [email, setEmail] = useState("")
-
-    useEffect(() => {
-        if (isSignedIn && user?.primaryEmailAddress?.emailAddress) {
-            setEmail(user.primaryEmailAddress.emailAddress)
-        }
-    }, [isSignedIn, user])
+    // Prefill with the Clerk email once it resolves. The input stays uncontrolled so
+    // formRef.reset() after a successful send puts this value back on its own.
+    const clerkEmail = (isSignedIn && user?.primaryEmailAddress?.emailAddress) || ""
 
     useEffect(() => {
         if (state.message) {
             if (state.success) {
                 toast.success(state.message)
                 formRef.current?.reset()
-                // Reset email to user's email if logged in, otherwise empty
-                if (isSignedIn && user?.primaryEmailAddress?.emailAddress) {
-                    setEmail(user.primaryEmailAddress.emailAddress)
-                } else {
-                    setEmail("")
-                }
             } else {
                 toast.error(state.message)
             }
         }
-    }, [state, isSignedIn, user])
+    }, [state])
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-4xl">
@@ -91,8 +81,8 @@ export default function ContactPage() {
                                 placeholder="Your email"
                                 required
                                 aria-describedby="email-error"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                key={clerkEmail}
+                                defaultValue={clerkEmail}
                             />
                             {state.errors?.email && (
                                 <p id="email-error" className="text-sm text-red-500">

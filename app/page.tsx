@@ -2,8 +2,7 @@ export const revalidate = 600;
 
 import Link from "next/link"
 import { EducationPdfCard } from "@/components/education-pdf-card"
-import Image from "next/image"
-import { Shield, Lock, Server, Database, Bot, Code2, Cloud, Workflow, TrendingUp, Users, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, Award, ExternalLink, Calendar, MapPinIcon } from "lucide-react"
+import { Shield, Server, Bot, Code2, Cloud, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, ExternalLink, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { NewsletterForm } from "@/components/newsletter-form"
@@ -13,7 +12,6 @@ import { desc } from "drizzle-orm"
 import { formatDate } from "@/lib/utils"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CountUp } from "@/components/count-up"
-import { TypewriterEffect } from "@/components/typewriter-effect"
 import { IconRenderer } from "@/components/icon-renderer"
 import { HeroSection } from "@/components/hero-section"
 

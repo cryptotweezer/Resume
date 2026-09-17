@@ -84,9 +84,9 @@ export default function ChatWidget() {
                     <CardHeader className="flex flex-row items-center justify-between p-4 border-b flex-shrink-0">
                         <CardTitle className="text-sm font-bold flex flex-col items-start">
                             <div className="flex items-center gap-1">
-                                Hi, I'm <span className="text-blue-500 font-extrabold">Boto</span>
+                                Hi, I&apos;m <span className="text-blue-500 font-extrabold">Boto</span>
                             </div>
-                            <span className="text-xs font-normal text-muted-foreground">Andres Henao's Assistant</span>
+                            <span className="text-xs font-normal text-muted-foreground">Andres Henao&apos;s Assistant</span>
                         </CardTitle>
                         <div className="flex items-center gap-1 flex-shrink-0">
                             {isSignedIn && messages.length > 0 && (
@@ -115,7 +115,7 @@ export default function ChatWidget() {
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">Authentication Required</h3>
                                 <p className="text-sm text-muted-foreground mb-6">
-                                    Please sign in to chat with Boto and ask questions about Andres's work.
+                                    Please sign in to chat with Boto and ask questions about Andres&apos;s work.
                                 </p>
                                 <div className="flex flex-col gap-3 w-full">
                                     <SignInButton mode="modal">
@@ -131,8 +131,8 @@ export default function ChatWidget() {
                                 <div className="flex flex-col gap-4">
                                     {messages.length === 0 && (
                                         <div className="text-center text-muted-foreground mt-8">
-                                            <p>Welcome! I'm ready to help you.</p>
-                                            <p>Ask me anything about Andres's work!</p>
+                                            <p>Welcome! I&apos;m ready to help you.</p>
+                                            <p>Ask me anything about Andres&apos;s work!</p>
                                         </div>
                                     )}
                                     {messages.map((msg, index) => (
@@ -157,7 +157,7 @@ export default function ChatWidget() {
                                                     <ReactMarkdown
                                                         remarkPlugins={[remarkGfm]}
                                                         components={{
-                                                            a: ({ node, ...props }) => <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline hover:text-blue-600" />
+                                                            a: ({ node, ...props }) => { void node; return <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline hover:text-blue-600" /> }
                                                         }}
                                                     >
                                                         {msg.content}

@@ -1,10 +1,11 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
+import { useRef } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { Html, Float, RoundedBox } from "@react-three/drei"
+import { Html, Float } from "@react-three/drei"
 import * as THREE from "three"
 import { useTheme } from "next-themes"
+import { useMounted } from "@/hooks/use-mounted"
 
 
 function CardContent({ theme }: { theme: string | undefined }) {
@@ -72,11 +73,7 @@ function CardContent({ theme }: { theme: string | undefined }) {
 
 export function BusinessCard3D() {
     const { resolvedTheme } = useTheme()
-    const [mounted, setMounted] = useState(false)
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+    const mounted = useMounted()
 
     if (!mounted) return <div className="h-[500px] w-full" />
 

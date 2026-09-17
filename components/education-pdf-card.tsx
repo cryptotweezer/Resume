@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Calendar, MapPin, FileText, ExternalLink } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
@@ -60,8 +61,14 @@ export function EducationPdfCard({ title, institution, period, location, pdfUrl 
                     </DialogHeader>
 
                     {isImage ? (
-                        <div className="w-full max-h-[70vh] overflow-auto rounded-lg border border-blue-500/20 bg-muted">
-                            <img src={pdfUrl} alt={title} className="w-full h-auto" />
+                        <div className="relative w-full h-[70vh] rounded-lg border border-blue-500/20 bg-muted">
+                            <Image
+                                src={pdfUrl}
+                                alt={title}
+                                fill
+                                sizes="(max-width: 896px) 95vw, 896px"
+                                className="object-contain"
+                            />
                         </div>
                     ) : canEmbed ? (
                         <div className="w-full h-[70vh] rounded-lg overflow-hidden border border-blue-500/20 bg-muted">

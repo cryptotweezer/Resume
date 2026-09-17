@@ -19,10 +19,14 @@ export function HeroSection() {
     const [show3d, setShow3d] = useState(false)
 
     useEffect(() => {
-        const idle = (window as any).requestIdleCallback as undefined | ((cb: () => void, o?: any) => number)
+        const idleWindow = window as Window & {
+            requestIdleCallback?: (cb: () => void, opts?: { timeout?: number }) => number
+            cancelIdleCallback?: (id: number) => void
+        }
+        const idle = idleWindow.requestIdleCallback
         if (idle) {
             const id = idle(() => setShow3d(true), { timeout: 2500 })
-            return () => (window as any).cancelIdleCallback?.(id)
+            return () => idleWindow.cancelIdleCallback?.(id)
         }
         const t = setTimeout(() => setShow3d(true), 1200)
         return () => clearTimeout(t)

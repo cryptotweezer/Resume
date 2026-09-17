@@ -48,18 +48,13 @@ There are no tests in this project.
   selects and convert to `undefined` on submit.
 - Do not use em dashes in any output: UI copy, docs, commit messages.
 
-## Pending: the lint backlog
+## Lint
 
-`pnpm lint` reports 51 problems (21 errors, 30 warnings). None of them break the build or
-the deploy, and TypeScript is clean, so this is cleanup rather than a fix. Roughly, by
-rule:
+`pnpm lint` is clean. Keep it that way: `next.config.mjs` no longer sets
+`ignoreBuildErrors`, so a type error introduced while tidying fails the build instead of
+reaching production. Two conventions came out of clearing the old backlog:
 
-- 27 `@typescript-eslint/no-unused-vars`: leftover imports and variables.
-- 10 `react/no-unescaped-entities`: apostrophes and quotes written straight into JSX.
-- 5 `react-hooks/set-state-in-effect` and 2 `react-hooks/exhaustive-deps`.
-- 5 `@typescript-eslint/no-explicit-any`.
-- 1 `react-hooks/purity` and 1 `@next/next/no-img-element`.
-
-Work through it by rule rather than by file, and run `pnpm build` afterwards:
-`next.config.mjs` no longer sets `ignoreBuildErrors`, so a type error introduced while
-tidying will fail the build instead of reaching production.
+- Do not use a `mounted` flag set from a `useEffect` to dodge hydration mismatches. Use
+  `useMounted()` from `hooks/use-mounted.ts` (`useSyncExternalStore`), which the
+  `react-hooks/set-state-in-effect` rule accepts.
+- Animation-only state read inside `useFrame` belongs in a `useRef`, not `useState`.
