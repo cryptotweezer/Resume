@@ -31,7 +31,7 @@ export function Footer() {
               <span className="text-lg font-bold">Andres Henao</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Cyber Security Specialist | Cloud Security Engineer | Mobile and Web Applications Developer | Automation & Cloud Solutions
+              Cyber Security Specialist | Security Operations, Cloud & Network Security | AI Systems Engineer
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link

@@ -41,14 +41,14 @@ export function HeroSection() {
                             {/* Name Title */}
                             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none min-h-[1.2em]">
                                 <TypewriterEffect
-                                    words={["Andres Henao", "Cyber Security", "Full-Stack Developer", "AI Automation"]}
+                                    words={["Andres Henao", "Cyber Security", "Security Operations", "Cloud & Network Security", "AI Systems"]}
                                     cursorClassName="text-blue-500"
                                 />
                             </h1>
 
                             {/* Description */}
                             <p className="max-w-[600px] text-muted-foreground md:text-lg leading-relaxed">
-                                Building secure, intelligent, and efficient systems through cybersecurity expertise, AI automation, and full-stack development.
+                                Securing cloud environments, networks and production applications, and building AI-driven systems with security built in from the start.
                             </p>
 
                             {/* Professional Badges */}

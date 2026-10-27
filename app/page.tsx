@@ -2,7 +2,7 @@ export const revalidate = 600;
 
 import Link from "next/link"
 import { EducationPdfCard } from "@/components/education-pdf-card"
-import { Shield, Server, Bot, Code2, Cloud, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, ExternalLink, Calendar } from "lucide-react"
+import { Shield, Server, Bot, Cloud, Network, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, ExternalLink, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { NewsletterForm } from "@/components/newsletter-form"
@@ -60,7 +60,7 @@ export default async function Home() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">Core Technical Areas</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Four areas I work in every week: defending networks and applications, putting AI agents to work on real operations, shipping full-stack products, and running the cloud infrastructure underneath them.
+                Four areas I work in every week: detecting and responding to threats, securing cloud environments, hardening networks, and building AI systems that run safely in production.
               </p>
             </div>
           </div>
@@ -68,80 +68,80 @@ export default async function Home() {
             <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
               <CardHeader>
                 <Shield className="h-10 w-10 text-blue-400 mb-2" />
-                <CardTitle className="text-foreground">Cybersecurity & Network Defense</CardTitle>
+                <CardTitle className="text-foreground">Security Operations</CardTitle>
                 <CardDescription className="text-muted-foreground">
-                  Comprehensive security analysis and protection strategies
+                  Detecting, assessing and responding to threats
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-1">
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>Cyber Threat Analysis</li>
-                  <li>Vulnerability Management</li>
+                  <li>SIEM & Security Monitoring</li>
                   <li>Incident Response</li>
-                  <li>SIEM Tools</li>
-                  <li>Risk Management</li>
-                  <li>Network Security</li>
-                  <li>Firewall Configuration</li>
-                  <li>Cloudflare & Arcjet Security</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
-              <CardHeader>
-                <Bot className="h-10 w-10 text-blue-400 mb-2" />
-                <CardTitle className="text-foreground">AI & Automation</CardTitle>
-                <CardDescription className="text-muted-foreground">
-                  Intelligent systems and workflow orchestration
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>LLM Integration</li>
-                  <li>AI Agent Implementation</li>
-                  <li>Multi-Provider LLM APIs</li>
-                  <li>Workflow Automation & Orchestration</li>
-                  <li>MCP Servers for AI</li>
-                  <li>Process Optimization</li>
-                  <li>n8n Automation</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
-              <CardHeader>
-                <Code2 className="h-10 w-10 text-blue-400 mb-2" />
-                <CardTitle className="text-foreground">Full-Stack Development</CardTitle>
-                <CardDescription className="text-muted-foreground">
-                  End-to-end software development
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>Next.js & TypeScript</li>
-                  <li>Python, Flask, Django</li>
-                  <li>API Development & Integration</li>
-                  <li>Front-End & Back-End</li>
-                  <li>Docker & Containerization</li>
-                  <li>GitHub & Version Control</li>
-                  <li>SQL & Database Design</li>
+                  <li>Threat Analysis & Intelligence</li>
+                  <li>Vulnerability Assessment</li>
+                  <li>Penetration Testing</li>
+                  <li>Digital Forensics</li>
+                  <li>Risk Assessment</li>
                 </ul>
               </CardContent>
             </Card>
             <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
               <CardHeader>
                 <Cloud className="h-10 w-10 text-blue-400 mb-2" />
-                <CardTitle className="text-foreground">Cloud & Infrastructure</CardTitle>
+                <CardTitle className="text-foreground">Cloud Security</CardTitle>
                 <CardDescription className="text-muted-foreground">
-                  Scalable cloud solutions and system administration
+                  Securing cloud and virtualised environments
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-1">
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>Vercel & Supabase</li>
-                  <li>AWS & IBM Cloud</li>
-                  <li>Linux System Administration</li>
-                  <li>Cloud Security Principles</li>
-                  <li>Containerization</li>
-                  <li>Data Mining & Analytics</li>
+                  <li>AWS (IAM, Cognito, Lambda, RDS)</li>
+                  <li>Microsoft Azure</li>
+                  <li>MFA, PKI & mTLS</li>
+                  <li>Secrets & Key Management</li>
+                  <li>Docker & Kubernetes</li>
+                  <li>Infrastructure as Code</li>
+                  <li>Serverless & Edge Computing</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
+              <CardHeader>
+                <Network className="h-10 w-10 text-blue-400 mb-2" />
+                <CardTitle className="text-foreground">Network Security</CardTitle>
+                <CardDescription className="text-muted-foreground">
+                  Designing and hardening network infrastructure
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex-1">
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>TCP/IP, Subnetting & IPv6</li>
+                  <li>Routing & Switching (Cisco)</li>
+                  <li>Firewalls, VPN & IPSec</li>
+                  <li>DNS & Group Policy</li>
+                  <li>WAF, Bot Detection & Rate Limiting</li>
+                  <li>System Hardening</li>
+                  <li>Linux & Server Administration</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-card/50 backdrop-blur-sm border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:scale-105 h-full flex flex-col">
+              <CardHeader>
+                <Bot className="h-10 w-10 text-blue-400 mb-2" />
+                <CardTitle className="text-foreground">AI Engineering</CardTitle>
+                <CardDescription className="text-muted-foreground">
+                  Secure AI-driven systems in production
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex-1">
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>AI Agents</li>
+                  <li>Multi-Provider LLM Integration</li>
+                  <li>MCP Servers</li>
+                  <li>Agentic Workflow Automation</li>
+                  <li>OAuth 2.1 & Role-Based Access</li>
+                  <li>PostgreSQL & API Design</li>
+                  <li>CI/CD, Git & GitHub</li>
                 </ul>
               </CardContent>
             </Card>
@@ -168,10 +168,12 @@ export default async function Home() {
               <div className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-4 sm:p-8">
                 <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
                   <p>
-                    Cyber security specialist and full-stack engineer based in Sydney. My expertise covers{" "}
-                    <span className="text-blue-400 font-semibold">ethical hacking and digital forensics, security operations and
-                    vulnerability analysis, data analytics for cyber security, enterprise networking and virtualisation</span>,
-                    along with data privacy, compliance and the professional ethics that go with the field.
+                    Cyber security specialist based in Sydney, with a Bachelor of Cyber Security from Victoria University
+                    (Distinction average) and hands-on experience securing AWS and Azure cloud environments, enterprise networks
+                    and production web applications. My foundation is in{" "}
+                    <span className="text-blue-400 font-semibold">security operations, vulnerability assessment, penetration
+                    testing and digital forensics</span>, supported by Australian and international cyber law, privacy regulation
+                    and professional ethics.
                   </p>
 
                   <p>
@@ -347,6 +349,22 @@ export default async function Home() {
               </div>
 
               <div className="space-y-4">
+                {/* Master of Applied Information Technology */}
+                <div className="rounded-2xl border border-blue-500/20 bg-card/50 backdrop-blur-sm p-6 hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-500 group">
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Master of Applied Information Technology (In Progress)</h4>
+                  <p className="text-blue-400 text-sm mb-3">Victoria University</p>
+                  <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-3 w-3" />
+                      <span>Sep 2026 - Expected 2028</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-3 w-3" />
+                      <span>Sydney, Australia</span>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Bachelor of Cyber Security */}
                 <Link
                   href="https://www.myequals.net/sharelink/dfec10ea-edd1-4de8-bc95-e6396b566714/a98af054-f99b-4ca7-b8e0-e0d309557328"
@@ -392,7 +410,7 @@ export default async function Home() {
                   <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-3 w-3" />
-                      <span>Feb 2005 - Oct 2007</span>
+                      <span>Feb 2003 - Oct 2007</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="h-3 w-3" />

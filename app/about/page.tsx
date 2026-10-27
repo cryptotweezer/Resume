@@ -29,10 +29,10 @@ export default function AboutPage() {
                   Andres <span className="text-blue-500">Henao</span>
                 </h2>
                 <p className="text-xl">
-                  <span className="text-foreground font-semibold">Cyber Security Specialist | Cloud Security Engineer | Full-Stack Developer | AI Automation</span>
+                  <span className="text-foreground font-semibold">Cyber Security Specialist | Security Operations, Cloud & Network Security | AI Systems Engineer</span>
                 </p>
                 <p className="text-base text-foreground pt-2">
-                  Cyber security specialist and full-stack engineer based in Sydney, building and securing production systems.
+                  Cyber security specialist based in Sydney, securing cloud environments, networks and production applications, and building AI-driven systems with security built in.
                 </p>
                 {/* Contact info moved to bottom */}
               </div>
@@ -247,7 +247,7 @@ export default function AboutPage() {
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-foreground">Workflow Automation</p>
-                      <p className="text-sm text-muted-foreground">n8n and workflow orchestration</p>
+                      <p className="text-sm text-muted-foreground">Agentic workflow automation</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
@@ -477,6 +477,22 @@ export default function AboutPage() {
               </div>
 
               <div className="space-y-4">
+                {/* Master of Applied Information Technology */}
+                <div className="rounded-2xl border border-blue-500/20 bg-card/50 backdrop-blur-sm p-6 hover:border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-500 group">
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Master of Applied Information Technology (In Progress)</h4>
+                  <p className="text-blue-400 text-sm mb-3">Victoria University</p>
+                  <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-3 w-3" />
+                      <span>Sep 2026 - Expected 2028</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-3 w-3" />
+                      <span>Sydney, Australia</span>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Bachelor of Cyber Security */}
                 <Link
                   href="https://www.myequals.net/sharelink/dfec10ea-edd1-4de8-bc95-e6396b566714/a98af054-f99b-4ca7-b8e0-e0d309557328"
@@ -522,7 +538,7 @@ export default function AboutPage() {
                   <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-3 w-3" />
-                      <span>Feb 2005 - Oct 2007</span>
+                      <span>Feb 2003 - Oct 2007</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin className="h-3 w-3" />

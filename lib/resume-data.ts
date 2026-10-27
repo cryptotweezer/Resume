@@ -20,7 +20,7 @@ export const experiences: ExperienceItem[] = [
             "Run the business end to end: client acquisition, workforce management, quality control and financial oversight across multiple sites.",
             "Rebuilt billing and financial year reporting around AI agents. Around 95% of invoicing and tax reporting now runs through Claude Code and Codex for day to day work, with more autonomous runners like Hermes and OpenClaw handling the scheduled jobs.",
             "Built the platform those agents operate, with an MCP gateway where each agent connects using its own credential and permissions, and the accounting rules enforced in PostgreSQL instead of in a prompt.",
-            "Designed automation workflows with n8n and Python that improved operational accuracy by 90% and removed most of the manual admin from the daily routine.",
+            "Designed AI agents and Python automation workflows that improved operational accuracy by 90% and removed most of the manual admin from the daily routine.",
             "Deployed a customer service QA workflow that holds client retention at 96% by catching problems before clients have to raise them.",
             "Hired and trained cross-functional cleaning teams, enforcing service standards and safety compliance across every job site.",
             "Handle budgeting, expense tracking, invoicing, payroll and vendor payments.",
@@ -28,16 +28,16 @@ export const experiences: ExperienceItem[] = [
         ]
     },
     {
-        title: "Cyber Security Analyst Intern (Industry Project)",
+        title: "Cyber Security Analyst Intern (Cloud Security)",
         company: "Employability Advantage, supported by AusBiz Consulting",
         period: "Nov 2025 - Mar 2026",
         location: "Australia",
         description: [
-            "Completed a 10-week hands-on Cyber Security (Cloud) industry project, securing AWS and Microsoft Azure environments against real-world vulnerabilities such as misconfigured storage, weak access controls, and vulnerable APIs.",
-            "Implemented cloud access control and authentication with AWS IAM, Cognito, MFA, and Secrets Manager, and provisioned firewall-configured RDS databases.",
-            "Secured APIs using Lambda, API Gateway, and API key management, and applied key management and mTLS with digital certificates.",
-            "Set up monitoring and logging with AWS CloudWatch and demonstrated hands-on threat exposure through API and data-leak penetration testing.",
-            "Collaborated through GitHub under Agile project management, accelerating tasks and vulnerability testing with GenAI tools."
+            "Secured AWS and Microsoft Azure environments over a 10-week cloud security engagement, remediating real-world vulnerabilities such as misconfigured storage, weak access controls and exposed APIs.",
+            "Implemented identity and access controls with AWS IAM, Cognito, MFA and Secrets Manager, and provisioned RDS databases behind firewall rules.",
+            "Secured APIs with Lambda, API Gateway and API key management, and applied key management and mTLS with digital certificates.",
+            "Configured monitoring and logging in AWS CloudWatch and performed API and data-leak penetration testing to validate controls.",
+            "Worked in an Agile team through GitHub, using GenAI tools to accelerate delivery and vulnerability testing."
         ]
     },
     {
@@ -123,6 +123,12 @@ export interface EducationItem {
 
 export const education: EducationItem[] = [
     {
+        degree: "Master of Applied Information Technology (In Progress)",
+        institution: "Victoria University",
+        period: "Sep 2026 - Expected 2028",
+        location: "Sydney, Australia"
+    },
+    {
         degree: "Bachelor of Cyber Security",
         institution: "Victoria University",
         period: "2023 - 2026",
@@ -140,7 +146,7 @@ export const education: EducationItem[] = [
     {
         degree: "Bachelor of International Trade and Logistics Management",
         institution: "Uninpahu University",
-        period: "Feb 2005 - Oct 2007",
+        period: "Feb 2003 - Oct 2007",
         location: "Bogota, Colombia"
     }
 ]

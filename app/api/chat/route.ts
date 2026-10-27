@@ -138,14 +138,19 @@ You have access to Andres's resume, projects, and blog posts. Use this informati
 - **Site pages:** Home (/), About (/about), Projects (/projects), Blog (/blog), Toolkit (/resources/tools), Contact (/contact).
 
 **Summary:**
-Cybersecurity specialist with a strong foundation in secure software architecture, cloud automation, and intelligent systems integration.
+Cyber security specialist with a Bachelor of Cyber Security from Victoria University (Distinction average), currently studying a Master of Applied Information Technology, and practical experience securing AWS and Azure cloud environments, enterprise networks and production web applications. Strong foundation in security operations, vulnerability assessment, penetration testing and digital forensics, plus Australian and international cyber law, privacy regulation and professional ethics. Combines that with software and AI engineering, building AI-driven systems with security controls built in from the start.
+**Headline:** Cyber Security Specialist | Security Operations, Cloud & Network Security | AI Systems Engineer
 **Experience Note:** Founder of "Awesome Services". Note: This is a service-based company where Andres *implemented* AI and workflow automation to improve operations; it is NOT an AI company itself.
 
 **Skills:**
-- **Cybersecurity:** Threat Analysis, Vulnerability Management, Incident Response, SIEM, Network Security, Cloudflare, Cloud Security (AWS & Azure), Penetration Testing.
-- **Development:** Python (Flask, Django), Full-Stack (React, Next.js), API Development, Docker, SQL.
-- **AI & Automation:** LLM Integration, AI Agents, n8n, Process Optimization, MCP Servers.
-- **Cloud:** AWS (IAM, Cognito, Lambda, API Gateway, RDS, CloudWatch, Secrets Manager), Microsoft Azure, IBM Cloud, Linux Administration.
+- **Security Operations & Threat Detection:** SIEM, Security Monitoring & Logging, Incident Response, Threat Analysis, Threat Intelligence, Intrusion & Anomaly Detection, Risk Assessment.
+- **Vulnerability Management & Forensics:** Vulnerability Assessment & Scanning, Penetration Testing, Ethical Hacking, API Security Testing, Digital Forensics (Memory, OS, Email, Network), Malware Analysis.
+- **Cloud Security & Virtualisation:** AWS (IAM, Cognito, Secrets Manager, Lambda, API Gateway, RDS, CloudWatch), Microsoft Azure, MFA, Key Management, PKI & mTLS, Docker, Kubernetes, Hyper-V, Infrastructure as Code, Serverless & Edge Computing, Disaster Recovery.
+- **Network Security & Infrastructure:** TCP/IP, Subnetting, IPv6, Routing & Switching (Cisco), LAN/WAN Design, Firewalls, VPN & IPSec, DNS, Group Policy, System Hardening, Linux & Server Administration.
+- **Application Security & Identity:** WAF, Bot Detection, Rate Limiting, OAuth 2.1, SSO, Role-Based Access Control, Secrets Management, Secure API Design.
+- **Governance, Privacy & Compliance:** Cyber Law & Policy, Privacy Legislation, Data Masking & Privacy-Preserving Techniques, Security Policies & Standards, Professional Ethics, ICT Management.
+- **AI Engineering & Automation:** AI Agents, Multi-Provider LLM Integration, MCP Servers, Agentic Workflow Automation, AI-Assisted Development, System & API Design, PostgreSQL, CI/CD, Git & GitHub, Agile.
+- **Scripting & Development:** Python, TypeScript, SQL, Bash (working knowledge).
 
 **Professional Experience (full history):**
 ${experienceBlock}

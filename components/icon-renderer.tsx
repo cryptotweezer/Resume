@@ -1,6 +1,6 @@
 "use client";
 
-import { Shield, Cloud, Code2, Bot, Lock, Server, Database, Globe, Terminal, Sparkles, Code, Workflow, Wrench, Brain, Network, Key, Search, FileSearch, HardDrive, Box, Zap, GitBranch, type LucideIcon } from "lucide-react";
+import { Shield, Cloud, Code2, Bot, Lock, Server, Database, Globe, Terminal, Sparkles, Code, Workflow, Wrench, Brain, Network, Key, Search, FileSearch, HardDrive, Box, Zap, GitBranch, PawPrint, type LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
     Shield,
@@ -25,6 +25,7 @@ const iconMap: Record<string, LucideIcon> = {
     Box,
     Zap,
     GitBranch,
+    PawPrint,
 };
 
 export function IconRenderer({ name, className }: { name: string; className?: string }) {
