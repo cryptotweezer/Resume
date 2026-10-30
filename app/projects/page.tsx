@@ -28,8 +28,7 @@ export default async function ProjectsPage() {
                 Projects
               </h1>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Showcasing cybersecurity, AI, and full-stack development projects combining secure
-                architecture with intelligent automation.
+                Production platforms I designed, built and secured: security tooling, AI systems and real products, every one of them live.
               </p>
             </div>
           </div>

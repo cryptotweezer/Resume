@@ -45,10 +45,11 @@ export async function subscribeToNewsletter(
     // Check if email already exists
     const existingSubscriber = await db.select().from(subscribers).where(eq(subscribers.email, email))
 
+    // Same answer as a new sign-up, so the form never reveals who is subscribed.
     if (existingSubscriber.length > 0) {
       return {
-        status: "error",
-        message: "You are already subscribed to our newsletter",
+        status: "success",
+        message: "Thank you for subscribing to our newsletter!",
         email,
         name,
       }
@@ -74,18 +75,5 @@ export async function subscribeToNewsletter(
       status: "error",
       message: "An error occurred while subscribing. Please try again.",
     }
-  }
-}
-
-/**
- * Server action to get all newsletter subscribers
- */
-export async function getSubscribers(): Promise<Array<typeof subscribers.$inferSelect>> {
-  try {
-    const allSubscribers = await db.select().from(subscribers).orderBy(subscribers.createdAt)
-    return allSubscribers
-  } catch (error) {
-    console.error("Error fetching subscribers:", error)
-    return []
   }
 }

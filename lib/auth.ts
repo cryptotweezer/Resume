@@ -137,21 +137,27 @@ export async function syncUserWithDatabase(email: string, name: string = ''): Pr
       return { ...user, clerkId, name: name || user.name };
     }
 
-    // Check if this is the first user in the system
-    const totalUsers = await db
-      .select({ count: sql`count(*)` })
-      .from(users);
+    // The first account becomes admin, but only while no admin exists at all,
+    // and under a transaction lock so two simultaneous sign-ups cannot both win.
+    const newUser = await db.transaction(async (tx) => {
+      await tx.execute(sql`select pg_advisory_xact_lock(hashtext('resume.users.first_admin'))`);
 
-    const isFirstUser = totalUsers[0]?.count === '0';
+      const admins = await tx
+        .select({ id: users.id })
+        .from(users)
+        .where(eq(users.role, 'admin'))
+        .limit(1);
+      const isFirstUser = admins.length === 0;
 
-    // Insert the new user with appropriate role
-    const [newUser] = await db.insert(users).values({
-      email,
-      name,
-      clerkId,
-      role: isFirstUser ? 'admin' : 'user',
-      isFirstUser,
-    }).returning();
+      const [inserted] = await tx.insert(users).values({
+        email,
+        name,
+        clerkId,
+        role: isFirstUser ? 'admin' : 'user',
+        isFirstUser,
+      }).returning();
+      return inserted;
+    });
 
     // Also add to subscribers if not already there (for newsletters)
     const existingSubscriber = await db
@@ -171,58 +177,5 @@ export async function syncUserWithDatabase(email: string, name: string = ''): Pr
   } catch (error) {
     console.error("Error syncing user with database:", error);
     return null;
-  }
-}
-
-/**
- * Migrates existing users from subscribers table to users table
- * This is a one-time migration function
- */
-export async function migrateExistingUsers() {
-  try {
-    // Get all existing users from subscribers that have a role
-    const subscribersList = await db
-      .select()
-      .from(subscribers);
-
-    if (subscribersList.length === 0) {
-      console.log("No subscribers to migrate");
-      return;
-    }
-
-    // Get current Clerk user for ID
-    const clerk = await currentUser();
-    if (!clerk) {
-      throw new Error("No authenticated user found");
-    }
-
-    const clerkId = clerk.id;
-    const email = clerk.emailAddresses[0].emailAddress;
-
-    // Get existing users in the users table
-    const existingUsers = await db
-      .select()
-      .from(users);
-
-    const existingEmails = existingUsers.map(user => user.email);
-
-    // Add the current user as admin if not already in users table
-    if (!existingEmails.includes(email)) {
-      await db.insert(users).values({
-        email,
-        name: clerk.firstName && clerk.lastName
-          ? `${clerk.firstName} ${clerk.lastName}`
-          : "",
-        clerkId,
-        role: 'admin',
-        isFirstUser: true,
-      });
-
-      console.log(`Added current user ${email} as admin`);
-    }
-
-    console.log(`Migration complete. ${existingUsers.length + 1} users in users table.`);
-  } catch (error) {
-    console.error("Error migrating users:", error);
   }
 }

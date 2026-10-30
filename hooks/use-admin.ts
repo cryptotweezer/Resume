@@ -6,39 +6,31 @@ import { checkIsAdmin } from "@/actions/admin";
 
 export const useAdmin = () => {
   const { user, isLoaded } = useUser();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const userId = user?.id ?? null;
+  // The answer is kept with the user it belongs to, so a change of user reads
+  // as "still loading" until that user's check comes back.
+  const [result, setResult] = useState<{ userId: string; isAdmin: boolean } | null>(null);
 
   useEffect(() => {
-    // Reset loading state when user changes
-    setIsLoading(true);
-    
-    // If no user is logged in, they can't be an admin
-    if (!isLoaded || !user) {
-      setIsAdmin(false);
-      setIsLoading(false);
-      return;
-    }
+    if (!isLoaded || !userId) return;
 
-    const fetchAdminStatus = async () => {
-      try {
-        console.log("useAdmin: Checking admin status for user:", user.id);
-        
-        // Call the server action to check if the user is an admin
-        const result = await checkIsAdmin();
-        
-        console.log("useAdmin: Admin check result:", result);
-        setIsAdmin(!!result.isAdmin);
-      } catch (error) {
+    let cancelled = false;
+    checkIsAdmin()
+      .then((res) => {
+        if (!cancelled) setResult({ userId, isAdmin: !!res.isAdmin });
+      })
+      .catch((error) => {
         console.error("useAdmin: Error checking admin status:", error);
-        setIsAdmin(false);
-      } finally {
-        setIsLoading(false);
-      }
+        if (!cancelled) setResult({ userId, isAdmin: false });
+      });
+
+    return () => {
+      cancelled = true;
     };
+  }, [userId, isLoaded]);
 
-    fetchAdminStatus();
-  }, [user, isLoaded]);
-
-  return { isAdmin, isLoading };
+  if (!isLoaded) return { isAdmin: false, isLoading: true };
+  if (!userId) return { isAdmin: false, isLoading: false };
+  const checked = result?.userId === userId;
+  return { isAdmin: checked && result.isAdmin, isLoading: !checked };
 };

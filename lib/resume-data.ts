@@ -43,7 +43,7 @@ export const experiences: ExperienceItem[] = [
     {
         title: "Logistics Specialist In-House",
         company: "Kemira Chemicals Brazil Ltda. / Coordinadora Logistica Internacional",
-        period: "July 2008 - Mar 2013",
+        period: "Jul 2008 - Mar 2013",
         location: "Bogotá, Colombia",
         description: [
             "Served as in-house logistics specialist supporting Kemira Netherlands operations in Colombia, overseeing international transport and warehousing.",
@@ -59,7 +59,7 @@ export const experiences: ExperienceItem[] = [
     {
         title: "Account Manager",
         company: "Coordinadora Logistica Internacional",
-        period: "Feb 2006 - June 2008",
+        period: "Feb 2006 - Jun 2008",
         location: "Bogotá, Colombia",
         description: [
             "Managed national and international client accounts across multiple industries, delivering tailored logistics and supply chain solutions aligned with business needs.",

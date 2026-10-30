@@ -51,7 +51,7 @@ export function CertificationsSection() {
                                 >
                                     <div className="flex items-start justify-between gap-3">
                                         <div className="flex-1">
-                                            <h4 className="text-foreground font-semibold mb-1 group-hover:text-blue-400 transition-colors">Google IT Support</h4>
+                                            <h4 className="text-foreground font-semibold mb-1 group-hover:text-blue-400 transition-colors">Google IT Support Professional Certificate</h4>
                                             <p className="text-sm text-muted-foreground">Google</p>
                                         </div>
                                         <ExternalLink className="h-4 w-4 text-blue-400 flex-shrink-0 mt-1" />

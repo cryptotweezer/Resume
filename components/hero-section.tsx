@@ -33,13 +33,13 @@ export function HeroSection() {
     }, [])
 
     return (
-        <section className="w-full min-h-[calc(100vh-4rem)] py-12 flex items-center bg-background relative overflow-hidden">
+        <section className="w-full min-h-[calc(100dvh-4rem)] py-12 flex items-center bg-background relative overflow-hidden">
             <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
                 <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_600px]">
                     <div className="flex flex-col justify-center space-y-6">
                         <div className="space-y-6">
                             {/* Name Title */}
-                            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none min-h-[1.2em]">
+                            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none min-h-[2.4em] md:min-h-[1.2em] lg:min-h-[2.4em]">
                                 <TypewriterEffect
                                     words={["Andres Henao", "Cyber Security", "Security Operations", "Cloud & Network Security", "AI Systems"]}
                                     cursorClassName="text-blue-500"
@@ -48,7 +48,7 @@ export function HeroSection() {
 
                             {/* Description */}
                             <p className="max-w-[600px] text-muted-foreground md:text-lg leading-relaxed">
-                                Securing cloud environments, networks and production applications, and building AI-driven systems with security built in from the start.
+                                Cyber security specialist in Sydney. I secure cloud environments, networks and production applications, and build AI systems with security designed in from the first line.
                             </p>
 
                             {/* Professional Badges */}
@@ -56,19 +56,19 @@ export function HeroSection() {
                                 <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
                                     <Shield className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
                                     <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
-                                        Cybersecurity Specialist
+                                        Cyber Security Specialist
                                     </span>
                                 </div>
                                 <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
                                     <Cloud className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
                                     <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
-                                        Cloud Security Engineer
+                                        Security Operations
                                     </span>
                                 </div>
                                 <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">
                                     <Code2 className="h-4 w-4 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] transition-all duration-300" />
                                     <span className="text-sm font-medium text-muted-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neutral-500 group-hover:via-black group-hover:to-neutral-500 dark:group-hover:from-neutral-400 dark:group-hover:via-white dark:group-hover:to-neutral-400 group-hover:bg-[length:200%_auto] group-hover:animate-shine">
-                                        Full-Stack Developer
+                                        Cloud & Network Security
                                     </span>
                                 </div>
                                 <div className="group inline-flex items-center gap-2 px-4 py-3 rounded-full border border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-all duration-300 hover:border-blue-500/40">

@@ -1,5 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 import { ArrowLeft, Calendar, User, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { NewsletterForm } from "@/components/newsletter-form"
@@ -95,10 +97,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
           </div>
 
-          <div
-            className="mt-8 prose prose-gray dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content ?? "" }}
-          />
+          {/* Markdown without raw HTML: content can arrive from outside the app (MCP, SQL). */}
+          <div className="mt-8 prose prose-gray dark:prose-invert max-w-none break-words">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content ?? ""}</ReactMarkdown>
+          </div>
         </div>
       </div>
 

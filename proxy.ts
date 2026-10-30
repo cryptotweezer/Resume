@@ -3,7 +3,7 @@ import arcjet, { detectBot, shield, fixedWindow } from "@arcjet/next";
 import { NextResponse } from "next/server";
 
 // Define protected routes that require authentication
-const isProtectedRoute = createRouteMatcher(['/admin', '/resources(.*)', '/projects']);
+const isProtectedRoute = createRouteMatcher(['/admin(.*)', '/projects/(.*)/edit']);
 
 // Se llama desde scripts/CLI, no desde un navegador, asi que detectBot lo
 // rechazaria. Va protegido por el secreto en x-revalidate-secret.

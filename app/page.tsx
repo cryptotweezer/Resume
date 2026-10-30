@@ -2,7 +2,7 @@ export const revalidate = 600;
 
 import Link from "next/link"
 import { EducationPdfCard } from "@/components/education-pdf-card"
-import { Shield, Server, Bot, Cloud, Network, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, ExternalLink, Calendar } from "lucide-react"
+import { Shield, Bot, Cloud, Network, Users, MapPin, Mail, Phone, Linkedin, Briefcase, GraduationCap, ExternalLink, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { NewsletterForm } from "@/components/newsletter-form"
@@ -60,7 +60,7 @@ export default async function Home() {
             <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">Core Technical Areas</h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Four areas I work in every week: detecting and responding to threats, securing cloud environments, hardening networks, and building AI systems that run safely in production.
+                The four areas I work in: detecting and responding to threats, securing cloud environments, hardening networks, and building AI systems that run safely in production.
               </p>
             </div>
           </div>
@@ -177,47 +177,48 @@ export default async function Home() {
                   </p>
 
                   <p>
-                    What I have been building is production platforms end to end, across a{" "}
+                    I build production platforms end to end, across a{" "}
                     <span className="text-blue-400 font-semibold">broad range of frameworks, languages, databases and cloud
-                    services</span> rather than a single stack, and then securing them the way they should be: a WAF and bot
-                    mitigation at the edge, real authentication, least privilege at the database.
+                    services</span> rather than a single stack, and secure them the way they should be: a WAF and bot
+                    mitigation at the edge, real authentication and least privilege at the database.
                   </p>
 
                   <p>
                     I design systems that{" "}
-                    <span className="text-blue-400 font-semibold">AI agents can operate safely</span>, with the business rules
-                    living in the database instead of in a prompt and every agent holding its own credential and permissions.
-                    One example running in production today is a services company that puts around 95% of its invoicing and
-                    financial year reporting through agents, and closes its books without anyone opening a spreadsheet.
+                    <span className="text-blue-400 font-semibold">AI agents can operate safely</span>: the business rules live in
+                    the database instead of in a prompt, and every agent holds its own credential and permissions. My own services
+                    company, Awesome Services, runs around 95% of its invoicing and financial year reporting through agents this
+                    way, and closes its books without anyone opening a spreadsheet.
                   </p>
 
                   <p>
-                    I also hold Google and IBM professional certificates in cybersecurity, AI and full-stack development, plus an
-                    Advanced Diploma of Leadership and Management. Fifteen years running international logistics and business
-                    operations before tech taught me to ask what a system costs to run, not just whether it works.
+                    I am currently studying a Master of Applied Information Technology at Victoria University, and hold Google,
+                    IBM and TAFE NSW certificates in cyber security, AI and full-stack development, plus an Advanced Diploma of
+                    Leadership and Management. My background in international logistics and running my own business
+                    taught me to ask what a system costs to run, not just whether it works.
                   </p>
                 </div>
 
                 {/* Contact Info */}
                 <div className="mt-6 pt-6 border-t border-border space-y-3">
                   <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <MapPin className="h-4 w-4 text-blue-400" />
+                    <MapPin className="h-4 w-4 text-blue-400 shrink-0" />
                     <span>Sydney, Australia</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Mail className="h-4 w-4 text-blue-400" />
-                    <span>andres.henaocastro@live.vu.edu.au</span>
+                    <Mail className="h-4 w-4 text-blue-400 shrink-0" />
+                    <span className="min-w-0 break-all">andres.henaocastro@live.vu.edu.au</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Mail className="h-4 w-4 text-blue-400" />
-                    <span>andreshenao.tech@gmail.com</span>
+                    <Mail className="h-4 w-4 text-blue-400 shrink-0" />
+                    <span className="min-w-0 break-all">andreshenao.tech@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Phone className="h-4 w-4 text-blue-400" />
+                    <Phone className="h-4 w-4 text-blue-400 shrink-0" />
                     <span>+61 404 682 541</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <Linkedin className="h-4 w-4 text-blue-400" />
+                    <Linkedin className="h-4 w-4 text-blue-400 shrink-0" />
                     <Link
                       href="https://www.linkedin.com/in/andreshenao/"
                       target="_blank"
@@ -228,7 +229,7 @@ export default async function Home() {
                     </Link>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
-                    <Briefcase className="h-4 w-4 text-blue-400" />
+                    <Briefcase className="h-4 w-4 text-blue-400 shrink-0" />
                     <Link
                       href="https://www.seek.com.au/profiles/andres-henao-FdYyBD5Xcp"
                       target="_blank"
@@ -243,16 +244,16 @@ export default async function Home() {
                 {/* Tags */}
                 <div className="mt-6 pt-6 border-t border-border flex flex-wrap gap-3">
                   <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
+                    Security Operations
+                  </span>
+                  <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
+                    Cloud &amp; Network Security
+                  </span>
+                  <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
                     Security-First Engineering
                   </span>
                   <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
                     AI Agent Systems
-                  </span>
-                  <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
-                    Automation by Design
-                  </span>
-                  <span className="px-4 py-2 rounded-lg bg-background border border-border text-sm font-medium">
-                    Cloud & Edge Infrastructure
                   </span>
                 </div>
               </div>
@@ -282,9 +283,9 @@ export default async function Home() {
                       <Shield className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <CountUp end={100} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Serverless and Edge-Native</div>
-                      <div className="text-xs text-muted-foreground/70">The Watchtower honeypot</div>
+                      <CountUp end={180} className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">Automated Tests Guarding AI Triage</div>
+                      <div className="text-xs text-muted-foreground/70">PitsyPet</div>
                     </div>
                   </div>
                 </CardContent>
@@ -294,12 +295,12 @@ export default async function Home() {
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="rounded-lg bg-blue-500/10 p-3">
-                      <Server className="h-6 w-6 text-blue-400" />
+                      <Users className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <CountUp end={5} suffix="x" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Faster AI Context Handoff</div>
-                      <div className="text-xs text-muted-foreground/70">Project Intelligence System</div>
+                      <CountUp end={96} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">Client Retention</div>
+                      <div className="text-xs text-muted-foreground/70">Awesome Services</div>
                     </div>
                   </div>
                 </CardContent>
@@ -312,9 +313,9 @@ export default async function Home() {
                       <Briefcase className="h-6 w-6 text-blue-400" />
                     </div>
                     <div>
-                      <CountUp end={15} suffix="+" className="text-4xl font-bold text-blue-400 mb-1" />
-                      <div className="text-sm text-muted-foreground">Years Running Operations</div>
-                      <div className="text-xs text-muted-foreground/70">Logistics, business, now engineering</div>
+                      <CountUp end={20} suffix="+" className="text-4xl font-bold text-blue-400 mb-1" />
+                      <div className="text-sm text-muted-foreground">Years in Operations and Leadership</div>
+                      <div className="text-xs text-muted-foreground/70">Logistics, business, now security engineering</div>
                     </div>
                   </div>
                 </CardContent>
@@ -335,7 +336,7 @@ export default async function Home() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2 text-foreground">Education & Certifications</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4"></div>
             <p className="text-muted-foreground text-center max-w-2xl">
-              My degrees, an earlier management diploma, and the certificates I picked up along the way. Click any card to open the credential.
+              My degrees, including the Master I am studying now, an earlier management diploma, and the certificates I have earned along the way. Cards with a link open the credential.
             </p>
           </div>
 

@@ -44,23 +44,23 @@ export default function AboutPage() {
                   of the field.
                 </p>
                 <p className="text-muted-foreground">
-                  What I have been building is production platforms end to end, working across a broad set of frameworks,
-                  languages, databases and cloud services rather than tying myself to one stack, and then securing them
-                  properly: a WAF and bot mitigation at the edge, real authentication, least privilege at the database
-                  layer. Everything in the Engineering Lab below is live and used by someone.
+                  I build production platforms end to end, working across a broad set of frameworks, languages, databases and
+                  cloud services rather than tying myself to one stack, and secure them properly: a WAF and bot mitigation at
+                  the edge, real authentication and least privilege at the database layer. Everything in the Engineering Lab
+                  below is live and used by someone.
                 </p>
                 <p className="text-muted-foreground">
                   I design systems AI agents can operate
                   safely: the rules that protect the numbers live inside the database rather than inside a prompt, and every
-                  agent connects with its own credential and its own permissions. One example running in production today is a
-                  services company that puts around 95% of its invoicing and financial year reporting through agents, and closes
+                  agent connects with its own credential and its own permissions. My own services company, Awesome Services, runs
+                  around 95% of its invoicing and financial year reporting through agents this way, and closes
                   its books without anyone opening a spreadsheet.
                 </p>
                 <p className="text-muted-foreground">
-                  I also hold Google and IBM professional certificates in cybersecurity, AI and full-stack development, and an
-                  Advanced Diploma of Leadership and Management. Fifteen years running international logistics and business
-                  operations before moving into tech taught me to judge a system by what it costs to run, not only by whether
-                  it works.
+                  I am currently studying a Master of Applied Information Technology at Victoria University, and hold Google,
+                  IBM and TAFE NSW certificates in cyber security, AI and full-stack development, plus an Advanced Diploma of
+                  Leadership and Management. My background in international logistics and running my own business taught me
+                  to judge a system by what it costs to run, not only by whether it works.
                 </p>
               </div>
             </div>
@@ -91,274 +91,416 @@ export default function AboutPage() {
           </div>
 
           <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto">
-            <AccordionItem value="cybersecurity">
+            <AccordionItem value="security-operations">
               <AccordionTrigger className="text-xl font-bold text-foreground">
-                Cybersecurity & Network Defense
+                Security Operations &amp; Threat Detection
               </AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Cyber Threat Analysis</p>
-                      <p className="text-sm text-muted-foreground">Identifying and analyzing security threats</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Vulnerability Management</p>
-                      <p className="text-sm text-muted-foreground">Systematic vulnerability assessment and remediation</p>
+                      <p className="font-semibold text-foreground">SIEM &amp; Security Monitoring</p>
+                      <p className="text-sm text-muted-foreground">Collecting, correlating and alerting on security logs</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-foreground">Incident Response</p>
-                      <p className="text-sm text-muted-foreground">Security incident handling and recovery</p>
+                      <p className="text-sm text-muted-foreground">Triage, containment and recovery from security incidents</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">SIEM Tools & Risk Management</p>
-                      <p className="text-sm text-muted-foreground">Security monitoring and risk assessment</p>
+                      <p className="font-semibold text-foreground">Threat Analysis &amp; Intelligence</p>
+                      <p className="text-sm text-muted-foreground">Understanding attacker behaviour to prioritise defences</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Network Security</p>
-                      <p className="text-sm text-muted-foreground">Network architecture protection and monitoring</p>
+                      <p className="font-semibold text-foreground">Intrusion &amp; Anomaly Detection</p>
+                      <p className="text-sm text-muted-foreground">Spotting abnormal activity with IDS and data analytics</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Firewall Configuration</p>
-                      <p className="text-sm text-muted-foreground">Rule management and traffic filtering</p>
+                      <p className="font-semibold text-foreground">Risk Assessment</p>
+                      <p className="text-sm text-muted-foreground">Rating threats and vulnerabilities by business impact</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Security Hardening</p>
-                      <p className="text-sm text-muted-foreground">System and application hardening practices</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Cloudflare & Arcjet Security</p>
-                      <p className="text-sm text-muted-foreground">Edge security, WAF, and bot mitigation</p>
+                      <p className="font-semibold text-foreground">Security Logging</p>
+                      <p className="text-sm text-muted-foreground">Audit trails that make every action traceable</p>
                     </div>
                   </div>
                 </div>
               </AccordionContent>
             </AccordionItem>
-
-            <AccordionItem value="development">
+            <AccordionItem value="vulnerability">
               <AccordionTrigger className="text-xl font-bold text-foreground">
-                Software & Full-Stack Development
+                Vulnerability Management &amp; Forensics
               </AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Next.js & TypeScript</p>
-                      <p className="text-sm text-muted-foreground">Production-grade React applications with App Router</p>
+                      <p className="font-semibold text-foreground">Vulnerability Assessment &amp; Scanning</p>
+                      <p className="text-sm text-muted-foreground">Finding weaknesses in hosts, networks and applications</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Python Development</p>
-                      <p className="text-sm text-muted-foreground">Python, Flask, Django frameworks</p>
+                      <p className="font-semibold text-foreground">Penetration Testing</p>
+                      <p className="text-sm text-muted-foreground">Controlled attacks to prove and prioritise risk</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">API Development</p>
-                      <p className="text-sm text-muted-foreground">RESTful API design and integration</p>
+                      <p className="font-semibold text-foreground">Ethical Hacking</p>
+                      <p className="text-sm text-muted-foreground">Thinking like an attacker within ethical and legal limits</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Full-Stack Development</p>
-                      <p className="text-sm text-muted-foreground">Front-end and back-end development</p>
+                      <p className="font-semibold text-foreground">API Security Testing</p>
+                      <p className="text-sm text-muted-foreground">Testing APIs for data leaks and broken access control</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Docker & Containerization</p>
-                      <p className="text-sm text-muted-foreground">Container orchestration and deployment</p>
+                      <p className="font-semibold text-foreground">Digital Forensics</p>
+                      <p className="text-sm text-muted-foreground">Evidence collection and analysis across memory, OS, email and network</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">GitHub & Version Control</p>
-                      <p className="text-sm text-muted-foreground">Git workflows and collaboration</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">SQL & Database Design</p>
-                      <p className="text-sm text-muted-foreground">Database architecture and optimization</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Supabase & PostgreSQL</p>
-                      <p className="text-sm text-muted-foreground">Serverless database, auth, and MCP integration</p>
+                      <p className="font-semibold text-foreground">Malware Analysis</p>
+                      <p className="text-sm text-muted-foreground">Understanding how viruses and trojans behave and spread</p>
                     </div>
                   </div>
                 </div>
               </AccordionContent>
             </AccordionItem>
-
+            <AccordionItem value="cloud">
+              <AccordionTrigger className="text-xl font-bold text-foreground">
+                Cloud Security &amp; Virtualisation
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">AWS Security</p>
+                      <p className="text-sm text-muted-foreground">IAM, Cognito, Secrets Manager, Lambda, API Gateway, RDS and CloudWatch</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Microsoft Azure</p>
+                      <p className="text-sm text-muted-foreground">Securing Azure environments and identities</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Identity &amp; Key Management</p>
+                      <p className="text-sm text-muted-foreground">MFA, PKI, mTLS and digital certificates</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Containers &amp; Virtualisation</p>
+                      <p className="text-sm text-muted-foreground">Docker, Kubernetes and Hyper-V</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Infrastructure as Code</p>
+                      <p className="text-sm text-muted-foreground">Repeatable, reviewable cloud deployments</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Serverless &amp; Edge Computing</p>
+                      <p className="text-sm text-muted-foreground">Production workloads on serverless and edge platforms</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Disaster Recovery</p>
+                      <p className="text-sm text-muted-foreground">High availability and recovery planning</p>
+                    </div>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="network">
+              <AccordionTrigger className="text-xl font-bold text-foreground">
+                Network Security &amp; Infrastructure
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">TCP/IP, Subnetting &amp; IPv6</p>
+                      <p className="text-sm text-muted-foreground">Addressing and network design fundamentals</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Routing &amp; Switching</p>
+                      <p className="text-sm text-muted-foreground">LAN and WAN design with Cisco technologies</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Firewalls, VPN &amp; IPSec</p>
+                      <p className="text-sm text-muted-foreground">Traffic filtering and encrypted tunnels</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">DNS &amp; Group Policy</p>
+                      <p className="text-sm text-muted-foreground">Enterprise network services and policy management</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">System Hardening</p>
+                      <p className="text-sm text-muted-foreground">Reducing the attack surface of servers and systems</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Linux &amp; Server Administration</p>
+                      <p className="text-sm text-muted-foreground">Configuring and maintaining servers</p>
+                    </div>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="appsec">
+              <AccordionTrigger className="text-xl font-bold text-foreground">
+                Application Security &amp; Identity
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">WAF &amp; Bot Detection</p>
+                      <p className="text-sm text-muted-foreground">Edge protection with Cloudflare and Arcjet</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Rate Limiting</p>
+                      <p className="text-sm text-muted-foreground">Protecting APIs and AI endpoints from abuse and runaway cost</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">OAuth 2.1 &amp; SSO</p>
+                      <p className="text-sm text-muted-foreground">Modern authentication for users and AI agents</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Role-Based Access Control</p>
+                      <p className="text-sm text-muted-foreground">Least privilege enforced in the application and the database</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Row Level Security</p>
+                      <p className="text-sm text-muted-foreground">Permissions enforced by PostgreSQL itself</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Secrets Management</p>
+                      <p className="text-sm text-muted-foreground">Keeping credentials out of code and out of the browser</p>
+                    </div>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="governance">
+              <AccordionTrigger className="text-xl font-bold text-foreground">
+                Governance, Privacy &amp; Compliance
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Cyber Law &amp; Policy</p>
+                      <p className="text-sm text-muted-foreground">Australian and international cyber law</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Privacy Legislation</p>
+                      <p className="text-sm text-muted-foreground">Data protection obligations and privacy regulation</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Privacy-Preserving Techniques</p>
+                      <p className="text-sm text-muted-foreground">Data masking and data authentication</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Security Policies &amp; Standards</p>
+                      <p className="text-sm text-muted-foreground">Writing and applying security policies</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Professional Ethics</p>
+                      <p className="text-sm text-muted-foreground">Ethical and legal responsibilities of security work</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">ICT Management</p>
+                      <p className="text-sm text-muted-foreground">Aligning IT services with business goals</p>
+                    </div>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
             <AccordionItem value="ai-automation">
               <AccordionTrigger className="text-xl font-bold text-foreground">
-                Artificial Intelligence & Automation
+                AI Engineering &amp; Automation
               </AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">LLM Integration</p>
-                      <p className="text-sm text-muted-foreground">Large language model implementation</p>
+                      <p className="font-semibold text-foreground">AI Agents</p>
+                      <p className="text-sm text-muted-foreground">Agents that run real business operations</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">AI Agent Implementation</p>
-                      <p className="text-sm text-muted-foreground">Autonomous AI agent development</p>
+                      <p className="font-semibold text-foreground">Multi-Provider LLM Integration</p>
+                      <p className="text-sm text-muted-foreground">Model-agnostic integration and tool calling</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Workflow Automation</p>
-                      <p className="text-sm text-muted-foreground">Agentic workflow automation</p>
+                      <p className="font-semibold text-foreground">MCP Servers</p>
+                      <p className="text-sm text-muted-foreground">Model Context Protocol gateways with scoped permissions</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Process Optimization</p>
+                      <p className="font-semibold text-foreground">Agentic Workflow Automation</p>
+                      <p className="text-sm text-muted-foreground">Automating processes end to end with agents</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">AI-Assisted Development</p>
+                      <p className="text-sm text-muted-foreground">Building faster with AI while keeping control of design and security</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground">Process Optimisation</p>
                       <p className="text-sm text-muted-foreground">Business process improvement through automation</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">MCP Servers for AI</p>
-                      <p className="text-sm text-muted-foreground">Model Context Protocol implementation</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Multi-Provider LLM APIs</p>
-                      <p className="text-sm text-muted-foreground">Model-agnostic integration, tool calling, and AI assistants</p>
-                    </div>
-                  </div>
                 </div>
               </AccordionContent>
             </AccordionItem>
-
-            <AccordionItem value="cloud">
+            <AccordionItem value="development">
               <AccordionTrigger className="text-xl font-bold text-foreground">
-                Cloud Computing & Infrastructure
+                Software Development
               </AccordionTrigger>
               <AccordionContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Cloud Computing</p>
-                      <p className="text-sm text-muted-foreground">AWS and IBM Cloud platforms</p>
+                      <p className="font-semibold text-foreground">Python, TypeScript, SQL &amp; Bash</p>
+                      <p className="text-sm text-muted-foreground">Working knowledge across languages</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Linux System Administration</p>
-                      <p className="text-sm text-muted-foreground">Server management and configuration</p>
+                      <p className="font-semibold text-foreground">Next.js &amp; React</p>
+                      <p className="text-sm text-muted-foreground">Production web applications</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Containerization</p>
-                      <p className="text-sm text-muted-foreground">Docker and container orchestration</p>
+                      <p className="font-semibold text-foreground">PostgreSQL &amp; Supabase</p>
+                      <p className="text-sm text-muted-foreground">Database design, auth and Row Level Security</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Cloud Security Principles</p>
-                      <p className="text-sm text-muted-foreground">Secure cloud architecture and deployment</p>
+                      <p className="font-semibold text-foreground">REST &amp; API Design</p>
+                      <p className="text-sm text-muted-foreground">Designing and integrating secure APIs</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">Vercel & Edge Deployment</p>
-                      <p className="text-sm text-muted-foreground">Serverless and edge-native production deployments</p>
+                      <p className="font-semibold text-foreground">CI/CD, Git &amp; GitHub</p>
+                      <p className="text-sm text-muted-foreground">Version control and automated deployment</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-foreground">GitHub Actions & CI/CD</p>
-                      <p className="text-sm text-muted-foreground">Automated build, test, and deployment pipelines</p>
-                    </div>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="data">
-              <AccordionTrigger className="text-xl font-bold text-foreground">
-                Data Analysis & Visualization
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Data Mining</p>
-                      <p className="text-sm text-muted-foreground">Extracting insights from large datasets</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Data Analysis</p>
-                      <p className="text-sm text-muted-foreground">Statistical analysis and interpretation</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Data Visualization</p>
-                      <p className="text-sm text-muted-foreground">Creating interactive dashboards and reports</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="font-semibold text-foreground">Data-Driven Decision-Making</p>
-                      <p className="text-sm text-muted-foreground">Business intelligence and analytics</p>
+                      <p className="font-semibold text-foreground">Agile</p>
+                      <p className="text-sm text-muted-foreground">Iterative delivery in teams</p>
                     </div>
                   </div>
                 </div>
@@ -405,56 +547,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Experience Timeline */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Professional Experience</h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Fifteen years running operations, first in international logistics, then in my own business, and now with the engineering to automate it.
-              </p>
-            </div>
-          </div>
-
-          <ExperienceRoadmap />
-        </div>
-      </section>
-
-      {/* Engineering Lab */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
-
-          {/* Header */}
-          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Engineering Lab</h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Platforms I designed, built and deployed on my own. Every one of them is live, and every one of them solves a problem I actually had.
-              </p>
-            </div>
-          </div>
-
-          <LabProjectsSection />
-        </div>
-      </section>
-
-      {/* Professional Achievements */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Key Achievements</h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Numbers that came out of systems people depend on, not out of a demo.
-              </p>
-            </div>
-          </div>
-
-          <KeyAchievementsSection />
-        </div>
-      </section>
-
       {/* Education & Certifications Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background relative overflow-hidden">
         <div className="container px-4 md:px-6 lg:px-12 xl:px-24 relative z-10">
@@ -463,7 +555,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-2 text-foreground">Education & Certifications</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4"></div>
             <p className="text-muted-foreground text-center max-w-2xl">
-              My degrees, an earlier management diploma, and the certificates I picked up along the way. Click any card to open the credential.
+              My degrees, including the Master I am studying now, an earlier management diploma, and the certificates I have earned along the way. Cards with a link open the credential.
             </p>
           </div>
 
@@ -589,7 +681,7 @@ export default function AboutPage() {
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1">
-                            <h4 className="text-foreground font-semibold mb-1 group-hover:text-blue-400 transition-colors">Google IT Support</h4>
+                            <h4 className="text-foreground font-semibold mb-1 group-hover:text-blue-400 transition-colors">Google IT Support Professional Certificate</h4>
                             <p className="text-sm text-muted-foreground">Google</p>
                           </div>
                           <ExternalLink className="h-4 w-4 text-blue-400 flex-shrink-0 mt-1" />
@@ -770,6 +862,56 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Engineering Lab */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
+
+          {/* Header */}
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Engineering Lab</h2>
+              <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+                Platforms I designed, built and deployed on my own. Every one of them is live, and every one of them solves a real problem for the people who use it.
+              </p>
+            </div>
+          </div>
+
+          <LabProjectsSection />
+        </div>
+      </section>
+
+      {/* Experience Timeline */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Professional Experience</h2>
+              <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+                Operations first, in international logistics and then in my own business, and now the security and engineering to protect and automate them.
+              </p>
+            </div>
+          </div>
+
+          <ExperienceRoadmap />
+        </div>
+      </section>
+
+      {/* Professional Achievements */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <div className="container px-4 md:px-6 lg:px-12 xl:px-24">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">Key Achievements</h2>
+              <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+                Numbers that came out of systems people depend on, not out of a demo.
+              </p>
+            </div>
+          </div>
+
+          <KeyAchievementsSection />
+        </div>
+      </section>
+
       {/* Call to Action */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6 lg:px-12 xl:px-24 text-center">
@@ -783,15 +925,15 @@ export default function AboutPage() {
                 <MapPin className="h-4 w-4 text-primary" />
                 <span>Sydney, Australia</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:andres.henaocastro@live.vu.edu.au" className="hover:text-primary transition-colors">
+              <div className="flex items-center gap-2 min-w-0">
+                <Mail className="h-4 w-4 text-primary shrink-0" />
+                <a href="mailto:andres.henaocastro@live.vu.edu.au" className="hover:text-primary transition-colors break-all">
                   andres.henaocastro@live.vu.edu.au
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:andreshenao.tech@gmail.com" className="hover:text-primary transition-colors">
+              <div className="flex items-center gap-2 min-w-0">
+                <Mail className="h-4 w-4 text-primary shrink-0" />
+                <a href="mailto:andreshenao.tech@gmail.com" className="hover:text-primary transition-colors break-all">
                   andreshenao.tech@gmail.com
                 </a>
               </div>

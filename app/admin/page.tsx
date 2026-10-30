@@ -54,8 +54,8 @@ export default async function AdminPage() {
         </CardHeader>
         <CardContent className="space-y-6">
           {projects.length > 0 && (
-            <div className="rounded-lg border border-border overflow-hidden">
-              <table className="w-full text-sm">
+            <div className="rounded-lg border border-border overflow-x-auto">
+              <table className="w-full min-w-[32rem] text-sm">
                 <thead>
                   <tr className="border-b border-border bg-muted/40">
                     <th className="text-left px-4 py-3 font-medium text-muted-foreground">Title</th>
@@ -124,8 +124,8 @@ export default async function AdminPage() {
         </CardHeader>
         <CardContent className="space-y-6">
           {tools.length > 0 && (
-            <div className="rounded-lg border border-border overflow-hidden">
-              <table className="w-full text-sm">
+            <div className="rounded-lg border border-border overflow-x-auto">
+              <table className="w-full min-w-[32rem] text-sm">
                 <thead>
                   <tr className="border-b border-border bg-muted/40">
                     <th className="text-left px-4 py-3 font-medium text-muted-foreground">Name</th>
@@ -199,8 +199,8 @@ export default async function AdminPage() {
           {leads.length === 0 ? (
             <p className="text-sm text-muted-foreground">No leads yet. Boto will collect them when users leave contact info via chat.</p>
           ) : (
-            <div className="rounded-lg border border-border overflow-hidden">
-              <table className="w-full text-sm">
+            <div className="rounded-lg border border-border overflow-x-auto">
+              <table className="w-full min-w-[32rem] text-sm">
                 <thead>
                   <tr className="border-b border-border bg-muted/40">
                     <th className="text-left px-4 py-3 font-medium text-muted-foreground">Name</th>
@@ -216,7 +216,7 @@ export default async function AdminPage() {
                     <tr key={lead.id} className={`border-b border-border last:border-0 ${i % 2 === 0 ? "" : "bg-muted/20"}`}>
                       <td className="px-4 py-3 font-medium">{lead.name}</td>
                       <td className="px-4 py-3 text-blue-400">
-                        <a href={`mailto:${lead.email}`} className="hover:underline">{lead.email}</a>
+                        <a href={`mailto:${lead.email}`} className="hover:underline break-all">{lead.email}</a>
                         {lead.phone && <div className="text-xs text-muted-foreground mt-0.5">{lead.phone}</div>}
                       </td>
                       <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">

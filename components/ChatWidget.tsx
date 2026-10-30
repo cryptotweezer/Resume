@@ -46,12 +46,14 @@ export default function ChatWidget() {
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ messages: [...messages, userMessage] }),
+                // The API keeps only the recent turns, so there is no point sending more.
+                body: JSON.stringify({ messages: [...messages, userMessage].slice(-20) }),
             });
 
-            if (!response.ok) throw new Error("Failed to fetch response");
+            const data = await response.json().catch(() => ({}));
+            // A rate-limited answer still carries a reply worth showing.
+            if (!response.ok && !data.reply) throw new Error("Failed to fetch response");
 
-            const data = await response.json();
             const assistantMessage: Message = { role: "assistant", content: data.reply };
             setMessages((prev) => [...prev, assistantMessage]);
         } catch (error) {
@@ -80,7 +82,7 @@ export default function ChatWidget() {
             )}
 
             {isChatOpen && (
-                <Card className="w-full sm:w-[350px] h-[500px] max-h-[calc(100dvh-8rem)] flex flex-col shadow-xl border-primary/20">
+                <Card className="w-full sm:w-[350px] h-[min(500px,calc(100dvh-6rem))] max-h-[calc(100dvh-6rem)] flex flex-col shadow-xl border-primary/20">
                     <CardHeader className="flex flex-row items-center justify-between p-4 border-b flex-shrink-0">
                         <CardTitle className="text-sm font-bold flex flex-col items-start">
                             <div className="flex items-center gap-1">
@@ -145,7 +147,7 @@ export default function ChatWidget() {
                                         >
                                             <div
                                                 className={cn(
-                                                    "max-w-[80%] rounded-lg px-3 py-2 text-sm",
+                                                    "max-w-[80%] rounded-lg px-3 py-2 text-sm break-words [overflow-wrap:anywhere]",
                                                     msg.role === "user"
                                                         ? "bg-primary text-primary-foreground"
                                                         : "bg-muted text-foreground"
@@ -157,7 +159,7 @@ export default function ChatWidget() {
                                                     <ReactMarkdown
                                                         remarkPlugins={[remarkGfm]}
                                                         components={{
-                                                            a: ({ node, ...props }) => { void node; return <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline hover:text-blue-600" /> }
+                                                            a: ({ node, ...props }) => { void node; return <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline hover:text-blue-600 break-all" /> }
                                                         }}
                                                     >
                                                         {msg.content}
@@ -184,6 +186,7 @@ export default function ChatWidget() {
                                 placeholder="Type a message..."
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
+                                maxLength={2000}
                                 disabled={isLoading || !isSignedIn}
                                 className="flex-1 h-11"
                             />

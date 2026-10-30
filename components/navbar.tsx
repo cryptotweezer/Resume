@@ -13,6 +13,7 @@ import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton, SignOutBut
 import { useUI } from "@/context/ui-context"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
+import { useMounted } from "@/hooks/use-mounted"
 import { useAdmin } from "@/hooks/use-admin"
 
 export default function Navbar() {
@@ -21,12 +22,7 @@ export default function Navbar() {
   const { setIsHoveringAuth } = useUI()
   const { isAdmin } = useAdmin()
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  // Wait for mount to avoid hydration mismatch
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useMounted()
 
   const navLinks = [
     { href: "/", label: "Home" },

@@ -3,15 +3,20 @@
 import { db, blogPosts } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { isAdmin } from "@/lib/auth";
 
 const blogPostSchema = z.object({
     title: z.string().min(1, "Title is required"),
     description: z.string().min(1, "Description is required"),
     icon: z.string().min(1, "Icon is required"),
-    externalLink: z.string().url("Must be a valid URL"),
+    externalLink: z.string().url("Must be a valid URL").regex(/^https?:\/\//i, "Must be an http(s) URL"),
 });
 
 export async function addBlogPost(formData: FormData) {
+    if (!(await isAdmin())) {
+        return { success: false, message: "Unauthorized." };
+    }
+
     const rawData = {
         title: formData.get("title"),
         description: formData.get("description"),
