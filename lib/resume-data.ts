@@ -13,7 +13,7 @@ export interface ExperienceItem {
 export const experiences: ExperienceItem[] = [
     {
         title: "Managing Director",
-        company: "Awesome Services",
+        company: "Awesome Cleaning Services",
         period: "Oct 2013 - Present",
         location: "Sydney, Australia",
         description: [

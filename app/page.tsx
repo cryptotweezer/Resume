@@ -187,7 +187,7 @@ export default async function Home() {
                     I design systems that{" "}
                     <span className="text-blue-400 font-semibold">AI agents can operate safely</span>: the business rules live in
                     the database instead of in a prompt, and every agent holds its own credential and permissions. My own services
-                    company, Awesome Services, runs around 95% of its invoicing and financial year reporting through agents this
+                    company, Awesome Cleaning Services, runs around 95% of its invoicing and financial year reporting through agents this
                     way, and closes its books without anyone opening a spreadsheet.
                   </p>
 
@@ -270,7 +270,7 @@ export default async function Home() {
                     <div>
                       <CountUp end={95} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
                       <div className="text-sm text-muted-foreground">Billing Run by AI Agents</div>
-                      <div className="text-xs text-muted-foreground/70">Awesome Services</div>
+                      <div className="text-xs text-muted-foreground/70">Awesome Cleaning Services</div>
                     </div>
                   </div>
                 </CardContent>
@@ -300,7 +300,7 @@ export default async function Home() {
                     <div>
                       <CountUp end={96} suffix="%" className="text-4xl font-bold text-blue-400 mb-1" />
                       <div className="text-sm text-muted-foreground">Client Retention</div>
-                      <div className="text-xs text-muted-foreground/70">Awesome Services</div>
+                      <div className="text-xs text-muted-foreground/70">Awesome Cleaning Services</div>
                     </div>
                   </div>
                 </CardContent>

@@ -52,7 +52,7 @@ export default function AboutPage() {
                 <p className="text-muted-foreground">
                   I design systems AI agents can operate
                   safely: the rules that protect the numbers live inside the database rather than inside a prompt, and every
-                  agent connects with its own credential and its own permissions. My own services company, Awesome Services, runs
+                  agent connects with its own credential and its own permissions. My own services company, Awesome Cleaning Services, runs
                   around 95% of its invoicing and financial year reporting through agents this way, and closes
                   its books without anyone opening a spreadsheet.
                 </p>
